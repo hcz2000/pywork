@@ -25,7 +25,10 @@
                     "-o",
                     "\"${fileDirname}\\${fileBasenameNoExtension}.exe\""
                 ]
-            }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ]
 }
