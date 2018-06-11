@@ -40,7 +40,6 @@ def main():
     frame=getData('300001.sz')
     plot(frame)
 
-
 if __name__=='__main__':
     main()
     
