@@ -4,7 +4,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app, request, url_for
 from flask_login import UserMixin
 from app.exceptions import ValidationError
-from . import db
+from . import db, login_manager
 
 class Permission:
     FOLLOW = 1
@@ -127,4 +127,6 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
