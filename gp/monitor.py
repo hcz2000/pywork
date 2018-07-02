@@ -47,10 +47,10 @@ class Monitor:
             data=self.frame[self.frame[0]==host]
             times=data[1]
             cpu_usr=data[7]
-            ax.xaxis.set_major_locator(dates.MinuteLocator(byminute=None, interval=1, tz=None))
-            ax.xaxis.set_major_formatter(dates.DateFormatter("%H:%M"))
             for tick in ax.get_xticklabels():
                 tick.set_rotation(90)
+            ax.xaxis.set_major_locator(dates.MinuteLocator(byminute=None, interval=1, tz=None))
+            ax.xaxis.set_major_formatter(dates.DateFormatter("%H:%M"))
             line, =ax.plot(times,cpu_usr)
             self.lines[host]=line
     
