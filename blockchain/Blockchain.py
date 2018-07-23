@@ -1,15 +1,18 @@
 import hashlib
 import json
-from textwrap import dedent
 from time import time
 from uuid import uuid4
+import requests
 from flask import Flask, jsonify, request
+from urllib.parse import urlparse
 
 class Blockchain(object):
     def __init__(self):
         self.chain = []
         self.current_transactions = []
         self.nodes = set()
+        #  创建创世块
+        self.new_block(previous_hash=1, proof=100)
     
     def register_node(self, address):
         parsed_url = urlparse(address)
@@ -215,6 +218,41 @@ def full_chain():
         'chain': blockchain.chain,
         'length': len(blockchain.chain),
     }
+    return jsonify(response), 200
+
+@app.route('/nodes/register', methods=['POST'])
+def register_nodes():
+    values = request.get_json()
+
+    nodes = values.get('nodes')
+    if nodes is None:
+        return 'Error: please supply a valid nodes', 400
+
+    for node in nodes:
+        blockchain.register_node(node)
+
+    response = {
+        'message': 'New node register successfully',
+        'total_nodes': list(blockchain.nodes),
+    }
+    return jsonify(response), 201
+
+
+@app.route('/nodes/resolve', methods=['GET'])
+def consensus():
+    replaced = blockchain.resolve_conflicts()
+
+    if replaced:
+        response = {
+            'message': 'our chain was replaced',
+            'new_chain': blockchain.chain,
+        }
+    else:
+        response = {
+            'message': 'our chain is authoritative',
+            'chain': blockchain.chain,
+        }
+
     return jsonify(response), 200
 
 if __name__ == '__main__':
