@@ -3,8 +3,7 @@ import json
 from textwrap import dedent
 from time import time
 from uuid import uuid4
-
-from flask import Flask
+from flask import Flask, jsonify, request
 
 class Blockchain(object):
     def __init__(self):
@@ -13,12 +12,6 @@ class Blockchain(object):
         self.nodes = set()
     
     def register_node(self, address):
-        """
-        Add a new node to the list of nodes
-        :param address: <str> Address of node. Eg. 'http://192.168.0.5:5000'
-        :return: None
-        """
-
         parsed_url = urlparse(address)
         self.nodes.add(parsed_url.netloc)
         
@@ -79,9 +72,6 @@ class Blockchain(object):
 
     def proof_of_work(self, last_proof):
         """
-        简单的工作量证明:
-         - 查找一个 p' 使得 hash(pp') 以4个0开头
-         - p 是上一个块的证明,  p' 是当前的证明
         :param last_proof: <int>
         :return: <int>
         """
@@ -100,29 +90,23 @@ class Blockchain(object):
         :param proof: <int> Current Proof
         :return: <bool> True if correct, False if not.
         """
-
         #guess = f'{last_proof}{proof}'.encode()
-        guess = '{last_proof}{proof}'.encode()
+        guess = '(%s,%s)'%(last_proof,proof).encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == "0000"
 
     def valid_chain(self, chain):
         """
-        Determine if a given blockchain is valid
         :param chain: <list> A blockchain
         :return: <bool> True if valid, False if not
         """
-
         last_block = chain[0]
         current_index = 1
 
         while current_index < len(chain):
             block = chain[current_index]
-            print('{last_block}')
-            print('{last_block}')
             #print(f'{last_block}')
             #print(f'{block}')
-            print("\n-----------\n")
             # Check that the hash of the block is correct
             if block['previous_hash'] != self.hash(last_block):
                 return False
@@ -152,7 +136,7 @@ class Blockchain(object):
         # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
             #response = requests.get(f'http://{node}/chain')
-            response = requests.get('http://{node}/chain')
+            response = requests.get('http://%s/chain'%node)
 
             if response.status_code == 200:
                 length = response.json()['length']
@@ -222,7 +206,7 @@ def new_transaction():
     index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
 
     #response = {'message': f'Transaction will be added to Block {index}'}
-    response = {'message': 'Transaction will be added to Block {index}'}
+    response = {'message': 'Transaction will be added to Block %s'%index}
     return jsonify(response), 201
 
 @app.route('/chain', methods=['GET'])
