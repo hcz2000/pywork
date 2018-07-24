@@ -52,7 +52,7 @@ class Blockchain(object):
         self.current_transactions.append({
             'sender': sender,
             'recipient': recipient,
-            'amount': amount,
+            'amount': amount
         })
 
         return self.last_block['index'] + 1
@@ -94,7 +94,7 @@ class Blockchain(object):
         :return: <bool> True if correct, False if not.
         """
         #guess = f'{last_proof}{proof}'.encode()
-        guess = '(%s,%s)'%(last_proof,proof).encode()
+        guess = ('%s%s'%(last_proof,proof)).encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == "0000"
 
@@ -125,8 +125,7 @@ class Blockchain(object):
 
     def resolve_conflicts(self):
         """
-        共识算法解决冲突
-        使用网络中最长的链.
+        共识算法解决冲突,使用网络中最长的链.
         :return: <bool> True 如果链被取代, 否则为False
         """
 
