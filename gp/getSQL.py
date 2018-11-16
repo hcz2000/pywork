@@ -4,7 +4,6 @@ import psycopg2
 
 class SQLFetcher:
     conn=None
-    frame=None
     def __init__(self,database,user,password,host,port):
         self.conn=psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
       
@@ -27,7 +26,7 @@ class SQLFetcher:
             rv_oid=[r for r in cur]
             cur.close()
             if not rv_oid:
-		        return 'Did not find any relation named "'+ tablename +'".'
+                return 'Did not find any relation named "'+tablename+'".'
         except(Error):
             return 'Did not find any relation named "'+ tablename +'".'
 
@@ -37,6 +36,6 @@ class SQLFetcher:
         
         return table_oid
 
-fetcher=SQLFetcher("gpDB","gpadmin","gppass","192.168.3.5","5432")
+fetcher=SQLFetcher("gpDB","gpadmin","pass","192.168.3.5","5432")
 table=fetcher.get_create_sql('public.test')
 
