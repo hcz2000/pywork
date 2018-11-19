@@ -25,17 +25,19 @@ class SQLFetcher:
             cur.execute( get_table_oid)
             rv_oid=[r for r in cur]
             cur.close()
-            if not rv_oid:
+            if not rv_oid or not rv_oid[0]:
                 return 'Did not find any relation named "'+tablename+'".'
-        except(Error):
+        except:
             return 'Did not find any relation named "'+ tablename +'".'
-
-        table_oid = rv_oid[0]['oid']
-        rv_reloptions = rv_oid[ 0]['reloptions']
-        rv_relkind= rv_oid[0]['relkind']
         
+        table_oid = rv_oid[0][0]
+        rv_reloptions = rv_oid[0][1]
+        rv_relkind= rv_oid[0][2]
+        
+        print(table_oid)
+
         return table_oid
 
-fetcher=SQLFetcher("gpDB","gpadmin","pass","192.168.3.5","5432")
+fetcher=SQLFetcher("gpDB","gpmon","gpmon","192.168.3.5","5432")
 table=fetcher.get_create_sql('public.test')
 
