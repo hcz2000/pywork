@@ -33,6 +33,22 @@ class SQLFetcher:
         table_oid = rv_oid[0][0]
         rv_reloptions = rv_oid[0][1]
         rv_relkind= rv_oid[0][2]
+
+        
+        if rv_relkind=='r':
+	        get_columns = '''SELECT a.attname, pg_catalog.format_type( a.atttypid, a.atttypmod),a.attnotnull as isnull,  
+		    (SELECT substring(pg_catalog.pg_get_expr(d.adbin,d.adrelid) for 128) FROM pg_catalog.pg_attrdef d WHERE d.adrelid = a.attrelid AND d.adnum = a.attnum AND a.atthasdef) as default
+		    FROM pg_catalog.pg_attribute a WHERE a.attrelid = %s AND a.attnum > 0 AND NOT a.attisdropped ORDER BY a.attnum;''' %(table_oid); 
+	        cur=self.conn.cursor()
+            cur.execute( get_table_oid)
+            rv_oid=[r for r in cur]
+            cur.close()
+        elif rv_relkind=='v':
+	        get_view_def="select pg_get_viewdef(%s,' t') as viewdef;"%(table_oid)
+	        rv_viewdef= plpy.execute(get_view_def);
+	        create_sql = 'create view %s as \n'%( tablename)
+	        create_sql += rv_viewdef[0]['viewdef']+'\ n'
+	        table_kind='view'
         
         print(table_oid)
 
