@@ -20,7 +20,7 @@ class SQLFetcher:
         except:
             print("Exception Occured while query from db")
 
-    def get_create_sql(self,tablename):
+    def get_table_ddl(self,tablename):
         
         try:
 	        table_name = tablename.lower().split('.')[1]
@@ -28,7 +28,7 @@ class SQLFetcher:
         except (IndexError):
 	        return 'Please input "tableschema.table_name" '
 
-        get_table_oid = "select oid, reloptions, relkind from pg_class where oid='%s':: regclass"%(tablename)
+        get_table_oid = "select oid, reloptions, relkind from pg_class where oid='%s'::regclass"%(tablename)
         rv_oid=self.queryDB(get_table_oid)
         #if not rv_oid or not rv_oid[0]:
         table_oid = rv_oid[0][0]
@@ -82,10 +82,10 @@ class SQLFetcher:
                         if max_default_len < i[3].__len__():
                             max_default_len = i[3].__len__()
                         create_sql += ' default ' + i[3].ljust( max_default_len + 6)
-            create_sql += ",\n"
-            create_sql=create_sql.strip(',\n')+'\n)'
+                    create_sql += ",\n"
+                create_sql=create_sql.strip(',\n')+'\n)\n'
             if rv_reloptions:
-                create_sql+=" with("+ str(rv_reloptions).strip('{'). strip('}').strip('[').strip(']') +") \n" 
+                create_sql+=" with("+ str(rv_reloptions).strip('{'). strip('}').strip('[').strip(']') +")\n" 
             if rv_distribution2:
                 create_sql += 'Distributed by ('
                 for i in rv_distribution2:
@@ -95,40 +95,36 @@ class SQLFetcher:
                 create_sql += 'Distributed randomly\n'
             
             if v_par_parent:
-                partitiontype = v_par_info[0][3]
+                partitiontype = v_par_info[0][2]
                 create_sql+='\nPARTITION BY ' + partitiontype + "("+v_par_parent[0][0]+")\n(\n";
                 for i in v_par_info:
-                    create_sql+=" "+i[4]+',\n'
+                    create_sql+=" "+i[3]+',\n'
                 create_sql = create_sql.strip(',\n')+ "\n)"
             create_sql += ";\n\n"
 
             for i in rv_index:
                 create_sql += i[0]+';\n'
-                get_table_comment="select 'comment on %s %s is '''|| COALESCE (description,'')||'''' as comment from pg_description where objoid=% s and objsubid= 0;"%(table_kind, tablename, table_oid)
-                get_column_comment="select 'comment on column %s.'|| b.attname ||' is ''' || COALESCE( a.description,'') ||''' ' as comment from pg_catalog.pg_description a, pg_catalog.pg_attribute b where objoid=% s and a.objoid= b.attrelid and a.objsubid= b.attnum;"%(tablename, table_oid) 
-                rv_table_comment= self.queryDB(get_table_comment)
-                rv_column_comment= self.queryDB(get_column_comment)
-                for i in rv_table_comment:
-                    create_sql += i[0]+';\n'
-                for i in rv_column_comment:
+            get_table_comment="select 'comment on table %s is '''|| COALESCE (description,'')||'''' as comment from pg_description where objoid=%s and objsubid=0;"%(tablename, table_oid)
+            get_column_comment="select 'comment on column %s.'|| b.attname ||' is ''' || COALESCE( a.description,'') ||''' ' as comment from pg_catalog.pg_description a, pg_catalog.pg_attribute b where objoid=% s and a.objoid= b.attrelid and a.objsubid= b.attnum;"%(tablename, table_oid) 
+            rv_table_comment= self.queryDB(get_table_comment)
+            rv_column_comment= self.queryDB(get_column_comment)
+            for i in rv_table_comment:
+                create_sql += i[0]+';\n'
+            for i in rv_column_comment:
                     create_sql += i[0]+';\n' 
-
         elif rv_relkind=='v':
 	        get_view_def="select pg_get_viewdef(%s,' t') as viewdef;"%(table_oid)
 	        rv_viewdef= self.queryDB(get_view_def)
 	        create_sql = 'create view %s as \n'%( tablename)
 	        create_sql += rv_viewdef[0]['viewdef']+'\ n'
 	        table_kind='view'
-
-
         
         print(create_sql)
-
-        return table_oid
+        return create_sql
 
  
     
 
 fetcher=SQLFetcher("gpDB","gpmon","gpmon","192.168.3.5","5432")
-table=fetcher.get_create_sql('public.test')
+table=fetcher.get_table_ddl('public.test')
 
