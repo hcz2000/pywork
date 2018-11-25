@@ -18,17 +18,18 @@ class GPTools:
             result=cur.fetchall()
             cur.close()
             return result
-        except:
-            print("Exception Occured while query from db")
+        except e:
+            print(e.message)
 
     def get_table_ddl(self,tablename):
         
-        get_table_oid = "select oid, reloptions，relhasoids from pg_class where relkind='r' and oid='%s'::regclass"%(tablename)
-        rv_oid=self.queryDB(get_table_oid)
-        if not rv_oid or not rv_oid[0]:
+        get_table_status = "select oid, reloptions,relhasoids from pg_class where relkind='r' and oid='%s'::regclass"%(tablename)
+        rv_table=self.queryDB(get_table_status)
+        if not rv_table or not rv_table[0]:
             return "Table "+tablename+" does not exist"
-        table_oid = rv_oid[0][0]
-        rv_reloptions = rv_oid[0][1]     
+        table_oid = rv_table[0][0]
+        reloptions = rv_table[0][1]
+        relhasoids = rv_table[0][2]     
       
         get_columns ='''SELECT a.attname, pg_catalog.format_type(a.atttypid, a.atttypmod),a.attnotnull as isnull,
                 (SELECT substring(pg_catalog.pg_get_expr(d.adbin,d.adrelid) for 128) 
@@ -82,8 +83,14 @@ class GPTools:
                 create_sql += ' default ' + i[3].ljust( max_default_len + 6)
             create_sql += ",\n"
         create_sql=create_sql.strip(',\n')+'\n)\n'
-        if rv_reloptions:
-            create_sql+=" with("+ str(rv_reloptions).strip('{'). strip('}').strip('[').strip(']') +")\n" 
+        create_sql+="with(\n"
+        if reloptions:
+            create_sql+=str(reloptions).strip('{'). strip('}').strip('[').strip(']')+",\n"
+        if relhasoids==True:
+            create_sql+="OIDS=TRUE"
+        else:
+            create_sql+="OIDS=FALSE"
+        create_sql+="\n)\n" 
         if rv_distribution2:
             create_sql += 'Distributed by ('
             for i in rv_distribution2:
@@ -144,5 +151,5 @@ class GPTools:
     
 
 tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
-#table=tools.get_table_ddl('pg_authid')
+#table=tools.get_table_ddl('public.test')
 tools.get_schema_ddl('public')
