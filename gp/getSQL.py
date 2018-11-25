@@ -23,7 +23,7 @@ class GPTools:
 
     def get_table_ddl(self,tablename):
         
-        get_table_oid = "select oid, reloptions from pg_class where relkind='r' and oid='%s'::regclass"%(tablename)
+        get_table_oid = "select oid, reloptions，relhasoids from pg_class where relkind='r' and oid='%s'::regclass"%(tablename)
         rv_oid=self.queryDB(get_table_oid)
         if not rv_oid or not rv_oid[0]:
             return "Table "+tablename+" does not exist"
