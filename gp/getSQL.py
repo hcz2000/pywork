@@ -2,7 +2,7 @@
 
 import psycopg2
 
-class DDLGenerator:
+class GPTools:
     conn=None
     def __init__(self,database,user,password,host,port):
         self.conn=psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
@@ -143,6 +143,6 @@ class DDLGenerator:
 
     
 
-fetcher=DDLGenerator("gpDB","gpmon","gpmon","192.168.3.5","5432")
-#table=fetcher.get_table_ddl('pg_authid')
-fetcher.get_schema_ddl('pg_catalog')
+tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
+#table=tools.get_table_ddl('pg_authid')
+tools.get_schema_ddl('public')
