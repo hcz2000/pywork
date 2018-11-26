@@ -148,8 +148,17 @@ class GPTools:
             print('--'+table[0])
             self.get_table_ddl(table[0])
 
+    def get_big_table(self):
+
+        get_tables = "select relname,relfilenode,pg_size_pretty(pg_relation_size(oid)) as size from pg_class where relkind='r' order by pg_relation_size(oid) desc"
+        rv_tables=self.queryDB(get_tables)
+     
+        for table in rv_tables:
+            print(table[0],table[1],table[2])
+
     
 
 tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
 #table=tools.get_table_ddl('public.test')
-tools.get_schema_ddl('public')
+#tools.get_schema_ddl('public')
+tools.get_big_table()
