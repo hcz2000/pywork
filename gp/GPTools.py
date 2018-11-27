@@ -18,8 +18,8 @@ class GPTools:
             result=cur.fetchall()
             cur.close()
             return result
-        except e:
-            print(e.message)
+        except Exception as e:
+            print(e)
 
     def get_table_ddl(self,tablename):
         
@@ -150,15 +150,43 @@ class GPTools:
 
     def get_big_table(self):
 
-        get_tables = "select relname,relfilenode,pg_size_pretty(pg_relation_size(oid)) as size from pg_class where relkind='r' order by pg_relation_size(oid) desc"
+        get_tables = '''select * from
+            (select relname,relfilenode,pg_size_pretty(pg_relation_size(oid)) as size 
+                from pg_class where relkind='r' 
+                order by pg_relation_size(oid) desc
+            ) tab1
+            fetch first 10 rows only'''
+
         rv_tables=self.queryDB(get_tables)
      
         for table in rv_tables:
             print(table[0],table[1],table[2])
+
+    def get_table_dist(self,tablename):
+
+        get_tables = "select gp_segment_id,pg_relation_size(oid)  from gp_dist_random('pg_class') where relname='%s'"%(tablename)
+
+        rv_tables=self.queryDB(get_tables)
+     
+        for table in rv_tables:
+            print(table[0],table[1])
+
+    def get_dist_ratio(self):
+        get_tables = '''select tabname, max(size)/(avg(size)+ 0.001) as max_div_avg,sum(size) total_size from 
+            (select gp_segment_id, oid::regclass tabname, pg_relation_size(oid) size 
+                from gp_dist_random('pg_class') where relkind='r' ) t 
+            group by tabname 
+            order by 2 desc'''
+
+        rv_tables=self.queryDB(get_tables)
+     
+        for table in rv_tables:
+            print(table[0],table[1])
 
     
 
 tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
 #table=tools.get_table_ddl('public.test')
 #tools.get_schema_ddl('public')
-tools.get_big_table()
+#tools.get_big_table()
+tools.get_dist_ratio()
