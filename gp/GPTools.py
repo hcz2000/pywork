@@ -183,10 +183,23 @@ class GPTools:
         for table in rv_tables:
             print(table[0],table[1])
 
+    def get_down_segment(self):
+        get_tables = '''select hostname,content,role,preferred_role,status
+            from gp_segment_configuration
+            where status='d' or mode<>'s'
+            order by content,hostname'''
+
+        rv_tables=self.queryDB(get_tables)
+     
+        for table in rv_tables:
+            print(table[0],table[1],table[2],table[3],table[4])
+
+
     
 
 tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
 #table=tools.get_table_ddl('public.test')
 #tools.get_schema_ddl('public')
 #tools.get_big_table()
-tools.get_dist_ratio()
+#tools.get_dist_ratio()
+tools.get_down_segment()
