@@ -3,16 +3,16 @@
 import psycopg2
 
 class GPTools:
-    conn=None
+    __conn=None
     def __init__(self,database,user,password,host,port):
-        self.conn=psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
+        self.__conn=psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
       
     def __del__(self):
-        self.conn.close()
+        self.__conn.close()
 
     def queryDB(self,sql):
         try:
-            cur=self.conn.cursor()
+            cur=self.__conn.cursor()
             cur.execute(sql)
             #result=[r for r in cur]
             result=cur.fetchall()
@@ -187,6 +187,6 @@ class GPTools:
 
 tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
 #table=tools.get_table_ddl('public.test')
-#tools.get_schema_ddl('public')
-#tools.get_big_table()
+tools.get_schema_ddl('public')
+tools.get_big_table()
 tools.get_dist_ratio()
