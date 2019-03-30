@@ -49,3 +49,6 @@ def getExchangeRate():
     parser.close()
     return parser.getItems()
 
+if __name__== '__main__':
+    getExchangeRate()
+

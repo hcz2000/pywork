@@ -15,7 +15,7 @@ class Permission:
     ADMIN = 16
 
 class Role(db.Model):
-    __tablename__ = 'roles'
+    __tablename__ = 'flask_roles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
@@ -68,11 +68,11 @@ class Role(db.Model):
 
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'flask_users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role_id = db.Column(db.Integer, db.ForeignKey('flask_roles.id'))
     password_hash = db.Column(db.String(128))
  
     def __init__(self, **kwargs):

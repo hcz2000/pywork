@@ -23,7 +23,7 @@ class NewsHTMLParser(HTMLParser):
                 if key=='class' and value=='post':
                     self.article_start=True
         if  self.article_start==True and  tag=='a':
-            self.flag=true
+            self.flag=True
             
     def handle_data(self,data):
         if self.flag==True:
@@ -51,4 +51,9 @@ def getNews():
     for text in items:
         print(text)
     parser.close()
+
+if __name__== '__main__':
+    getNews()
+
+
     
