@@ -16,9 +16,12 @@ def getTitle(url):
         return None
     return title
 
-def test():
+def main():
     title=getTitle("http://finance.sina.com.cn/roll/2016-11-19/doc-ifxxwsix4111905.shtml")
     if title==None:
         print("Title could not be found")
     else:
         print(title)
+
+if __name__=="__main__":
+    main()
