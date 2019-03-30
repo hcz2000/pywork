@@ -183,10 +183,35 @@ class GPTools:
         for table in rv_tables:
             print(table[0],table[1])
 
-    
+    def get_down_segment(self):
+        get_tables = '''select hostname,content,role,preferred_role,status
+            from gp_segment_configuration
+            where status='d' or mode<>'s'
+            order by content,hostname'''
+
+        rv_tables=self.queryDB(get_tables)
+
+        for table in rv_tables:
+            print(table[0],table[1],table[2],table[3],table[4])
+
+    def get_lock_status(self):
+        get_tables = '''select waiting1.pid as waiting_pid,waiting2.usename as waiting_user,waiting2.current_query as waiting_statement,
+	        blocking1.pid as blocking_pid,blocking2.usename as blocking_user,blocking2.current_query as blocking_statement
+            from pg_locks waiting1 join pg_stat_activity waiting2 on waiting1.pid=waiting2.procpid
+            join pg_locks blocking1 on waiting1.transaction=blocking1.transaction and waiting1.pid != blocking1.pid
+            join pg_stat_activity blocking2 on blocking1.pid=blocking2.procpid
+            where not waiting1.granted'''
+
+        rv_tables=self.queryDB(get_tables)
+
+        for table in rv_tables:
+            print(table[0],table[1],table[2],table[3],table[4],table[5])
+
 
 tools=GPTools("gpDB","gpmon","gpmon","192.168.3.5","5432")
 #table=tools.get_table_ddl('public.test')
-tools.get_schema_ddl('public')
-tools.get_big_table()
-tools.get_dist_ratio()
+#tools.get_schema_ddl('public')
+#tools.get_big_table()
+#tools.get_dist_ratio()
+#tools.get_down_segment()
+tools.get_lock_status()
