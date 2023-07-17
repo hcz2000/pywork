@@ -1,0 +1,8 @@
+numpy
+pandas
+matplotlib
+pyecharts
+tqdm
+jieba
+seaborn
+plotly_express

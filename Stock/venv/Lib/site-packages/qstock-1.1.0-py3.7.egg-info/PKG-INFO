@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: qstock
+Version: 1.1.0
+Summary: Python quantitative finance and stock analysis
+Home-page: https://github.com/tkfy920/qstock
+Author: Jinyi Zhang
+Author-email: 723195276@qq.com
+License: MIT Licence
+Description: 金融量化投研平台，更多干货请关注微信公众号：Python金融量化
+Keywords: pip,qstock
+Platform: any
