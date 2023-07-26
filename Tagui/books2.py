@@ -50,11 +50,15 @@ class BookInfo():
         author = elements[1].text[3:]
         type = elements[2].findtext("a")
         update = elements[4].text[3:]
-        info = html.xpath("//div[@class='intro_info']/text()")[0]
-        #print(info)
+        infos = html.xpath("//div[@class='intro_info']/text()")
+        #print(infos)
         print(bookno+','+name+','+author+','+type+','+update)
-        if len(info)>256:
-            info=info[:255]
+        if len(infos)>0:
+            info=infos[0]
+            if len(info)>256:
+                info=info[:255]
+        else:
+            info=''
         sql="insert into book values('"+bookno+"','"+name+"','"+author+"','"+type+"','"+info+"')"
         #print(sql)
         self.updateDB(sql)
@@ -62,6 +66,6 @@ class BookInfo():
 
 if __name__ == '__main__':
     store = BookInfo("book", "root", "root", "localhost", 3306)
-    for no in range(13273,999999):
+    for no in range(13653,999999):
         store.getInfo(str(no))
         time.sleep(1)
