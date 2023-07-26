@@ -27,15 +27,20 @@ class BookInfo():
             cur.execute(sql)
             self.conn.commit()
             cur.close()
-            return result
+            return
         except Exception as e:
             print(e)
 
     def getInfo(self,bookno):
         url="https://m.23sk.net/files/article/html/"+bookno[:len(bookno)-3]+"/"+bookno+"/"
-        print(url)
-        response = urllib.request.urlopen(url)
-        content=response.read().decode('utf-8')
+        #print(url)
+        try:
+            request=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+            response = urllib.request.urlopen(request,timeout=30)
+            content=response.read().decode('utf-8')
+        except Exception as e:
+            print(e)
+            return
 
         html=etree.HTML(content)
 
@@ -48,12 +53,15 @@ class BookInfo():
         info = html.xpath("//div[@class='intro_info']/text()")[0]
         #print(info)
         print(bookno+','+name+','+author+','+type+','+update)
-        sql="insert into book values('"+bookno+"','"+name+"','"+author+"','"+info+"')"
+        if len(info)>256:
+            info=info[:255]
+        sql="insert into book values('"+bookno+"','"+name+"','"+author+"','"+type+"','"+info+"')"
+        #print(sql)
         self.updateDB(sql)
 
 
 if __name__ == '__main__':
     store = BookInfo("book", "root", "root", "localhost", 3306)
-    for no in range(100000,999999):
+    for no in range(13273,999999):
         store.getInfo(str(no))
         time.sleep(1)
