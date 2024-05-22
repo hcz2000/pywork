@@ -1,0 +1,33 @@
+bocwm:
+  products:
+    -  code: HXTT01
+       share: 152500
+       url: https://www.bocwm.cn/html/1/netWorth/4114.html
+    -  code: CYQZQ2MA
+       share: 587791
+       url: https://www.bocwm.cn/html/1/netWorth/3743.html
+    -  code: CYQZQ3MA
+       share: 576348
+       url: https://www.bocwm.cn/html/1/netWorth/4149.html
+    -  code: WFZZKGR01A
+       share: 196700
+       url: https://www.bocwm.cn/html/1/netWorth/3567.html
+    -  code: YLFFB2201
+       share: 200000
+       url: https://www.bocwm.cn/html/1/netWorth/5173.html
+    -  code: ZFNNK0915
+       share: 200000
+       url: https://www.bocwm.cn/html/1/netWorth/4632.html
+
+cgbwm:
+  products:
+    - code: XFLCXFTF0008
+      share: 196367
+      url: https://www.cgbwmc.com.cn/#/runningNotice
+    - code: XFLCXFTFA001
+      share: 600000
+      url: https://www.cgbwmc.com.cn/#/runningNotice
+    - code: XFLCXFTL0003
+      share: 2959529
+      url: https://www.cgbwmc.com.cn/#/runningNotice
+
