@@ -27,7 +27,7 @@ class CgbwmValue():
                 if '信息披露'==menu.text:
                     if menu.get_attribute('class').endswith('has-child-down'):
                         menu.click()
-                        time.sleep(1)
+                        time.sleep(2)
 
             sub_menus = driver.find_elements(By.XPATH, "//li[@class='childMenuItem']/span")
             for sub_menu in sub_menus:
@@ -48,6 +48,7 @@ class CgbwmValue():
             newest_report = outputList[0]
             newest_release_date = newest_report.find_element(By.CLASS_NAME, 'myDate').get_attribute('innerHTML')
             if newest_release_date <= last_sync_date:
+                print('No new release:',last_sync_date)
                 return
 
             while True:
@@ -75,7 +76,8 @@ class CgbwmValue():
                         row.click()
                         time.sleep(1)
                         (rpt_date,net_value)=self.parseNetValue(driver)
-                        net_values.append((rpt_date,net_value))
+                        if rpt_date>last_sync_date:
+                            net_values.append((rpt_date,net_value))
                         driver.back()
                         time.sleep(1)
 
@@ -109,10 +111,9 @@ class CgbwmValue():
                 last_line=datafile.readline()
                 #print(last_line)
                 last_sync_date = last_line.split(',')[0].strip()
-                #print(last_sync_date)
+                print(code,'LAST_SYNC_DATE:',last_sync_date)
         else:
-            #last_sync_date=datetime.now() - timedelta(days=365*2)
-            last_sync_date = datetime.now()
+            last_sync_date=datetime.now() - timedelta(days=365*2)
             last_sync_date=last_sync_date.replace(month=12,day=31).strftime('%Y-%m-%d')
             #print(last_sync_date)
         return last_sync_date
@@ -136,4 +137,4 @@ class CgbwmValue():
 if __name__ == '__main__':
     obj = CgbwmValue()
     obj.refresh()
-    #obj.getNetValue('XFLCXFTF0008', 'https://www.cgbwmc.com.cn/#/runningNotice')
+    #obj.getNetValue('XFLCXFTFA001', 'https://www.cgbwmc.com.cn/#/runningNotice')
