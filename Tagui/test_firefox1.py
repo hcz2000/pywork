@@ -11,7 +11,7 @@ class BocwmValue():
         self.products = config['bocwm']['products']
         self.basePath = os.path.dirname(__file__)
 
-    def getInfo(self,url):
+    def getNetValue(self, url):
         with webdriver.Firefox() as driver:
             driver.implicitly_wait(30)
             driver.get(url)
@@ -27,7 +27,7 @@ class BocwmValue():
             code=product['code']
             url=product['url']
             print(code,url)
-            self.getInfo(url)
+            self.getNetValue(url)
 
 if __name__ == '__main__':
     obj = BocwmValue()
