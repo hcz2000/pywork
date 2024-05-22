@@ -4,6 +4,7 @@ import os
 import yaml
 from datetime import datetime,timedelta
 import time
+import csv
 
 class CgbwmValue():
 
@@ -12,8 +13,12 @@ class CgbwmValue():
             config=yaml.safe_load(file)
         self.products = config['cgbwm']['products']
         self.basePath = os.path.dirname(__file__)
+        if not os.path.exists('data'):
+            os.makedirs('data')
 
     def getNetValue(self, code, url):
+        net_values=[]
+        last_sync_date = self.getLastSyncDate(code)
         with webdriver.Firefox() as driver:
             driver.implicitly_wait(30)
             driver.get(url)
@@ -38,8 +43,6 @@ class CgbwmValue():
             search_button = driver.find_element(By.XPATH,"//div[@class='el-input-group__append']/button")
             search_button.click()
             time.sleep(2)
-
-            last_sync_date = (datetime.now() - timedelta(days=30*6)).strftime('%Y-%m-%d')
 
             outputList = driver.find_elements(By.XPATH, "//div[@class='outList']")
             newest_report = outputList[0]
@@ -72,6 +75,7 @@ class CgbwmValue():
                         row.click()
                         time.sleep(1)
                         (rpt_date,net_value)=self.parseNetValue(driver)
+                        net_values.append((rpt_date,net_value))
                         driver.back()
                         time.sleep(1)
 
@@ -82,6 +86,36 @@ class CgbwmValue():
                     outputList = driver.find_elements(By.XPATH, "//div[@class='outList']")
                 else:
                     break
+
+            with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
+                writer = csv.writer(datafile)
+                for row in net_values:
+                    writer.writerow(row)
+
+    def getLastSyncDate(self,code):
+        filename='./data/%s.csv' % code
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as datafile:
+                datafile.seek(0,2)
+                position = datafile.tell()
+                position=position-3
+                while position>=0:
+                    datafile.seek(position)
+                    last_char=datafile.read(1)
+                    if last_char == '\n':
+                        break
+                    position -= 1
+
+                last_line=datafile.readline()
+                #print(last_line)
+                last_sync_date = last_line.split(',')[0].strip()
+                #print(last_sync_date)
+        else:
+            #last_sync_date=datetime.now() - timedelta(days=365*2)
+            last_sync_date = datetime.now()
+            last_sync_date=last_sync_date.replace(month=12,day=31).strftime('%Y-%m-%d')
+            #print(last_sync_date)
+        return last_sync_date
 
     def parseNetValue(self,driver):
         cols=driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
@@ -96,8 +130,10 @@ class CgbwmValue():
         for product in self.products:
             code=product['code']
             url=product['url']
+            print(code,url)
             self.getNetValue(code, url)
 
 if __name__ == '__main__':
     obj = CgbwmValue()
-    obj.getNetValue('XFLCXFTF0008', 'https://www.cgbwmc.com.cn/#/runningNotice')
+    obj.refresh()
+    #obj.getNetValue('XFLCXFTF0008', 'https://www.cgbwmc.com.cn/#/runningNotice')
