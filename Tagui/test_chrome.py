@@ -23,7 +23,6 @@ class DownloadInfo():
         return path
 
     def connect(self, url):
-        #driver = webdriver.PhantomJS()
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         driver = webdriver.Chrome('D:/Program Files/python37/chromedriver.exe',options=chrome_options)
