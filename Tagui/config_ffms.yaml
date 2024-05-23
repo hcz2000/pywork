@@ -1,0 +1,25 @@
+converter:
+  sourcedir: D:\work\pywork\oracle2gauss\ffms\source
+  targetdir: .\ffms\target
+  logfile: .\convert.log
+sql_include:
+  rewrite: true
+  header_files:
+    -  incl/db_def.h
+    -  incl/ffms_file.h
+    -  incl/ffms_system.h
+    -  incl/tranFFMS.h
+    -  incl/tranCSP.h
+    -  incl/tranZZGM.h
+    -  incl/tranCARD.h
+    -  incl/ffmsprocess.h
+    -  incl/tranFFMSCTIS.h
+    -  tranLIB/ffms_Payment_func.h
+    -  tranLIB/ffms_gwk_func.h
+    -  tranLIB/csphandle_common.h
+    -  tranLIB/libfile_deal_withdrawing_func.h
+    -  440000/ffms_Payment_func.h
+    -  44018302/ffms_Payment_func.h
+
+
+

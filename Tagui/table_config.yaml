@@ -1,0 +1,11 @@
+config:
+  lob_tables:
+    -  FSYS_LOG_INFO
+    -  JKGL_ACCT_ENTERPRISE_INFO
+    -  JKGL_HYTF_WAGE_CTRL
+    -  JKGL.JKGL_APP_LOG
+    -  TEST
+
+
+
+

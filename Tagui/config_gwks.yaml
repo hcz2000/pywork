@@ -1,0 +1,23 @@
+converter:
+  sourcedir: D:\work\pywork\oracle2gauss\gwks\source
+  targetdir: .\gwks\target
+  logfile: .\convert.log
+sql_include:
+  rewrite: true
+  header_files:
+    -  incl/dbhead.h
+    -  incl/tranCSP.h
+    -  incl/tranGWKS.h
+    -  incl/tran_gwks.h
+    -  incl/gwks_batch.h
+    -  incl/gwks_file.h
+    -  incl/gwks_system.h
+    -  incl/gwks_cenbat.h
+    -  incl/file_rbs.h
+    -  incl/tran_bjcwk.h
+    -  incl/gwks_dbdef.h
+    -  incl/tran_gdpy.h
+    -  incl/tran_gdpy_mq.h
+    -  incl/tran_bycwk.h
+    -  gwks_acctSBS/gwks_filefmt.h
+    -  gwks_fileSBS/file_gwks.h

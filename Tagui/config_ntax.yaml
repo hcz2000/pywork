@@ -1,0 +1,25 @@
+converter:
+  sourcedir: D:\work\pywork\oracle2gauss\ntax\source
+  targetdir: .\ntax\target
+  logfile: .\convert.log
+sql_include:
+  rewrite: true
+  header_files:
+    -  incl/db_def.h
+    -  incl/ntax_file.h
+    -  incl/ntax_system.h
+    -  incl/tranNTAX.h
+    -  incl/tranCSP.h
+    -  cdRptLIB/rpt.h
+    -  batchLIB/ntax_DCBUT_YR.h
+    -  batchLIB/ntax_DCCTIS_addrecord.h
+    -  finFC/FC_Jmco.h
+    -  finHandle/finhandle_common.h
+    -  finHandle/libntax_finance_Jmco.h
+    -  finHandle/YHSK_Jmco.h
+    -  finReach/DZ_Jmco.h
+    -  paramSync/paramsync_commonJmco.h
+    -  paramSync/paramsync_bank.h
+    -  cspHandle/csphandle_common.h
+    -  cspHandle/cspinvoice_common.h
+    -  cspHandle/ntax_migrate_func.h

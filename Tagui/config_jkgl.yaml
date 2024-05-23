@@ -1,0 +1,14 @@
+converter:
+  sourcedir: D:\work\pywork\oracle2gauss\jkgl\source
+  targetdir: .\jkgl\target
+  logfile: .\convert.log
+sql_include:
+  rewrite: true
+  header_files:
+    -  incl/db_def.h
+    -  incl/tranCSPNew.h
+    -  incl/tranSM.h
+    -  incl/tranjtJkgl.h
+
+
+
