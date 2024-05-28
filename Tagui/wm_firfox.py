@@ -8,13 +8,14 @@ import csv
 
 class WmValue():
 
-    def __init__(self):
+    def __init__(self,driver):
         with open('wm.yaml', 'r') as file:
             self.config=yaml.safe_load(file)
-        #self.products = self.config['cgbwm']['products']
+        self.driver=driver
         self.basePath = os.path.dirname(__file__)
         if not os.path.exists('data'):
             os.makedirs('data')
+
 
     def getLastSyncDate(self,code):
         filename='./data/%s.csv' % code
@@ -53,85 +54,91 @@ class WmValue():
             self.getNetValue(code, url)
 
 class CgbwmValue(WmValue):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,driver):
+        super().__init__(driver)
         self.products = self.config['cgbwm']['products']
+
     def getNetValue(self, code, url):
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
-        with webdriver.Firefox() as driver:
-            driver.implicitly_wait(30)
-            driver.get(url)
-            menus = driver.find_elements(By.XPATH, "//li[@class='parentMenuItem']/span")
-            for menu in menus:
-                if '信息披露'==menu.text:
-                    if menu.get_attribute('class').endswith('has-child-down'):
-                        menu.click()
-                        time.sleep(2)
+        self.driver.implicitly_wait(30)
+        self.driver.get(url)
+        menus = self.driver.find_elements(By.XPATH, "//li[@class='parentMenuItem']/span")
+        for menu in menus:
+            if '信息披露'==menu.text:
+                if menu.get_attribute('class').endswith('has-child-down'):
+                    menu.click()
+                    time.sleep(2)
 
-            sub_menus = driver.find_elements(By.XPATH, "//li[@class='childMenuItem']/span")
-            for sub_menu in sub_menus:
-                if '产品公告搜索' == sub_menu.text:
-                    search_menu=sub_menu
-                    if sub_menu.get_attribute('class').endswith('has-child-up2'):
-                        sub_menu.click()
-                        time.sleep(2)
-                    break
-
-            search_input = driver.find_element(By.XPATH, "//input[@class='el-input__inner']")
-            search_input.send_keys(code)
-            search_button = driver.find_element(By.XPATH,"//div[@class='el-input-group__append']/button")
-            search_button.click()
-            time.sleep(2)
-
-            outputList = driver.find_elements(By.XPATH, "//div[@class='outList']")
-            newest_report = outputList[0]
-            newest_release_date = newest_report.find_element(By.CLASS_NAME, 'myDate').get_attribute('innerHTML')
-            if newest_release_date <= last_sync_date:
-                print('No new release:',last_sync_date)
-                return
-
-            while True:
-                oldest_report = outputList[-1]
-                oldest_release_date = oldest_report.find_element(By.CLASS_NAME, 'myDate').get_attribute('innerHTML')
-                if oldest_release_date >= last_sync_date:
-                    next_button=driver.find_element(By.XPATH,"//button[@class='btn-next']")
-                    if next_button.is_enabled():
-                        next_button.click()
-                        time.sleep(2)
-                        outputList = driver.find_elements(By.XPATH, "//div[@class='outList']")
-                        continue
+        sub_menus = self.driver.find_elements(By.XPATH, "//li[@class='childMenuItem']/span")
+        for sub_menu in sub_menus:
+            if '产品公告搜索' == sub_menu.text:
+                search_menu=sub_menu
+                if sub_menu.get_attribute('class').endswith('has-child-up2'):
+                    sub_menu.click()
+                    time.sleep(2)
+                else:
+                    sub_menu.click()
+                    time.sleep(2)
+                    sub_menu.click()
+                    time.sleep(2)
                 break
 
-            while True:
-                reversed_list=outputList[::-1]
-                for row in reversed_list:
-                    title=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[1]").get_attribute('innerHTML')
-                    catalog=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[2]").get_attribute('innerHTML')
-                    if not catalog.startswith('净值公告'):
-                        continue
-                    release_date=row.find_element(By.CLASS_NAME,'myDate').get_attribute('innerHTML')
-                    if release_date>last_sync_date:
-                        last_sync_date=release_date
-                        row.click()
-                        time.sleep(1)
-                        (rpt_date,net_value)=self.parseNetValue(driver)
-                        if rpt_date>last_sync_date:
-                            net_values.append((rpt_date,net_value))
-                        driver.back()
-                        time.sleep(1)
+        search_input = self.driver.find_element(By.XPATH, "//input[@class='el-input__inner']")
+        search_input.clear()
+        search_input.send_keys(code)
+        search_button = self.driver.find_element(By.XPATH,"//div[@class='el-input-group__append']/button")
+        search_button.click()
+        time.sleep(2)
 
-                prev_button=driver.find_element(By.XPATH,"//button[@class='btn-prev']")
-                if prev_button.is_enabled():
-                    prev_button.click()
+        outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
+        newest_report = outputList[0]
+        newest_release_date = newest_report.find_element(By.CLASS_NAME, 'myDate').get_attribute('innerHTML')
+        if newest_release_date <= last_sync_date:
+            print('No new release:',last_sync_date)
+            return
+
+        while True:
+            oldest_report = outputList[-1]
+            oldest_release_date = oldest_report.find_element(By.CLASS_NAME, 'myDate').get_attribute('innerHTML')
+            if oldest_release_date >= last_sync_date:
+                next_button=self.driver.find_element(By.XPATH,"//button[@class='btn-next']")
+                if next_button.is_enabled():
+                    next_button.click()
                     time.sleep(2)
-                    outputList = driver.find_elements(By.XPATH, "//div[@class='outList']")
-                else:
-                    break
+                    outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
+                    continue
+            break
 
-            self.write2CsvFile(code,net_values)
-    def parseNetValue(self,driver):
-        cols=driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
+        while True:
+            reversed_list=outputList[::-1]
+            for row in reversed_list:
+                title=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[1]").get_attribute('innerHTML')
+                catalog=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[2]").get_attribute('innerHTML')
+                if not catalog.startswith('净值公告'):
+                    continue
+                release_date=row.find_element(By.CLASS_NAME,'myDate').get_attribute('innerHTML')
+                if release_date>last_sync_date:
+                    last_sync_date=release_date
+                    row.click()
+                    time.sleep(1)
+                    (rpt_date,net_value)=self.parseNetValue()
+                    if rpt_date>last_sync_date:
+                        net_values.append((rpt_date,net_value))
+                    self.driver.back()
+                    time.sleep(1)
+
+            prev_button=self.driver.find_element(By.XPATH,"//button[@class='btn-prev']")
+            if prev_button.is_enabled():
+                prev_button.click()
+                time.sleep(2)
+                outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
+            else:
+                break
+
+        self.write2CsvFile(code,net_values)
+    def parseNetValue(self):
+        cols=self.driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
         code=cols[0].text
         net_value=cols[4].text
         rpt_date=cols[6].text
@@ -141,34 +148,33 @@ class CgbwmValue(WmValue):
 
 class BocwmValue(WmValue):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self,driver):
+        super().__init__(driver)
         self.products = self.config['bocwm']['products']
 
     def getNetValue(self, code, url):
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
-        with webdriver.Firefox() as driver:
-            driver.implicitly_wait(30)
-            driver.get(url)
-            contentDiv=driver.find_element(By.ID,'content')
-            rows = contentDiv.find_elements(By.XPATH,"//table[@class='layui-table']/tbody/tr")
-            for row in rows:
-                cols=row.find_elements(By.TAG_NAME,'td')
-                (rpt_date, net_value)=(cols[6].text,cols[2].text)
-                if rpt_date > last_sync_date:
-                    net_values.append((rpt_date, net_value))
-                #print(cols[0].text,cols[1].text,cols[2].text,cols[6].text)
+        self.driver.implicitly_wait(30)
+        self.driver.get(url)
+        contentDiv=self.driver.find_element(By.ID,'content')
+        rows = contentDiv.find_elements(By.XPATH,"//table[@class='layui-table']/tbody/tr")
+        for row in rows:
+            cols=row.find_elements(By.TAG_NAME,'td')
+            (rpt_date, net_value)=(cols[6].text,cols[2].text)
+            if rpt_date > last_sync_date:
+                net_values.append((rpt_date, net_value))
+            #print(cols[0].text,cols[1].text,cols[2].text,cols[6].text)
 
-            with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
-                writer = csv.writer(datafile)
-                for row in net_values:
-                    writer.writerow(row)
+        with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
+            writer = csv.writer(datafile)
+            for row in net_values[::-1]:
+                writer.writerow(row)
 
 
 if __name__ == '__main__':
-    cgb = CgbwmValue()
-    cgb.refresh()
-    boc = BocwmValue()
-    boc.refresh()
-    #obj.getNetValue('XFLCXFTFA001', 'https://www.cgbwmc.com.cn/#/runningNotice')
+    with webdriver.Firefox() as driver:
+        cgb = CgbwmValue(driver)
+        cgb.refresh()
+        boc = BocwmValue(driver)
+        boc.refresh()
