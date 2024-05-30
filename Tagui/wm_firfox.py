@@ -119,7 +119,7 @@ class CgbwmValue(WmValue):
                     continue
                 release_date=row.find_element(By.CLASS_NAME,'myDate').get_attribute('innerHTML')
                 if release_date>last_sync_date:
-                    last_sync_date=release_date
+                    #last_sync_date=release_date
                     row.click()
                     time.sleep(1)
                     (rpt_date,net_value)=self.parseNetValue()
