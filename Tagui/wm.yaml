@@ -64,3 +64,10 @@ cgbwm:
       url: https://www.cgbwmc.com.cn/#/runningNotice
       display: true
 
+cmbwm:
+  products:
+    - code: 17561D
+      desc: 招和-丰和60天起2号
+      share: 93308
+      url: https://www.cmbchinawm.com/proDetail
+      display: false
