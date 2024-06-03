@@ -67,7 +67,19 @@ cgbwm:
 cmbwm:
   products:
     - code: 17561D
-      desc: 招和-丰和60天起2号
+      desc: 招银-丰和60天起2号
       share: 93308
       url: https://www.cmbchinawm.com/proDetail
       display: false
+    - code: 10193D
+      desc: 招银-丰润9月定开3号D
+      share: 100000
+      url: https://www.cmbchinawm.com/proDetail
+      display: true
+
+cibwm:
+  products:
+    - code: 9k40033G
+      desc: 兴银-季盈13号
+      share: 297900
+      url: https://www.cibwm.com.cn/personal-products/detail/25aed6fec1f8217c65245a7e51b58d3c
