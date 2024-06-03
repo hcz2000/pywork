@@ -164,13 +164,50 @@ class BocwmValue(WmValue):
             (rpt_date, net_value)=(cols[6].text,cols[2].text)
             if rpt_date > last_sync_date:
                 net_values.append((rpt_date, net_value))
+            else:
+                break
             #print(cols[0].text,cols[1].text,cols[2].text,cols[6].text)
 
-        with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
-            writer = csv.writer(datafile)
-            for row in net_values[::-1]:
-                writer.writerow(row)
+        self.write2CsvFile(code,net_values[::-1])
 
+class CmbwmValue(WmValue):
+    def __init__(self,driver):
+        super().__init__(driver)
+        self.products = self.config['cmbwm']['products']
+
+    def getNetValue(self, code, url):
+        net_values=[]
+        last_sync_date = self.getLastSyncDate(code)
+        self.driver.implicitly_wait(30)
+        self.driver.get(url+'?prodTradeCode=%s&prodClcMode=01&finType=P'%code)
+        contentDiv=self.driver.find_element(By.CLASS_NAME,'proTabList')
+        #print(contentDiv.get_attribute('innerHTML'))
+        menuList=contentDiv.find_elements(By.CSS_SELECTOR,'.item.text-14.flex')
+        for menu in menuList:
+            cmd=menu.text
+            if menu.text=='产品净值':
+                menu.click()
+                time.sleep(2)
+                sub_menuList = self.driver.find_elements(By.CSS_SELECTOR, '.proValue_btn.text-14')
+                for sub_menu in sub_menuList:
+                    if sub_menu.text=='近3年':
+                        sub_menu.click()
+                        #print(contentDiv.get_attribute('innerHTML'))
+                        time.sleep(2)
+                        break
+
+        rows=contentDiv.find_elements(By.XPATH,"//table[@class='el-table__body']/tbody/tr")
+        for row in rows:
+            cols=row.find_elements(By.TAG_NAME,"td")
+            rpt_date= (cols[0].find_element(By.TAG_NAME,'div')).text
+            net_value=(cols[1].find_element(By.TAG_NAME,'div')).text
+            if rpt_date > last_sync_date:
+                net_values.append((rpt_date, net_value))
+                print(rpt_date,net_value)
+            else:
+                break
+
+        self.write2CsvFile(code,net_values[::-1])
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
@@ -178,3 +215,5 @@ if __name__ == '__main__':
         cgb.refresh()
         boc = BocwmValue(driver)
         boc.refresh()
+        cmb = CmbwmValue(driver)
+        cmb.refresh()
