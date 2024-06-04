@@ -23,7 +23,13 @@ class Wm_plot():
         for product in config['bocwm']['products']:
             if product['display']:
                 self.products.append(product)
-        print(self.products)
+        for product in config['cmbwm']['products']:
+            if product['display']:
+                self.products.append(product)
+        for product in config['cibwm']['products']:
+            if product['display']:
+                self.products.append(product)
+        #print(self.products)
         self.basePath = os.path.dirname(__file__)
         self.net_value_data={}
 

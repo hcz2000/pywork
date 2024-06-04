@@ -1,5 +1,10 @@
 bocwm:
   products:
+    -  code: FCYQZQ3YL
+       desc: 中银-三年起固收增强
+       share: 0
+       url: https://www.bocwm.cn/html/1/netWorth/5803.html
+       display: false
     -  code: FCYQZQ1YL
        desc: 中银-一年起固收增强
        share: 0
@@ -14,7 +19,7 @@ bocwm:
        desc: 中银-3月起
        share: 576348
        url: https://www.bocwm.cn/html/1/netWorth/4149.html
-       display: true
+       display: false
     -  code: WFZZKGR01A
        desc: 中银-稳富周周开
        share: 196700
@@ -62,7 +67,7 @@ cgbwm:
       desc: 广银-幸福添利3月
       share: 2959529
       url: https://www.cgbwmc.com.cn/#/runningNotice
-      display: true
+      display: false
 
 cmbwm:
   products:
@@ -83,3 +88,4 @@ cibwm:
       desc: 兴银-季盈13号
       share: 297900
       url: https://www.cibwm.com.cn/personal-products/detail/25aed6fec1f8217c65245a7e51b58d3c
+      display: false
