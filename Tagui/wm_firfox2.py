@@ -64,7 +64,7 @@ class Cibwmvalue(WmValue):
         last_sync_date = self.getLastSyncDate(code)
         self.driver.implicitly_wait(30)
         self.driver.get(url)
-        value_link=driver.find_element(By.LINK_TEXT,'产品净值')
+        value_link=self.driver.find_element(By.LINK_TEXT,'产品净值')
         if value_link:
             value_link.click()
             time.sleep(2)
@@ -85,26 +85,36 @@ class Cibwmvalue(WmValue):
             oldest_report = outputList[-1]
             oldest_release_date = oldest_report.find_elements(By.TAG_NAME, 'td')[0].text
             if oldest_release_date >= last_sync_date:
-                next_link= driver.find_element(By.LINK_TEXT,'下一页')
-                if next_link:
-                    print(next_link.get_attribute('innerHTML'))
-                    next_link.click()
-                    time.sleep(2)
-                    outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']//tr")[1:]
-                    continue
-            break
+                pagediv=self.driver.find_element(By.XPATH,"//div[@class='fy-cont']")
+                current_page=pagediv.get_attribute('current-page')
+                page_size=pagediv.get_attribute('page-size')
+                total=pagediv.get_attribute('total')
+                if int(current_page)*int(page_size)<int(total):
+                    next_link= self.driver.find_element(By.LINK_TEXT,'下一页')
+                    if next_link:
+                        next_link.click()
+                        time.sleep(2)
+                        outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']//tr")[1:]
+                    else:
+                        break
+                else:
+                    break
 
         while True:
             reversed_list = outputList[::-1]
             for row in reversed_list:
-                cols=row.find_elements(By.CLASS_NAME, 'td')
+                cols=row.find_elements(By.TAG_NAME, 'td')
                 rpt_date = cols[0].text
                 net_value= cols[1].text
                 if rpt_date > last_sync_date:
                     net_values.append((rpt_date, net_value))
 
-
-            prev_link = driver.find_element(By.LINK_TEXT,'上一页')
+            pagediv = self.driver.find_element(By.XPATH, "//div[@class='fy-cont']")
+            current_page = pagediv.get_attribute('current-page')
+            print(current_page)
+            if current_page=='1':
+                break
+            prev_link = self.driver.find_element(By.LINK_TEXT,'上一页')
             if prev_link:
                 prev_link.click()
                 time.sleep(2)
