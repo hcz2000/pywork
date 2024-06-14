@@ -50,7 +50,6 @@ class CheckBoxDemo(QWidget):
     self.setWindowTitle("checkbox demo")
 
   def all_selected(self):
-    print('全选:',checkbox.isChecked())
     if self.con_checkbox.isChecked():
       for checkbox in self.checkboxes:
         checkbox.setChecked(True)
