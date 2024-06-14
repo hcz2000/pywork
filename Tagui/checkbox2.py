@@ -14,6 +14,7 @@ class CheckBoxDemo(QWidget):
     mainLayout = QVBoxLayout()
     self.checkboxes = {}
     self.con_checkbox= {}
+    self.group_selected={}
     for k,v in products.items():
       #创建一个GroupBox组
       groupBox = QGroupBox(k)
@@ -22,8 +23,9 @@ class CheckBoxDemo(QWidget):
       layout = QHBoxLayout()
       checkboxes=[]
       checkbox = QCheckBox('全选')
-      checkbox.stateChanged.connect(lambda: self.all_selected(k))
+      checkbox.stateChanged.connect(lambda : self.all_selected())
       self.con_checkbox[k]=checkbox
+      self.group_selected[k]=False
       layout.addWidget(checkbox)
       for product in v:
         checkbox=QCheckBox(product['desc'])
@@ -53,7 +55,13 @@ class CheckBoxDemo(QWidget):
     #设置主界面标题
     self.setWindowTitle("checkbox demo")
 
-  def all_selected(self,group):
+  def all_selected(self):
+    for k,con_checkbox in self.con_checkbox.items():
+      if con_checkbox.isChecked()!=self.group_selected[k]:
+        group=k
+        self.group_selected[k]=con_checkbox.isChecked()
+        break
+
     con_checkbox = self.con_checkbox[group]
     if con_checkbox.isChecked():
       for checkbox in self.checkboxes[group]:
