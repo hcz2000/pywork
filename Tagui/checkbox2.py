@@ -22,7 +22,7 @@ class CheckBoxDemo(QWidget):
       layout = QHBoxLayout()
       checkboxes=[]
       checkbox = QCheckBox('全选')
-      checkbox.stateChanged.connect(lambda: self.all_selected())
+      checkbox.stateChanged.connect(lambda: self.all_selected(k))
       self.con_checkbox[k]=checkbox
       layout.addWidget(checkbox)
       for product in v:
@@ -38,19 +38,29 @@ class CheckBoxDemo(QWidget):
       #QgroupBox的控件添加到主界面布局中
       mainLayout.addWidget(groupBox)
 
+    button = QPushButton('确定')
+    button.setFixedSize(100,25)
+    button.clicked.connect(self.on_click)
+    groupBox = QGroupBox('操作')
+    groupBox.setFlat(False)
+    layout = QHBoxLayout()
+    layout.addWidget(button)
+    groupBox.setLayout(layout)
+    mainLayout.addWidget(groupBox)
+
     #设置主界面布局
     self.setLayout(mainLayout)
     #设置主界面标题
     self.setWindowTitle("checkbox demo")
 
-  def all_selected(self):
-    for key,con_checkbox in self.con_checkbox.items():
-      if con_checkbox.isChecked():
-        for checkbox in self.checkboxes[key]:
-          checkbox.setChecked(True)
-      #else:
-      #  for checkbox in self.checkboxes[key]:
-      #    checkbox.setChecked(False)
+  def all_selected(self,group):
+    con_checkbox = self.con_checkbox[group]
+    if con_checkbox.isChecked():
+      for checkbox in self.checkboxes[group]:
+        checkbox.setChecked(True)
+    else:
+      for checkbox in self.checkboxes[group]:
+        checkbox.setChecked(False)
 
   def get_selected(self):
     checked=[]
@@ -59,6 +69,9 @@ class CheckBoxDemo(QWidget):
         if checkbox.isChecked():
           checked.append(checkbox.text())
     return checked
+
+  def on_click(self):
+    print('button pressed')
 
 
 
@@ -70,8 +83,10 @@ if __name__ == '__main__':
   # 设置主界面布局垂直布局
   mainLayout = QVBoxLayout()
   products={}
-  products['中银']=config['bocwm']['products']
-  products['广银']=config['cgbwm']['products']
+  products['中银理财']=config['bocwm']['products']
+  products['广银理财']=config['cgbwm']['products']
+  products['招银理财']=config['cmbwm']['products']
+  products['兴银理财']=config['cibwm']['products']
   checkboxDemo = CheckBoxDemo(products)
   checkboxDemo.show()
 
