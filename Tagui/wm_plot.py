@@ -34,8 +34,6 @@ class Wm_plot():
         self.net_value_data={}
 
     def rewrite(self):
-        fig = plt.figure(figsize=(16, 16))
-        ax = fig.add_subplot(111)
         for product in self.products:
             code = product['code']
             desc = product['desc']
