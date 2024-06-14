@@ -16,10 +16,8 @@ class CheckBoxDemo(QWidget):
     self.con_checkbox= {}
     self.group_selected={}
     for k,v in products.items():
-      #创建一个GroupBox组
       groupBox = QGroupBox(k)
       groupBox.setFlat(False)
-      #水平布局
       layout = QGridLayout()
       checkboxes=[]
       checkbox = QCheckBox('全选')
@@ -37,9 +35,7 @@ class CheckBoxDemo(QWidget):
 
       self.checkboxes[k]=checkboxes
 
-      #设置QGroupBox组的布局方式
       groupBox.setLayout(layout)
-      #QgroupBox的控件添加到主界面布局中
       mainLayout.addWidget(groupBox)
 
     button = QPushButton('确定')
