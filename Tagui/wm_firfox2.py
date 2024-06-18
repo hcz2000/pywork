@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from urllib.request import urlopen
+import urllib
 from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import *
 from pdfminer.pdfparser import PDFParser
@@ -123,16 +123,11 @@ class Amdbocwmvalue(WmValue):
                 print(fileurl)
                 if fileurl.split('.')[-1]=='pdf':
                     #filelink.click()
-                    pdf = urlopen(fileurl)
-                    tempfile = open('report.pdf', 'wb')
-                    CHUNK_SIZE=1024*16
-                    while True:
-                        chunk = pdf.read(CHUNK_SIZE)  # 读取网页内容
-                        if chunk:
-                            tempfile.write(chunk)
-                        else:
-                            break
-                    tempfile.close()
+                    response = urllib.request.urlopen(url=fileurl)
+                    pdfdata = response.read()  # 读取网页内容
+                    with open('report.pdf', 'wb') as tempfile:
+                        tempfile.write(pdfdata)
+                        tempfile.close()
 
                     with open('report.pdf','rb') as pdffile:
                         parser = PDFParser(pdffile)
