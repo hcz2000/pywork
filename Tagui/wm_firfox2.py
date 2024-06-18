@@ -1,5 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from urllib.request import urlopen
+from pdfminer.converter import PDFPageAggregator
+from pdfminer.layout import *
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfpage import PDFPage,PDFTextExtractionNotAllowed
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 import os
 import yaml
 from datetime import datetime,timedelta
@@ -112,8 +119,44 @@ class Amdbocwmvalue(WmValue):
                 self.driver.switch_to.window(self.driver.window_handles[1])
                 time.sleep(1)
                 filelink=self.driver.find_element(By.XPATH,"//ul[@class='zzpl_down']/li[@class='a_left']/a")
-                print(filelink.text,filelink.get_attribute('href'))
-                #filelink.click()
+                fileurl=filelink.get_attribute('href')
+                print(fileurl)
+                if fileurl.split('.')[-1]=='pdf':
+                    #filelink.click()
+                    pdf = urlopen(fileurl)
+                    tempfile = open('report.pdf', 'wb')
+                    CHUNK_SIZE=1024*16
+                    while True:
+                        chunk = pdf.read(CHUNK_SIZE)  # 读取网页内容
+                        if chunk:
+                            tempfile.write(chunk)
+                        else:
+                            break
+                    tempfile.close()
+
+                    with open('report.pdf','rb') as pdffile:
+                        parser = PDFParser(pdffile)
+                        docx = PDFDocument(parser=parser)
+                        #parser.set_document(docx)
+                        docx.set_parser(parser)
+                        docx.initialize()
+                        resource = PDFResourceManager()
+                        laparams = LAParams()
+                        device = PDFPageAggregator(resource, laparams=laparams)
+                        interpreter = PDFPageInterpreter(resource, device)
+
+                        for page in docx.get_pages():
+                            # 使用页面解释器来读取
+                            interpreter.process_page(page=page)
+                            # 使用聚合器来获取页面内容 ,接受该页面的LTPage对象
+                            layout = device.get_result()
+                            # 这里layout是一个LTPage对象 里面存放着这个page解析出的各种对象
+                            # 一般包括LTTextBox, LTFigure, LTImage, LTTextBoxHorizontal 等等
+                            # 想要获取文本就获得对象的text属性
+                            for out in layout:
+                                print(out.text)
+
+
                 self.driver.close()
                 self.driver.switch_to.window(self.driver.window_handles[0])
                 #net_value= cols[1].text
