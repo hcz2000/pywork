@@ -89,3 +89,11 @@ cibwm:
       share: 297900
       url: https://www.cibwm.com.cn/personal-products/detail/25aed6fec1f8217c65245a7e51b58d3c
       display: false
+
+amdbocwm:
+  products:
+    - code: Z7003721000112
+      desc: 汇华-纯债日日开
+      share: 450000
+      url: https://xinxipilu.chinawealth.com.cn/zzlc/jsp/lczzpl/zzplbglx.jsp?gblx=11&num=11
+      display: false
