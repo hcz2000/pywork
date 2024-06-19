@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import pdfplumber
 import os
 import yaml
 from datetime import datetime,timedelta
@@ -388,8 +389,8 @@ if __name__ == '__main__':
         boc.refresh()
         cmb = CmbwmValue(driver)
         cmb.refresh()
-        cib = Cibwmvalue(driver)
-        cib.refresh()
+        #cib = Cibwmvalue(driver)
+        #cib.refresh()
         amdboc = Amdbocwmvalue(driver)
         amdboc.refresh()
 
