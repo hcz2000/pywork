@@ -378,7 +378,7 @@ class Amdbocwmvalue(WmValue):
             else:
                 break
 
-        #self.write2CsvFile(code, net_values)
+        self.write2CsvFile(code, net_values)
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
