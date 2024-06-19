@@ -1,12 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import urllib
-from pdfminer.converter import PDFPageAggregator
-from pdfminer.layout import *
-from pdfminer.pdfparser import PDFParser
-from pdfminer.pdfdocument import PDFDocument
-from pdfminer.pdfpage import PDFPage,PDFTextExtractionNotAllowed
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+import pdfplumber
 import os
 import yaml
 from datetime import datetime,timedelta
@@ -120,47 +115,34 @@ class Amdbocwmvalue(WmValue):
                 time.sleep(1)
                 filelink=self.driver.find_element(By.XPATH,"//ul[@class='zzpl_down']/li[@class='a_left']/a")
                 fileurl=filelink.get_attribute('href')
-                print(fileurl)
                 if fileurl.split('.')[-1]=='pdf':
                     #filelink.click()
-                    response = urllib.request.urlopen(url=fileurl)
+                    header = {'Accept': 'text/html,application/xhtml+xml,application/xml',
+                              'Accept-Language': 'zh-CN,zh;q=0.9',
+                              'Connection': 'keep-alive',
+                              'Cookie': 'uuid_tt_dd=10_35489889920-1563497330616-876822; ...... ',
+                              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) Gecko/20100101 Firefox/38.0'}
+                    request = urllib.request.Request(url=fileurl, headers=header)
+                    response = urllib.request.urlopen(request)
                     pdfdata = response.read()  # 读取网页内容
                     with open('report.pdf', 'wb') as tempfile:
                         tempfile.write(pdfdata)
                         tempfile.close()
 
-                    with open('report.pdf','rb') as pdffile:
-                        parser = PDFParser(pdffile)
-                        docx = PDFDocument(parser=parser)
-                        #parser.set_document(docx)
-                        docx.set_parser(parser)
-                        docx.initialize()
-                        resource = PDFResourceManager()
-                        laparams = LAParams()
-                        device = PDFPageAggregator(resource, laparams=laparams)
-                        interpreter = PDFPageInterpreter(resource, device)
-
-                        for page in docx.get_pages():
-                            # 使用页面解释器来读取
-                            interpreter.process_page(page=page)
-                            # 使用聚合器来获取页面内容 ,接受该页面的LTPage对象
-                            layout = device.get_result()
-                            # 这里layout是一个LTPage对象 里面存放着这个page解析出的各种对象
-                            # 一般包括LTTextBox, LTFigure, LTImage, LTTextBoxHorizontal 等等
-                            # 想要获取文本就获得对象的text属性
-                            for out in layout:
-                                print(out.text)
-
+                    pdf = pdfplumber.open("report.pdf")
+                    page = pdf.pages[0]
+                    rows = page.extract_table()
+                    rpt_date=rows[1][0]
+                    net_value=rows[1][2]
+                    if rpt_date > last_sync_date:
+                        net_values.append((rpt_date, net_value))
 
                 self.driver.close()
                 self.driver.switch_to.window(self.driver.window_handles[0])
-                #net_value= cols[1].text
-                #if rpt_date > last_sync_date:
-                #    net_values.append((rpt_date, net_value))
+
 
             pagediv = self.driver.find_element(By.XPATH,"//div[@id='page']")
             current_page = pagediv.find_element(By.XPATH,"//ul/li[@class='active']/a").text
-            print(current_page)
             if current_page=='1':
                 break
             prev_link = pagediv.find_element(By.XPATH,"//ul/li[1]/a")
