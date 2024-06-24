@@ -255,6 +255,8 @@ class Cibwmvalue(WmValue):
                         break
                 else:
                     break
+            else:
+                break
 
         while True:
             reversed_list = outputList[::-1]
@@ -389,8 +391,8 @@ if __name__ == '__main__':
         boc.refresh()
         cmb = CmbwmValue(driver)
         cmb.refresh()
-        #cib = Cibwmvalue(driver)
-        #cib.refresh()
+        cib = Cibwmvalue(driver)
+        cib.refresh()
         amdboc = Amdbocwmvalue(driver)
         amdboc.refresh()
 
