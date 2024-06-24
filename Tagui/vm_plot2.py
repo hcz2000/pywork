@@ -196,7 +196,7 @@ class CheckBoxDemo(QWidget):
       ax.plot([start_date, end_date], [1, 1 + base_rate2], lw=1, linestyle='dotted', color='grey')
       ax.plot([start_date, end_date], [1, 1 + base_rate3], lw=1, linestyle='dotted', color='grey')
       # ax.plot([end_date, end_date], [0, 1 + base_rate3], lw=1, linestyle='-.', color='grey')
-    plt.legend(prop={'family': 'SimHei', 'size': 14})
+    ax.legend(prop={'family': 'SimHei', 'size': 10})
 
 
 
@@ -212,6 +212,7 @@ if __name__ == '__main__':
   products['广银理财']=config['cgbwm']['products']
   products['招银理财']=config['cmbwm']['products']
   products['兴银理财']=config['cibwm']['products']
+  products['汇华理财']=config['amdbocwm']['products']
   checkboxDemo = CheckBoxDemo(products)
   checkboxDemo.show()
 
