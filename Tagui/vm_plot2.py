@@ -12,6 +12,7 @@ class CheckBoxDemo(QWidget):
 
   def __init__(self, products,parent=None):
     super(CheckBoxDemo, self).__init__(parent)
+    #resulution=QApplication.instance()
     #设置主界面布局垂直布局
     leftLayout = QVBoxLayout()
     self.checkboxes = {}
@@ -20,24 +21,24 @@ class CheckBoxDemo(QWidget):
     for k,v in products.items():
       groupBox = QGroupBox(k)
       groupBox.setFlat(False)
-      layout = QGridLayout()
+      grid_layout = QGridLayout()
       checkboxes=[]
       checkbox = QCheckBox('全选')
       checkbox.stateChanged.connect(lambda: self.all_selected())
       self.con_checkbox[k]=checkbox
       self.group_selected[k]=False
-      layout.addWidget(checkbox,0,0)
+      grid_layout.addWidget(checkbox,0,0)
       cnt=0
       for product in v:
         cnt=cnt+1
         checkbox=QCheckBox(product['desc'])
         checkbox.stateChanged.connect(lambda: print(self.get_selected()))
         checkboxes.append(checkbox)
-        layout.addWidget(checkbox,cnt//3,cnt%3)
+        grid_layout.addWidget(checkbox,cnt//3,cnt%3)
 
       self.checkboxes[k]=checkboxes
 
-      groupBox.setLayout(layout)
+      groupBox.setLayout(grid_layout)
       leftLayout.addWidget(groupBox)
 
     button = QPushButton('确定')
@@ -45,14 +46,15 @@ class CheckBoxDemo(QWidget):
     button.clicked.connect(self.on_click)
     groupBox = QGroupBox('操作')
     groupBox.setFlat(False)
-    layout = QHBoxLayout()
-    layout.addWidget(button)
-    groupBox.setLayout(layout)
+    grid_layout = QHBoxLayout()
+    grid_layout.addWidget(button)
+    groupBox.setLayout(grid_layout)
     leftLayout.addWidget(groupBox)
 
     leftFrame = QFrame()
     leftFrame.setLayout(leftLayout)
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
+    leftFrame.setMaximumWidth(256)
 
     self.fig=plt.Figure()
     self.canvas=FC(self.fig)
@@ -70,7 +72,6 @@ class CheckBoxDemo(QWidget):
     hbox.addWidget(splitter)
 
     #设置主界面布局
-    #self.setLayout(mainLayout)
     self.setLayout(hbox)
     self.setGeometry(0, 0, 2048, 1024)
     #设置主界面标题
@@ -205,8 +206,6 @@ if __name__ == '__main__':
   with open('wm.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
-  # 设置主界面布局垂直布局
-  mainLayout = QVBoxLayout()
   products={}
   products['中银理财']=config['bocwm']['products']
   products['广银理财']=config['cgbwm']['products']
