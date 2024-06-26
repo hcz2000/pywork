@@ -12,7 +12,8 @@ class CheckBoxDemo(QWidget):
 
   def __init__(self, products,parent=None):
     super(CheckBoxDemo, self).__init__(parent)
-    #resulution=QApplication.instance()
+    resolution=QApplication.primaryScreen().geometry()
+    print(resolution.width(),resolution.height())
     #设置主界面布局垂直布局
     leftLayout = QVBoxLayout()
     self.checkboxes = {}
@@ -54,7 +55,7 @@ class CheckBoxDemo(QWidget):
     leftFrame = QFrame()
     leftFrame.setLayout(leftLayout)
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
-    leftFrame.setMaximumWidth(256)
+    leftFrame.setMaximumWidth(resolution.width()//4)
 
     self.fig=plt.Figure()
     self.canvas=FC(self.fig)
@@ -73,7 +74,7 @@ class CheckBoxDemo(QWidget):
 
     #设置主界面布局
     self.setLayout(hbox)
-    self.setGeometry(0, 0, 2048, 1024)
+    self.setGeometry(0, 0, resolution.width(), resolution.height())
     #设置主界面标题
     self.setWindowTitle("checkbox demo")
 
