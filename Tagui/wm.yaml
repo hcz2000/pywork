@@ -1,9 +1,15 @@
 bocwm:
+  catalog: '中银理财'
   products:
     -  code: FCYQZQ3YL
        desc: 中银-三年起固收增强
        share: 0
        url: https://www.bocwm.cn/html/1/netWorth/5803.html
+       display: false
+    -  code: HXTT01
+       desc: 中银-慧享天天
+       share: 152823
+       url: https://www.bocwm.cn/html/1/netWorth/5048.html
        display: false
     -  code: FCYQZQ1YL
        desc: 中银-一年起固收增强
@@ -37,6 +43,7 @@ bocwm:
        display: true
 
 cgbwm:
+  catalog: '广银理财'
   products:
     - code: XFTLCY1201A
       desc: 广银-添利1Y1号A
@@ -70,6 +77,7 @@ cgbwm:
       display: false
 
 cmbwm:
+  catalog: '招银理财'
   products:
     - code: 17561D
       desc: 招银-丰和60天起2号
@@ -83,6 +91,7 @@ cmbwm:
       display: true
 
 cibwm:
+  catalog: '其他'
   products:
     - code: 9k40033G
       desc: 兴银-季盈13号
@@ -91,6 +100,7 @@ cibwm:
       display: false
 
 amdbocwm:
+  catalog: '其他'
   products:
     - code: Z7003721000112
       desc: 汇华-纯债日日开

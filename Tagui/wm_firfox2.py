@@ -104,12 +104,16 @@ class Amdbocwmvalue(WmValue):
                         break
                 else:
                     break
+            else:
+                break
 
         while True:
             reversed_list = outputList[::-1]
             for row in reversed_list:
                 cols=row.find_elements(By.TAG_NAME, 'td')
-                rpt_date = cols[-1].text
+                release_date = cols[-1].text
+                if release_date<last_sync_date:
+                    break
                 cols[1].click()
                 self.driver.switch_to.window(self.driver.window_handles[1])
                 time.sleep(1)
@@ -132,10 +136,11 @@ class Amdbocwmvalue(WmValue):
                     pdf = pdfplumber.open("report.pdf")
                     page = pdf.pages[0]
                     rows = page.extract_table()
-                    rpt_date=rows[1][0]
+                    rpt_date=rows[1][0].replace('/','-')
                     net_value=rows[1][2]
                     if rpt_date > last_sync_date:
                         net_values.append((rpt_date, net_value))
+                        print(rpt_date,net_value)
 
                 self.driver.close()
                 self.driver.switch_to.window(self.driver.window_handles[0])
@@ -154,7 +159,7 @@ class Amdbocwmvalue(WmValue):
             else:
                 break
 
-        #self.write2CsvFile(code, net_values)
+        self.write2CsvFile(code, net_values)
 
 
 if __name__ == '__main__':
