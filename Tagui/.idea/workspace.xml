@@ -4,15 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f98a3c5-190c-4526-9e8e-df8ea480b3f0" name="Changes" comment="">
+    <list default="true" id="7f98a3c5-190c-4526-9e8e-df8ea480b3f0" name="Changes" comment="update">
       <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/TAGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TAGUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_chrome.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CYQZQ2MA.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/CYQZQ2MA.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CYQZQ3MA.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/CYQZQ3MA.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/WFZZKGR01A.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/WFZZKGR01A.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/XFLCXFTF0008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/XFLCXFTF0008.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/XFLCXFTFA001.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/XFLCXFTFA001.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/XFLCXFTL0003.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/XFLCXFTL0003.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/YLFFB2201.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/YLFFB2201.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ZFNNK0915.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/ZFNNK0915.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test_firefox.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_firefox1.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_firefox1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_firefox0.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_firefox1.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test_firefox2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/beautifulsoup4-4.9.1.dist-info/AUTHORS" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/beautifulsoup4-4.9.1.dist-info/COPYING.txt" beforeDir="false" />
@@ -97,7 +105,6 @@
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distlib/t64.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distlib/util.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distlib/version.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distlib/w32.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distlib/w64.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distlib/wheel.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/pip-9.0.1-py3.7.egg/pip/_vendor/distro.py" beforeDir="false" />
@@ -522,6 +529,8 @@
       <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/wm.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/wm.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm_firfox.py" beforeDir="false" afterPath="$PROJECT_DIR$/wm_firfox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wm_plot.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -566,7 +575,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_firefox1">
+  <component name="RunManager" selected="Python.wm_firfox">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="TAGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -589,7 +598,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="testpdf" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TAGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -602,7 +611,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testpdf.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -611,101 +620,96 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_firefox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="vm_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TAGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_firefox.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/vm_plot.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_firefox0" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="wm_firfox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TAGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_firefox0.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wm_firfox.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_firefox1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="wm_firfox2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TAGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_firefox1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wm_firfox2.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_firefox2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="wm_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TAGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_firefox2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/wm_plot.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.wm_plot" />
+      <item itemvalue="Python.testpdf" />
+      <item itemvalue="Python.wm_firfox" />
+      <item itemvalue="Python.wm_firfox2" />
+      <item itemvalue="Python.vm_plot2" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_firefox1" />
-        <item itemvalue="Python.test_firefox0" />
-        <item itemvalue="Python.test2" />
-        <item itemvalue="Python.test_firefox2" />
-        <item itemvalue="Python.test_firefox" />
+        <item itemvalue="Python.wm_firfox" />
+        <item itemvalue="Python.wm_firfox2" />
+        <item itemvalue="Python.vm_plot2" />
+        <item itemvalue="Python.wm_plot" />
+        <item itemvalue="Python.testpdf" />
       </list>
     </recent_temporary>
   </component>
@@ -727,139 +731,374 @@
       <workItem from="1715660025181" duration="39922000" />
       <workItem from="1715831508951" duration="43093000" />
       <workItem from="1716258902944" duration="25758000" />
-      <workItem from="1716377533898" duration="5330000" />
+      <workItem from="1716377533898" duration="31871000" />
+      <workItem from="1716776409140" duration="25432000" />
+      <workItem from="1716879768738" duration="335000" />
+      <workItem from="1716880390804" duration="58338000" />
+      <workItem from="1717379713127" duration="34007000" />
+      <workItem from="1717498171112" duration="75859000" />
+      <workItem from="1718585489449" duration="48996000" />
+      <workItem from="1718788890496" duration="87854000" />
     </task>
-    <task id="LOCAL-00001" summary="update">
-      <created>1689675474183</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00024" summary="update">
+      <created>1716545049360</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1689675474183</updated>
+      <updated>1716545049360</updated>
     </task>
-    <task id="LOCAL-00002" summary="update">
-      <created>1689766102140</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+    <task id="LOCAL-00025" summary="update">
+      <created>1716805946661</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1689766102140</updated>
+      <updated>1716805946661</updated>
     </task>
-    <task id="LOCAL-00003" summary="update">
-      <created>1689931279463</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+    <task id="LOCAL-00026" summary="update">
+      <created>1716888837845</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1689931279463</updated>
+      <updated>1716888837845</updated>
     </task>
-    <task id="LOCAL-00004" summary="update">
-      <created>1689931293658</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+    <task id="LOCAL-00027" summary="update">
+      <created>1716888882597</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1689931293658</updated>
+      <updated>1716888882597</updated>
     </task>
-    <task id="LOCAL-00005" summary="update">
-      <created>1690194912962</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
+    <task id="LOCAL-00028" summary="update">
+      <created>1716888923759</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1690194912962</updated>
+      <updated>1716888923759</updated>
     </task>
-    <task id="LOCAL-00006" summary="update">
-      <created>1690284544138</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+    <task id="LOCAL-00029" summary="update">
+      <created>1716888942769</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1690284544138</updated>
+      <updated>1716888942769</updated>
     </task>
-    <task id="LOCAL-00007" summary="update">
-      <created>1690363390771</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
+    <task id="LOCAL-00030" summary="update">
+      <created>1716888966207</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1690363390771</updated>
+      <updated>1716888966207</updated>
     </task>
-    <task id="LOCAL-00008" summary="update">
-      <created>1690370256134</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
+    <task id="LOCAL-00031" summary="update">
+      <created>1716888996196</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1690370256134</updated>
+      <updated>1716888996196</updated>
     </task>
-    <task id="LOCAL-00009" summary="update">
-      <created>1715655383237</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
+    <task id="LOCAL-00032" summary="update">
+      <created>1716889062510</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1715655383237</updated>
+      <updated>1716889062510</updated>
     </task>
-    <task id="LOCAL-00010" summary="update">
-      <created>1715683621171</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
+    <task id="LOCAL-00033" summary="update">
+      <created>1716891490367</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1715683621171</updated>
+      <updated>1716891490367</updated>
     </task>
-    <task id="LOCAL-00011" summary="update">
-      <created>1715766835539</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+    <task id="LOCAL-00034" summary="update">
+      <created>1716891818926</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1715766835539</updated>
+      <updated>1716891818926</updated>
     </task>
-    <task id="LOCAL-00012" summary="update">
-      <created>1715766849181</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+    <task id="LOCAL-00035" summary="update">
+      <created>1716979669740</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1715766849181</updated>
+      <updated>1716979669740</updated>
     </task>
-    <task id="LOCAL-00013" summary="update">
-      <created>1715856718952</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
+    <task id="LOCAL-00036" summary="update">
+      <created>1717065060341</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1715856718952</updated>
+      <updated>1717065060341</updated>
     </task>
-    <task id="LOCAL-00014" summary="update">
-      <created>1715943051989</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
+    <task id="LOCAL-00037" summary="update">
+      <created>1717151298015</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
       <option name="project" value="LOCAL" />
-      <updated>1715943051989</updated>
+      <updated>1717151298015</updated>
     </task>
-    <task id="LOCAL-00015" summary="update">
-      <created>1716377610655</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
+    <task id="LOCAL-00038" summary="update">
+      <created>1717399648560</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
       <option name="project" value="LOCAL" />
-      <updated>1716377610656</updated>
+      <updated>1717399648560</updated>
     </task>
-    <task id="LOCAL-00016" summary="update">
-      <created>1716380875154</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
+    <task id="LOCAL-00039" summary="update">
+      <created>1717417256791</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
       <option name="project" value="LOCAL" />
-      <updated>1716380875154</updated>
+      <updated>1717417256791</updated>
     </task>
-    <task id="LOCAL-00017" summary="update">
-      <created>1716381017447</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
+    <task id="LOCAL-00040" summary="update">
+      <created>1717465936920</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1716381017447</updated>
+      <updated>1717465936920</updated>
     </task>
-    <task id="LOCAL-00018" summary="update">
-      <created>1716381072247</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
+    <task id="LOCAL-00041" summary="update">
+      <created>1717498227797</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
       <option name="project" value="LOCAL" />
-      <updated>1716381072247</updated>
+      <updated>1717498227797</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00042" summary="update">
+      <created>1717751076119</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1717751076119</updated>
+    </task>
+    <task id="LOCAL-00043" summary="update">
+      <created>1717753664367</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1717753664367</updated>
+    </task>
+    <task id="LOCAL-00044" summary="update">
+      <created>1718274080860</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1718274080860</updated>
+    </task>
+    <task id="LOCAL-00045" summary="update">
+      <created>1718274092088</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718274092088</updated>
+    </task>
+    <task id="LOCAL-00046" summary="update">
+      <created>1718274129308</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718274129308</updated>
+    </task>
+    <task id="LOCAL-00047" summary="update">
+      <created>1718277434013</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1718277434013</updated>
+    </task>
+    <task id="LOCAL-00048" summary="update">
+      <created>1718350608884</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718350608884</updated>
+    </task>
+    <task id="LOCAL-00049" summary="update">
+      <created>1718350618625</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718350618625</updated>
+    </task>
+    <task id="LOCAL-00050" summary="update">
+      <created>1718355645997</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1718355645998</updated>
+    </task>
+    <task id="LOCAL-00051" summary="update">
+      <created>1718355826324</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1718355826325</updated>
+    </task>
+    <task id="LOCAL-00052" summary="update">
+      <created>1718355877492</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1718355877492</updated>
+    </task>
+    <task id="LOCAL-00053" summary="update">
+      <created>1718360917904</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1718360917905</updated>
+    </task>
+    <task id="LOCAL-00054" summary="update">
+      <created>1718362839521</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1718362839522</updated>
+    </task>
+    <task id="LOCAL-00055" summary="update">
+      <created>1718625879153</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1718625879153</updated>
+    </task>
+    <task id="LOCAL-00056" summary="update">
+      <created>1718685412563</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1718685412563</updated>
+    </task>
+    <task id="LOCAL-00057" summary="update">
+      <created>1718708950534</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1718708950534</updated>
+    </task>
+    <task id="LOCAL-00058" summary="update">
+      <created>1718710204364</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1718710204364</updated>
+    </task>
+    <task id="LOCAL-00059" summary="update">
+      <created>1718778040722</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1718778040722</updated>
+    </task>
+    <task id="LOCAL-00060" summary="update">
+      <created>1718778059091</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1718778059091</updated>
+    </task>
+    <task id="LOCAL-00061" summary="update">
+      <created>1718778121287</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1718778121287</updated>
+    </task>
+    <task id="LOCAL-00062" summary="update">
+      <created>1718793433123</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1718793433124</updated>
+    </task>
+    <task id="LOCAL-00063" summary="update">
+      <created>1718793457871</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1718793457871</updated>
+    </task>
+    <task id="LOCAL-00064" summary="update">
+      <created>1719224148439</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1719224148439</updated>
+    </task>
+    <task id="LOCAL-00065" summary="update">
+      <created>1719275331708</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1719275331708</updated>
+    </task>
+    <task id="LOCAL-00066" summary="update">
+      <created>1719312884079</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1719312884079</updated>
+    </task>
+    <task id="LOCAL-00067" summary="update">
+      <created>1719395142789</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1719395142790</updated>
+    </task>
+    <task id="LOCAL-00068" summary="update">
+      <created>1719395729992</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1719395729993</updated>
+    </task>
+    <task id="LOCAL-00069" summary="update">
+      <created>1719468696708</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1719468696708</updated>
+    </task>
+    <task id="LOCAL-00070" summary="update">
+      <created>1719473797058</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1719473797059</updated>
+    </task>
+    <task id="LOCAL-00071" summary="update">
+      <created>1719476832788</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1719476832788</updated>
+    </task>
+    <task id="LOCAL-00072" summary="update">
+      <created>1719476873861</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1719476873861</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
@@ -873,6 +1112,7 @@
     <SUITE FILE_PATH="coverage/Tagui$ssh.coverage" NAME="ssh Coverage Results" MODIFIED="1708246891523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Tagui$GetMail.coverage" NAME="GetMail Coverage Results" MODIFIED="1715586776501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Tagui$test_firefox.coverage" NAME="test_firefox Coverage Results" MODIFIED="1715748016746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Tagui$wm_pic.coverage" NAME="wm_pic Coverage Results" MODIFIED="1716803132281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Tagui$books.coverage" NAME="books Coverage Results" MODIFIED="1689925155966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Tagui$test_firefox1.coverage" NAME="test_firefox1 Coverage Results" MODIFIED="1716382275638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

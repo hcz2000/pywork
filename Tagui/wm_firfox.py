@@ -50,17 +50,16 @@ class WmValue():
 
     def refresh(self):
         for product in self.products:
-            code=product['code']
-            url=product['url']
-            print(code,url)
-            self.getNetValue(code, url)
+            self.getNetValue(product)
 
 class CgbwmValue(WmValue):
     def __init__(self,driver):
         super().__init__(driver)
         self.products = self.config['cgbwm']['products']
 
-    def getNetValue(self, code, url):
+    def getNetValue(self, product):
+        code=product['code']
+        url = product['url']
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
         self.driver.implicitly_wait(30)
@@ -154,21 +153,43 @@ class BocwmValue(WmValue):
         super().__init__(driver)
         self.products = self.config['bocwm']['products']
 
-    def getNetValue(self, code, url):
+    def getNetValue(self, product):
+        code = product['code']
+        url = product['url']
+        value_type=product['value_type']
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
         self.driver.implicitly_wait(30)
         self.driver.get(url)
         contentDiv=self.driver.find_element(By.ID,'content')
         rows = contentDiv.find_elements(By.XPATH,"//table[@class='layui-table']/tbody/tr")
-        for row in rows:
-            cols=row.find_elements(By.TAG_NAME,'td')
-            (rpt_date, net_value)=(cols[6].text,cols[2].text)
-            if rpt_date > last_sync_date:
+
+        if value_type=='net_value':
+            for row in rows:
+                cols=row.find_elements(By.TAG_NAME,'td')
+                (rpt_date, net_value)=(cols[6].text,cols[2].text)
+                if rpt_date > last_sync_date:
+                    net_values.append((rpt_date, net_value))
+                else:
+                    break
+        else:
+            revenues=[]
+            for row in rows:
+                cols = row.find_elements(By.TAG_NAME, 'td')
+                (rpt_date, revenue) = (cols[6].text, float(cols[4].text) / 10000)
+                if rpt_date > last_sync_date:
+                    revenues.append((rpt_date, revenue))
+                else:
+                    break
+
+            reversed_list=revenues[::-1]
+            accumulated_revenue=0
+            for row in reversed_list:
+                accumulated_revenue=(1.0+accumulated_revenue)*row[1]
+                (rpt_date,net_value)=(row[0],1.0+accumulated_revenue)
                 net_values.append((rpt_date, net_value))
-            else:
-                break
-            #print(cols[0].text,cols[1].text,cols[2].text,cols[6].text)
+
+            #print(cols[0].text,cols[1].text,cols[2].text,cols[4].text,cols[6].text)
 
         self.write2CsvFile(code,net_values[::-1])
 
@@ -177,7 +198,9 @@ class CmbwmValue(WmValue):
         super().__init__(driver)
         self.products = self.config['cmbwm']['products']
 
-    def getNetValue(self, code, url):
+    def getNetValue(self, product):
+        code = product['code']
+        url = product['url']
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
         self.driver.implicitly_wait(30)
@@ -216,7 +239,9 @@ class Cibwmvalue(WmValue):
         super().__init__(driver)
         self.products = self.config['cibwm']['products']
 
-    def getNetValue(self, code, url):
+    def getNetValue(self, product):
+        code = product['code']
+        url = product['url']
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
         self.driver.implicitly_wait(30)
@@ -289,7 +314,9 @@ class Amdbocwmvalue(WmValue):
         super().__init__(driver)
         self.products = self.config['amdbocwm']['products']
 
-    def getNetValue(self, code, url):
+    def getNetValue(self, product):
+        code = product['code']
+        url = product['url']
         net_values=[]
         last_sync_date = self.getLastSyncDate(code)
         self.driver.implicitly_wait(30)
