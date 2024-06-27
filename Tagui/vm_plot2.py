@@ -1,6 +1,7 @@
 import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 import yaml
 import matplotlib.pyplot as plt
 import matplotlib.dates as dates
@@ -13,7 +14,7 @@ class CheckBoxDemo(QWidget):
   def __init__(self, products,parent=None):
     super(CheckBoxDemo, self).__init__(parent)
     resolution=QApplication.primaryScreen().geometry()
-    print(resolution.width(),resolution.height())
+    #print(resolution.width(),resolution.height())
     #设置主界面布局垂直布局
     leftLayout = QVBoxLayout()
     self.checkboxes = {}
@@ -25,6 +26,8 @@ class CheckBoxDemo(QWidget):
       grid_layout = QGridLayout()
       checkboxes=[]
       checkbox = QCheckBox('全选')
+      font = QFont('Arial', 6)
+      checkbox.setFont(font)
       checkbox.stateChanged.connect(lambda: self.all_selected())
       self.con_checkbox[k]=checkbox
       self.group_selected[k]=False
@@ -33,9 +36,11 @@ class CheckBoxDemo(QWidget):
       for product in v:
         cnt=cnt+1
         checkbox=QCheckBox(product['desc'])
-        checkbox.stateChanged.connect(lambda: print(self.get_selected()))
+        font = QFont('Arial', 6)
+        checkbox.setFont(font)
+        #checkbox.stateChanged.connect(lambda: print(self.get_selected()))
         checkboxes.append(checkbox)
-        grid_layout.addWidget(checkbox,cnt//3,cnt%3)
+        grid_layout.addWidget(checkbox,cnt//2,cnt%2)
 
       self.checkboxes[k]=checkboxes
 
@@ -55,7 +60,7 @@ class CheckBoxDemo(QWidget):
     leftFrame = QFrame()
     leftFrame.setLayout(leftLayout)
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
-    leftFrame.setMaximumWidth(resolution.width()//4)
+    leftFrame.setMaximumWidth(resolution.width()//5)
 
     self.fig=plt.Figure()
     self.canvas=FC(self.fig)
@@ -122,7 +127,7 @@ class CheckBoxDemo(QWidget):
     for product in self.display_products:
       code = product['code']
       desc = product['desc']
-      print(code, desc)
+      #print(code, desc)
       fname = './data/%s.csv' % code
       dt = [('date', 'U16'), ('netvalue', 'f4')]
       net_values = np.loadtxt(fname, dt, delimiter=',')
@@ -208,11 +213,14 @@ if __name__ == '__main__':
     config = yaml.safe_load(file)
 
   products={}
-  products['中银理财']=config['bocwm']['products']
-  products['广银理财']=config['cgbwm']['products']
-  products['招银理财']=config['cmbwm']['products']
-  products['兴银理财']=config['cibwm']['products']
-  products['汇华理财']=config['amdbocwm']['products']
+  for key, _ in config.items():
+    catalog=config[key]['catalog']
+    products[catalog]=[]
+
+  for key, _ in config.items():
+    catalog=config[key]['catalog']
+    products[catalog].extend(config[key]['products'])
+
   checkboxDemo = CheckBoxDemo(products)
   checkboxDemo.show()
 
