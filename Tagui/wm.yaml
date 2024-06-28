@@ -89,6 +89,7 @@ pinganwm:
       desc: 平安-日添利5号B
       share: 52268
       url: https://wm.pingan.com/#/product/productDetail?productCode=RT5X00101B&raiseType=0
+      value_type: revenue
 
 cibwm:
   catalog: '其他'
