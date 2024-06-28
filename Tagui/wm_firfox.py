@@ -19,7 +19,7 @@ class WmValue():
             os.makedirs('data')
 
 
-    def getLastSyncDate(self,code):
+    def getLastRecord(self, code):
         filename='./data/%s.csv' % code
         if os.path.exists(filename):
             with open(filename, 'r', encoding='utf-8') as datafile:
@@ -34,14 +34,15 @@ class WmValue():
                     position -= 1
 
                 last_line=datafile.readline()
-                #print(last_line)
                 last_sync_date = last_line.split(',')[0].strip()
+                last_value=last_line.split(',')[1].strip()
                 print(code,'LAST_SYNC_DATE:',last_sync_date)
         else:
             last_sync_date=datetime.now() - timedelta(days=365*2)
             last_sync_date=last_sync_date.replace(month=12,day=31).strftime('%Y-%m-%d')
+            last_value= str(1.0000)
             #print(last_sync_date)
-        return last_sync_date
+        return (last_sync_date,last_value)
     def write2CsvFile(self,code,net_values):
         with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
             writer = csv.writer(datafile)
@@ -61,7 +62,7 @@ class CgbwmValue(WmValue):
         code=product['code']
         url = product['url']
         net_values=[]
-        last_sync_date = self.getLastSyncDate(code)
+        last_sync_date = self.getLastRecord(code)[0]
         self.driver.implicitly_wait(30)
         self.driver.get(url)
         menus = self.driver.find_elements(By.XPATH, "//li[@class='parentMenuItem']/span")
@@ -158,7 +159,8 @@ class BocwmValue(WmValue):
         url = product['url']
         value_type=product['value_type']
         net_values=[]
-        last_sync_date = self.getLastSyncDate(code)
+        last_record=self.getLastRecord(code)
+        last_sync_date = last_record[0]
         self.driver.implicitly_wait(30)
         self.driver.get(url)
         contentDiv=self.driver.find_element(By.ID,'content')
@@ -172,6 +174,7 @@ class BocwmValue(WmValue):
                     net_values.append((rpt_date, net_value))
                 else:
                     break
+            net_values=net_values[::-1]
         else:
             revenues=[]
             for row in rows:
@@ -182,16 +185,16 @@ class BocwmValue(WmValue):
                 else:
                     break
 
-            reversed_list=revenues[::-1]
-            accumulated_revenue=0
-            for row in reversed_list:
-                accumulated_revenue=(1.0+accumulated_revenue)*row[1]
+            last_net_value=float(last_record[1])
+            accumulated_revenue=last_net_value-1.00
+            for row in revenues[::-1]:
+                accumulated_revenue=accumulated_revenue+(1.0+accumulated_revenue)*row[1]
                 (rpt_date,net_value)=(row[0],1.0+accumulated_revenue)
                 net_values.append((rpt_date, net_value))
 
             #print(cols[0].text,cols[1].text,cols[2].text,cols[4].text,cols[6].text)
 
-        self.write2CsvFile(code,net_values[::-1])
+        self.write2CsvFile(code,net_values)
 
 class CmbwmValue(WmValue):
     def __init__(self,driver):
@@ -202,7 +205,7 @@ class CmbwmValue(WmValue):
         code = product['code']
         url = product['url']
         net_values=[]
-        last_sync_date = self.getLastSyncDate(code)
+        last_sync_date = self.getLastRecord(code)[0]
         self.driver.implicitly_wait(30)
         self.driver.get(url+'?prodTradeCode=%s&prodClcMode=01&finType=P'%code)
         contentDiv=self.driver.find_element(By.CLASS_NAME,'proTabList')
@@ -243,7 +246,7 @@ class Cibwmvalue(WmValue):
         code = product['code']
         url = product['url']
         net_values=[]
-        last_sync_date = self.getLastSyncDate(code)
+        last_sync_date = self.getLastRecord(code)[0]
         self.driver.implicitly_wait(30)
         self.driver.get(url)
         value_link=self.driver.find_element(By.LINK_TEXT,'产品净值')
@@ -318,7 +321,7 @@ class Amdbocwmvalue(WmValue):
         code = product['code']
         url = product['url']
         net_values=[]
-        last_sync_date = self.getLastSyncDate(code)
+        last_sync_date = self.getLastRecord(code)[0]
         self.driver.implicitly_wait(30)
         self.driver.get(url)
 
