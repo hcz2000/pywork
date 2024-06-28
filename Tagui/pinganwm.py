@@ -53,7 +53,7 @@ class WmValue():
             code=product['code']
             url=product['url']
             print(code,url)
-            self.getNetValue(code, url)
+            self.getNetValue(product)
 
 
 class Pinganwmvalue(WmValue):
