@@ -156,6 +156,6 @@ class Pinganwmvalue(WmValue):
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
-        amdboc = Pinganwmvalue(driver)
-        amdboc.refresh()
+        pingan = Pinganwmvalue(driver)
+        pingan.refresh()
 
