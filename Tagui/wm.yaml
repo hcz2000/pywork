@@ -73,10 +73,6 @@ cgbwm:
 cmbwm:
   catalog: '招银理财'
   products:
-    - code: PA030115
-      desc: 招银-日添利5号B
-      share: 52268
-      url: https://www.cmbchinawm.com/proDetail
     - code: 17561D
       desc: 招银-丰和60天起2号
       share: 93308
