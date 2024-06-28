@@ -82,6 +82,14 @@ cmbwm:
       share: 100000
       url: https://www.cmbchinawm.com/proDetail
 
+pinganwm:
+  catalog: '其他'
+  products:
+    - code: PA030115
+      desc: 平安-日添利5号B
+      share: 52268
+      url: https://wm.pingan.com/#/product/productDetail?productCode=RT5X00101B&raiseType=0
+
 cibwm:
   catalog: '其他'
   products:
