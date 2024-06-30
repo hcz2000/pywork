@@ -10,8 +10,11 @@ import csv
 
 class WmValue():
 
+
+
+
     def __init__(self,driver):
-        with open('wm.yaml', 'r') as file:
+        with open('wm.yaml', 'r', encoding='utf-8') as file:
             self.config=yaml.safe_load(file)
         self.driver=driver
         self.basePath = os.path.dirname(__file__)
