@@ -471,8 +471,8 @@ class Pinganwmvalue(WmValue):
 
         accumulated_revenue = last_net_value - 1.00
         while True:
-            reversed_list = outputList[::-1]
-            for row in reversed_list:
+            revenues = []
+            for row in outputList[::-1]:
                 cols = row.find_elements(By.TAG_NAME, 'td')
                 release_date = cols[1].text
                 if release_date < last_sync_date:
@@ -483,24 +483,23 @@ class Pinganwmvalue(WmValue):
                 if value_type == 'net_value':
                     rpt_date = cols[1].text
                     net_value = cols[2].text
-                    print(rpt_date,net_value)
+                    #print(rpt_date,net_value)
                     if rpt_date > last_sync_date:
                         net_values.append((rpt_date, net_value))
                 else:
-                    revenues = []
-                    for row in reversed_list:
-                        cols = row.find_elements(By.TAG_NAME, 'td')
-                        (rpt_date, revenue) = (cols[1].text, float(cols[2].text) / 10000)
-                        if rpt_date > last_sync_date:
-                            revenues.append((rpt_date, revenue))
-                        else:
-                            break
+                    cols = row.find_elements(By.TAG_NAME, 'td')
+                    (rpt_date, revenue) = (cols[1].text, float(cols[2].text) / 10000)
+                    if rpt_date > last_sync_date:
+                        revenues.append((rpt_date, revenue))
+                    else:
+                        break
 
-                    for row in revenues[::-1]:
-                        accumulated_revenue = accumulated_revenue + (1.0 + accumulated_revenue) * row[1]
-                        (rpt_date, net_value) = (row[0], 1.0 + accumulated_revenue)
-                        print(rpt_date, net_value)
-                        net_values.append((rpt_date, net_value))
+            if value_type == 'revenue':
+                for row in revenues:
+                    accumulated_revenue = accumulated_revenue + (1.0 + accumulated_revenue) * row[1]
+                    (rpt_date, net_value) = (row[0], 1.0 + accumulated_revenue)
+                    #print(rpt_date, net_value)
+                    net_values.append((rpt_date, net_value))
 
             pagediv = self.driver.find_element(By.XPATH, "//div[@class='ant-spin-container']")
             prev_page = pagediv.find_element(By.XPATH, "//li[@title='上一页']")
