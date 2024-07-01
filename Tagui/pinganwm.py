@@ -105,16 +105,12 @@ class Pinganwmvalue(WmValue):
                 break
 
         accumulated_revenue = last_net_value - 1.00
+
+
         while True:
             revenues = []
             for row in outputList[::-1]:
                 cols = row.find_elements(By.TAG_NAME, 'td')
-                release_date = cols[1].text
-                if release_date < last_sync_date:
-                    break
-
-                time.sleep(1)
-
                 if value_type == 'net_value':
                     rpt_date = cols[1].text
                     net_value = cols[2].text
@@ -122,12 +118,9 @@ class Pinganwmvalue(WmValue):
                     if rpt_date > last_sync_date:
                         net_values.append((rpt_date, net_value))
                 else:
-                    cols = row.find_elements(By.TAG_NAME, 'td')
                     (rpt_date, revenue) = (cols[1].text, float(cols[2].text) / 10000)
                     if rpt_date > last_sync_date:
                         revenues.append((rpt_date, revenue))
-                    else:
-                        break
 
             if value_type == 'revenue':
                 for row in revenues:
