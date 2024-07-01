@@ -1,7 +1,7 @@
 import sys
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 import yaml
 import matplotlib.pyplot as plt
 import matplotlib.dates as dates
