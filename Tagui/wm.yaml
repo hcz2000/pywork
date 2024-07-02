@@ -73,6 +73,10 @@ cgbwm:
 cmbwm:
   catalog: '招银理财'
   products:
+    - code: 17367F
+      desc: 招银-季添利90天持有1号
+      share: 200000
+      url: https://www.cmbchinawm.com/proDetail
     - code: 17561D
       desc: 招银-丰和60天起2号
       share: 93308
