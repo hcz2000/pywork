@@ -263,7 +263,7 @@ class Cibwmvalue(WmValue):
 
         outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']//tr")[1:]
         newest_report = outputList[0]
-        print(newest_report.get_attribute('innerHTML'))
+        #print(newest_report.get_attribute('innerHTML'))
         newest_release_date = newest_report.find_elements(By.TAG_NAME, 'td')[0].text
         if newest_release_date <= last_sync_date:
             print('No new release:', last_sync_date)
@@ -369,8 +369,8 @@ class Amdbocwmvalue(WmValue):
                 break
 
         while True:
-            reversed_list = outputList[::-1]
-            for row in reversed_list:
+            page_records=[]
+            for row in outputList:
                 cols=row.find_elements(By.TAG_NAME, 'td')
                 release_date = cols[-1].text
                 if release_date < last_sync_date:
@@ -400,12 +400,12 @@ class Amdbocwmvalue(WmValue):
                     rpt_date=rows[1][0].replace('/','-')
                     net_value=rows[1][2]
                     if rpt_date > last_sync_date:
-                        net_values.append((rpt_date, net_value))
+                        page_records.append((rpt_date, net_value))
 
                 self.driver.close()
                 self.driver.switch_to.window(self.driver.window_handles[0])
 
-
+            net_values.extend(page_records[::-1])
             pagediv = self.driver.find_element(By.XPATH,"//div[@id='page']")
             current_page = pagediv.find_element(By.XPATH,"//ul/li[@class='active']/a").text
             if current_page=='1':
