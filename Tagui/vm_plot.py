@@ -1,7 +1,7 @@
 import sys
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 import yaml
 import matplotlib.pyplot as plt
 import matplotlib.dates as dates
@@ -209,7 +209,7 @@ class CheckBoxDemo(QWidget):
 
 if __name__ == '__main__':
   app = QApplication(sys.argv)
-  with open('wm.yaml', 'r') as file:
+  with open('wm.yaml', 'r', encoding='utf-8') as file:
     config = yaml.safe_load(file)
 
   products={}
