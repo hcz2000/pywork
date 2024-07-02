@@ -16,7 +16,7 @@ class CheckBoxDemo(QWidget):
     resolution=QApplication.primaryScreen().geometry()
     #print(resolution.width(),resolution.height())
     #设置主界面布局垂直布局
-    leftLayout = QVBoxLayout()
+    leftUpperLayout = QVBoxLayout()
     self.checkboxes = {}
     self.con_checkbox= {}
     self.group_selected={}
@@ -45,8 +45,10 @@ class CheckBoxDemo(QWidget):
       self.checkboxes[k]=checkboxes
 
       groupBox.setLayout(grid_layout)
-      leftLayout.addWidget(groupBox)
+      leftUpperLayout.addWidget(groupBox)
 
+
+    leftLowerLayout = QVBoxLayout()
     button = QPushButton('确定')
     button.setFixedSize(100,25)
     button.clicked.connect(self.on_click)
@@ -55,10 +57,23 @@ class CheckBoxDemo(QWidget):
     grid_layout = QHBoxLayout()
     grid_layout.addWidget(button)
     groupBox.setLayout(grid_layout)
-    leftLayout.addWidget(groupBox)
+    leftLowerLayout.addWidget(groupBox)
+
+
+    leftUpperFrame=QFrame()
+    leftLowerFrame=QFrame()
+    leftUpperFrame.setLayout(leftUpperLayout)
+    leftLowerFrame.setLayout(leftLowerLayout)
+    leftLowerFrame.setMaximumHeight(resolution.height()//10)
+    left_splitter = QSplitter(Qt.Orientation.Vertical)
+    left_splitter.addWidget(leftUpperFrame)
+    left_splitter.addWidget(leftLowerFrame)
+
+    left_box = QHBoxLayout()
+    left_box.addWidget(left_splitter)
 
     leftFrame = QFrame()
-    leftFrame.setLayout(leftLayout)
+    leftFrame.setLayout(left_box)
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
     leftFrame.setMaximumWidth(resolution.width()//5)
 
