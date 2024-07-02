@@ -209,7 +209,7 @@ class CheckBoxDemo(QWidget):
 
 if __name__ == '__main__':
   app = QApplication(sys.argv)
-  with open('wm.yaml', 'r') as file:
+  with open('wm.yaml', 'r', encoding='utf-8') as file:
     config = yaml.safe_load(file)
 
   products={}
