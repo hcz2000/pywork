@@ -116,7 +116,7 @@ class Amdbocwmvalue(WmValue):
                 release_date = cols[-1].text
                 if release_date < last_sync_date:
                     break
-                cols[1].click()
+                self.driver.execute_script("arguments[0].click();", cols[1].find_element(By.TAG_NAME, 'a'))
                 self.driver.switch_to.window(self.driver.window_handles[1])
                 time.sleep(1)
                 filelink=self.driver.find_element(By.XPATH,"//ul[@class='zzpl_down']/li[@class='a_left']/a")
