@@ -50,10 +50,10 @@ class QtDemo(QWidget):
 
     leftLowerLayout = QVBoxLayout()
     button1 = QPushButton('绘图')
-    button1.setFixedSize(100,25)
+    button1.setFixedSize(60,25)
     button1.clicked.connect(self.on_click1)
     button2 = QPushButton('更新')
-    button2.setFixedSize(100,25)
+    button2.setFixedSize(60,25)
     button2.clicked.connect(self.on_click2)
 
     command_layout = QHBoxLayout()
