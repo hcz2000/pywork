@@ -301,7 +301,7 @@ class Cibwmvalue(WmValue):
 
             pagediv = self.driver.find_element(By.XPATH, "//div[@class='fy-cont']")
             current_page = pagediv.get_attribute('current-page')
-            print(current_page)
+            #print(current_page)
             if current_page=='1':
                 break
             prev_link = self.driver.find_element(By.LINK_TEXT,'上一页')
