@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 class SQLLiteTool:
     def __init__(self,dbfile):
@@ -28,9 +29,9 @@ class SQLLiteTool:
 
 
 if __name__ == '__main__':
-    tool = SQLLiteTool("data\\wm.db")
+    tool = SQLLiteTool("data%swm.db"%os.path.sep)
     tool.updateDB('drop table netvalue')
-    tool.updateDB("create table netvalue(code varchar(16), date varchar(10), netvalue float, PRIMARY KEY(code,date))")
+    tool.updateDB("create table netvalue(code varchar(16), date varchar(10), value float, PRIMARY KEY(code,date))")
     tool.updateDB("insert into netvalue values('abcd1','2024-07-01', 1.01)")
     tool.updateDB("insert into netvalue values('abcd1','2024-07-02', 1.02)")
     tool.updateDB("insert into netvalue values('abcd1','2024-07-03', 1.03)")
