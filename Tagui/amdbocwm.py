@@ -66,19 +66,24 @@ class Amdbocwmvalue(WmValue):
         url = product['url']
         net_values=[]
         last_sync_date = self.getLastRecord(code)[0]
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(10)
+        print(datetime.now(),'访问',url)
         self.driver.get(url)
+        print(datetime.now(),'get(url)返回')
 
         report_type=self.driver.find_element(By.XPATH, "//dl[@id='bglxspan_box']/dd")
+        print(datetime.now(),'0001')
         report_type.find_element(By.LINK_TEXT,'净值报告').click()
         time.sleep(5)
-
+        print(datetime.now(),'0002')
         search_input = self.driver.find_element(By.XPATH, "//div[@class='zzpl_search']/div[1]/ul/li[last()]/input")
         search_input.clear()
         search_input.send_keys(code)
+        print(datetime.now(),'0003')
         search_button = self.driver.find_element(By.XPATH,"//div[@class='zzpl_search']/div[last()]/a[1]")
         search_button.click()
         time.sleep(2)
+        print(datetime.now(),'0004')
 
         tbody=self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
         outputList = tbody.find_elements(By.TAG_NAME, 'tr')
