@@ -525,16 +525,16 @@ class Pinganwmvalue(WmValue):
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
-        #cgb = CgbwmValue(driver)
-        #cgb.refresh()
-        #boc = BocwmValue(driver)
-        #boc.refresh()
-        #cmb = CmbwmValue(driver)
-        #cmb.refresh()
+        cgb = CgbwmValue(driver)
+        cgb.refresh()
+        boc = BocwmValue(driver)
+        boc.refresh()
+        cmb = CmbwmValue(driver)
+        cmb.refresh()
         cib = Cibwmvalue(driver)
         cib.refresh()
-        #amdboc = Amdbocwmvalue(driver)
-        #amdboc.refresh()
+        amdboc = Amdbocwmvalue(driver)
+        amdboc.refresh()
         pingan = Pinganwmvalue(driver)
         pingan.refresh()
 
