@@ -6,15 +6,15 @@ bocwm:
        share: 200000
        url: https://www.bocwm.cn/html/1/netWorth/5173.html
        value_type: net_value
-    -  code: FCYQZQ1YL
-       desc: 中银-养老固收一年起
-       share: 0
-       url: https://www.bocwm.cn/html/1/netWorth/5803.html
+    -  code: CYQHH6MB
+       desc: 中银-半年持有
+       share: 500000
+       url: https://www.bocwm.cn/html/1/netWorth/4689.html
        value_type: net_value
     -  code: HXTT01
        desc: 中银-慧享天天
-       share: 152823
-       url: https://www.bocwm.cn/html/1/netWorth/5048.html
+       share: 0
+       url: https://www.bocwm.cn/html/1/netWorth/4114.html
        value_type: revenue
     -  code: WFZZKGR01A
        desc: 中银-稳富周周开
@@ -22,12 +22,12 @@ bocwm:
        url: https://www.bocwm.cn/html/1/netWorth/3567.html
        value_type: net_value
     -  code: CYQZQ2MA
-       desc: 中银-2月起
+       desc: 中银-2月持有
        share: 587791
        url: https://www.bocwm.cn/html/1/netWorth/3743.html
        value_type: net_value
     -  code: CYQZQ3MA
-       desc: 中银-3月起
+       desc: 中银-3月持有
        share: 576348
        url: https://www.bocwm.cn/html/1/netWorth/4149.html
        value_type: net_value
