@@ -206,8 +206,8 @@ class QtDemo(QWidget):
 
   def draw_subplot(self, ax, start_date):
     if (datetime.now() - timedelta(days=60)).date() <= start_date:
-      ax.xaxis.set_major_locator(dates.DayLocator(interval=1))
-      ax.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m-%d'))
+      ax.xaxis.set_major_locator(dates.DayLocator(interval=5))
+      ax.xaxis.set_major_formatter(dates.DateFormatter('%m-%d'))
     else:
       ax.xaxis.set_major_locator(dates.MonthLocator())
       ax.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m'))
