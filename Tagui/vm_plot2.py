@@ -82,10 +82,26 @@ class QtDemo(QWidget):
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
     leftFrame.setMaximumWidth(resolution.width()//5)
 
-    self.fig=plt.Figure()
-    self.canvas=FC(self.fig)
+    rightUpperLayout=QVBoxLayout()
+    rightLowerLayout=QVBoxLayout()
+    rightUpperFrame = QFrame()
+    rightLowerFrame = QFrame()
+    rightUpperFrame.setLayout(rightUpperLayout)
+    rightLowerFrame.setLayout(rightLowerLayout)
+    rightLowerFrame.setMaximumHeight(resolution.height() // 2)
+    right_splitter = QSplitter(Qt.Orientation.Vertical)
+    right_splitter.addWidget(rightUpperFrame)
+    right_splitter.addWidget(rightLowerFrame)
+
+    self.upperFig=plt.Figure()
+    self.upperCanvas=FC(self.upperFig)
+    self.lowerFig=plt.Figure()
+    self.lowerCanvas=FC(self.lowerFig)
+    rightUpperLayout.addWidget(self.upperCanvas)
+    rightLowerLayout.addWidget(self.lowerCanvas)
     rightLayout = QVBoxLayout()
-    rightLayout.addWidget(self.canvas)
+    #rightLayout.addWidget(self.canvas)
+    rightLayout.addWidget(right_splitter)
 
     rightFrame = QFrame()
     rightFrame.setLayout(rightLayout)
@@ -178,14 +194,15 @@ class QtDemo(QWidget):
       self.net_value_data[code] = (np.array(rewritten_xdata), np.array(rewritten_ydata))
 
   def draw(self):
-    fig = self.fig
-    fig.clear()
-    ax1 = fig.add_subplot(211)
+    self.upperFig.clear()
+    ax1 = self.upperFig.add_subplot(111)
     self.draw_subplot(ax1, (datetime.now() - timedelta(days=365 + 1)).date())
-    ax2 = fig.add_subplot(212)
+    self.upperCanvas.draw()
+
+    self.lowerFig.clear()
+    ax2 = self.lowerFig.add_subplot(111)
     self.draw_subplot(ax2, (datetime.now() - timedelta(days=30 + 1)).date())
-    #plt.show()
-    self.canvas.draw()
+    self.lowerCanvas.draw()
 
   def draw_subplot(self, ax, start_date):
     if (datetime.now() - timedelta(days=60)).date() <= start_date:
