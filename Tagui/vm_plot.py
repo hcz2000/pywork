@@ -8,14 +8,15 @@ import matplotlib.dates as dates
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FC
 import numpy as np
 from datetime import datetime, timedelta
+import subprocess
 
-class CheckBoxDemo(QWidget):
+class QtDemo(QWidget):
 
   def __init__(self, products,parent=None):
-    super(CheckBoxDemo, self).__init__(parent)
+    super(QtDemo, self).__init__(parent)
     resolution=QApplication.primaryScreen().geometry()
     #print(resolution.width(),resolution.height())
-    #设置主界面布局垂直布局
+    #设置导航窗垂直布局
     leftUpperLayout = QVBoxLayout()
     self.checkboxes = {}
     self.con_checkbox= {}
@@ -43,22 +44,26 @@ class CheckBoxDemo(QWidget):
         grid_layout.addWidget(checkbox,cnt//2,cnt%2)
 
       self.checkboxes[k]=checkboxes
-
       groupBox.setLayout(grid_layout)
       leftUpperLayout.addWidget(groupBox)
 
 
     leftLowerLayout = QVBoxLayout()
-    button = QPushButton('确定')
-    button.setFixedSize(100,25)
-    button.clicked.connect(self.on_click)
+    button1 = QPushButton('绘图')
+    button1.setFixedSize(60,25)
+    button1.clicked.connect(self.on_click1)
+    button2 = QPushButton('更新')
+    button2.setFixedSize(60,25)
+    button2.clicked.connect(self.on_click2)
+
+    command_layout = QHBoxLayout()
+    command_layout.addWidget(button1)
+    command_layout.addWidget(button2)
+
     groupBox = QGroupBox('操作')
     groupBox.setFlat(False)
-    grid_layout = QHBoxLayout()
-    grid_layout.addWidget(button)
-    groupBox.setLayout(grid_layout)
+    groupBox.setLayout(command_layout)
     leftLowerLayout.addWidget(groupBox)
-
 
     leftUpperFrame=QFrame()
     leftLowerFrame=QFrame()
@@ -69,11 +74,11 @@ class CheckBoxDemo(QWidget):
     left_splitter.addWidget(leftUpperFrame)
     left_splitter.addWidget(leftLowerFrame)
 
-    left_box = QHBoxLayout()
-    left_box.addWidget(left_splitter)
+    leftLayout = QVBoxLayout()
+    leftLayout.addWidget(left_splitter)
 
     leftFrame = QFrame()
-    leftFrame.setLayout(left_box)
+    leftFrame.setLayout(leftLayout)
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
     leftFrame.setMaximumWidth(resolution.width()//5)
 
@@ -85,22 +90,17 @@ class CheckBoxDemo(QWidget):
     rightFrame = QFrame()
     rightFrame.setLayout(rightLayout)
     rightFrame.setFrameShape(QFrame.Shape.StyledPanel)
-    splitter = QSplitter(Qt.Orientation.Horizontal)
-    splitter.addWidget(leftFrame)
-    splitter.addWidget(rightFrame)
+    mainSplitter = QSplitter(Qt.Orientation.Horizontal)
+    mainSplitter.addWidget(leftFrame)
+    mainSplitter.addWidget(rightFrame)
 
-    hbox = QHBoxLayout()
-    hbox.addWidget(splitter)
+    mainLayout = QHBoxLayout()
+    mainLayout.addWidget(mainSplitter)
 
     #设置主界面布局
-    self.setLayout(hbox)
+    self.setLayout(mainLayout)
     self.setGeometry(0, 0, resolution.width(), resolution.height())
-    #设置主界面标题
-    self.setWindowTitle("checkbox demo")
-
-    #self.products=[]
-    #for k,p in products.items():
-    #  self.products.extend(p)
+    self.setWindowTitle("金融助手")
     self.products=products
     self.display_products=[]
     self.net_value_data = {}
@@ -128,7 +128,7 @@ class CheckBoxDemo(QWidget):
           checked.append(checkbox.text())
     return checked
 
-  def on_click(self):
+  def on_click1(self):
     self.display_products=[]
     select_products=self.get_selected()
     for k,products in self.products.items():
@@ -137,6 +137,13 @@ class CheckBoxDemo(QWidget):
           self.display_products.append(product)
     self.rewrite()
     self.draw()
+
+  def on_click2(self):
+    result=subprocess.run(["python","wm_firefox.py"],capture_output=True)
+    print(result.stdout,result.returncode)
+    QMessageBox.information(self, '处理结果', '返回码:%d'%result.returncode, QMessageBox.Ok)
+
+
 
   def rewrite(self):
     for product in self.display_products:
@@ -175,10 +182,8 @@ class CheckBoxDemo(QWidget):
     fig.clear()
     ax1 = fig.add_subplot(211)
     self.draw_subplot(ax1, (datetime.now() - timedelta(days=365 + 1)).date())
-
     ax2 = fig.add_subplot(212)
     self.draw_subplot(ax2, (datetime.now() - timedelta(days=30 + 1)).date())
-
     #plt.show()
     self.canvas.draw()
 
@@ -221,7 +226,6 @@ class CheckBoxDemo(QWidget):
     ax.legend(prop={'family': 'SimHei', 'size': 10})
 
 
-
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   with open('wm.yaml', 'r', encoding='utf-8') as file:
@@ -236,8 +240,6 @@ if __name__ == '__main__':
     catalog=config[key]['catalog']
     products[catalog].extend(config[key]['products'])
 
-  checkboxDemo = CheckBoxDemo(products)
-  checkboxDemo.show()
-
-
+  demo = QtDemo(products)
+  demo.show()
   sys.exit(app.exec())
