@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.firefox.options import Options
 import urllib
 import pdfplumber
 import os
@@ -71,11 +72,11 @@ class Amdbocwmvalue(WmValue):
         self.driver.implicitly_wait(10)
         self.driver.get(url)
         wait=WebDriverWait(driver,10)
-        print(datetime.now(),'get(url)返回')
+        wait.until(EC.visibility_of_element_located((By.ID, "bglxspan_box")))
         report_type=self.driver.find_element(By.XPATH, "//dl[@id='bglxspan_box']/dd")
         report_type.find_element(By.LINK_TEXT,'净值报告').click()
         wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='zzpl_search']/div[1]/ul/li[last()]/input")))
-        #time.sleep(5)
+        #time.sleep(3)
         search_input = self.driver.find_element(By.XPATH, "//div[@class='zzpl_search']/div[1]/ul/li[last()]/input")
         search_input.clear()
         search_input.send_keys(code)
@@ -168,7 +169,9 @@ class Amdbocwmvalue(WmValue):
 
 
 if __name__ == '__main__':
-    with webdriver.Firefox() as driver:
+    opts = Options()
+    opts.set_capability('pageLoadStrategy', 'none')
+    with webdriver.Firefox(options=opts) as driver:
         amdboc = Amdbocwmvalue(driver)
         amdboc.refresh()
 
