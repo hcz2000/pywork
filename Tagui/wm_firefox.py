@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.firefox.options import Options
 import urllib
 import pdfplumber
 import os
@@ -323,23 +326,24 @@ class Amdbocwmvalue(WmValue):
     def getNetValue(self, product):
         code = product['code']
         url = product['url']
-        net_values=[]
+        net_values = []
         last_sync_date = self.getLastRecord(code)[0]
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(10)
         self.driver.get(url)
-
-        report_type=self.driver.find_element(By.XPATH, "//dl[@id='bglxspan_box']/dd")
-        report_type.find_element(By.LINK_TEXT,'净值报告').click()
-        time.sleep(5)
+        wait = WebDriverWait(driver, 30)
+        wait.until(EC.visibility_of_element_located((By.ID, "bglxspan_box")))
+        report_type = self.driver.find_element(By.XPATH, "//dl[@id='bglxspan_box']/dd")
+        report_type.find_element(By.LINK_TEXT, '净值报告').click()
+        wait.until(EC.text_to_be_present_in_element((By.ID, "bglx"), '净值报告'))
 
         search_input = self.driver.find_element(By.XPATH, "//div[@class='zzpl_search']/div[1]/ul/li[last()]/input")
         search_input.clear()
         search_input.send_keys(code)
-        search_button = self.driver.find_element(By.XPATH,"//div[@class='zzpl_search']/div[last()]/a[1]")
+        search_button = self.driver.find_element(By.XPATH, "//div[@class='zzpl_search']/div[last()]/a[1]")
         search_button.click()
-        time.sleep(2)
+        wait.until(EC.text_to_be_present_in_element((By.XPATH, "//div[@id='pro_list']/table/tbody[last()]/tr[last()]/td[2]"),code))
 
-        tbody=self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
+        tbody = self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
         outputList = tbody.find_elements(By.TAG_NAME, 'tr')
         newest_report = outputList[0]
         newest_release_date = newest_report.find_elements(By.TAG_NAME, 'td')[-1].text
@@ -517,11 +521,13 @@ if __name__ == '__main__':
         boc.refresh()
         cmb = CmbwmValue(driver)
         cmb.refresh()
-        cib = Cibwmvalue(driver)
-        cib.refresh()
-        amdboc = Amdbocwmvalue(driver)
-        amdboc.refresh()
+        #cib = Cibwmvalue(driver)
+        #cib.refresh()
         pingan = Pinganwmvalue(driver)
         pingan.refresh()
-
+    opts = Options()
+    opts.set_capability('pageLoadStrategy', 'none')
+    with webdriver.Firefox(options=opts) as driver:
+        amdboc = Amdbocwmvalue(driver)
+        amdboc.refresh()
 
