@@ -75,16 +75,15 @@ class Amdbocwmvalue(WmValue):
         wait.until(EC.visibility_of_element_located((By.ID, "bglxspan_box")))
         report_type=self.driver.find_element(By.XPATH, "//dl[@id='bglxspan_box']/dd")
         report_type.find_element(By.LINK_TEXT,'净值报告').click()
-        wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='zzpl_search']/div[1]/ul/li[last()]/input")))
-        #time.sleep(3)
+        wait.until(EC.text_to_be_present_in_element((By.ID, "bglx"),'净值报告'))
+
         search_input = self.driver.find_element(By.XPATH, "//div[@class='zzpl_search']/div[1]/ul/li[last()]/input")
         search_input.clear()
         search_input.send_keys(code)
         search_button = self.driver.find_element(By.XPATH,"//div[@class='zzpl_search']/div[last()]/a[1]")
         search_button.click()
-        wait.until(
-        EC.visibility_of_element_located((By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")))
-        #time.sleep(2)
+        wait.until(EC.text_to_be_present_in_element((By.XPATH, "//div[@id='pro_list']/table/tbody[last()]/tr[last()]/td[2]"),code))
+
         tbody=self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
         outputList = tbody.find_elements(By.TAG_NAME, 'tr')
         newest_report = outputList[0]
