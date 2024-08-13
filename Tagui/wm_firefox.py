@@ -46,6 +46,7 @@ class WmValue():
             last_value= str(1.0000)
             #print(last_sync_date)
         return (last_sync_date,last_value)
+
     def write2CsvFile(self,code,net_values):
         with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
             writer = csv.writer(datafile)
