@@ -102,7 +102,8 @@ class Amdbocwmvalue(WmValue):
                 if int(current_page)<int(last_page):
                     next_link= pagediv.find_element(By.XPATH,"//ul/li[last()]/a")
                     if next_link:
-                        next_link.click()
+                        #next_link.click()
+                        self.driver.execute_script("arguments[0].click();", next_link)
                         time.sleep(2)
                         tbody = self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
                         outputList = tbody.find_elements(By.TAG_NAME, 'tr')
@@ -157,7 +158,8 @@ class Amdbocwmvalue(WmValue):
                 break
             prev_link = pagediv.find_element(By.XPATH,"//ul/li[1]/a")
             if prev_link:
-                prev_link.click()
+                #prev_link.click()
+                self.driver.execute_script("arguments[0].click();", prev_link)
                 time.sleep(2)
                 tbody = self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
                 outputList = tbody.find_elements(By.TAG_NAME, 'tr')
