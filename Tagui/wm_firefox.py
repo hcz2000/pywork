@@ -112,7 +112,8 @@ class CgbwmValue(WmValue):
             if oldest_release_date >= last_sync_date:
                 next_button=self.driver.find_element(By.XPATH,"//button[@class='btn-next']")
                 if next_button.is_enabled():
-                    next_button.click()
+                    #next_button.click()
+                    self.driver.execute_script("arguments[0].click();", next_button)
                     time.sleep(2)
                     outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
                     continue
@@ -128,7 +129,8 @@ class CgbwmValue(WmValue):
                 release_date=row.find_element(By.CLASS_NAME,'myDate').get_attribute('innerHTML')
                 if release_date>last_sync_date:
                     #last_sync_date=release_date
-                    row.click()
+                    #row.click()
+                    self.driver.execute_script("arguments[0].click();", row)
                     time.sleep(1)
                     (rpt_date,net_value)=self.parseNetValue()
                     if rpt_date>last_sync_date:
@@ -138,7 +140,8 @@ class CgbwmValue(WmValue):
 
             prev_button=self.driver.find_element(By.XPATH,"//button[@class='btn-prev']")
             if prev_button.is_enabled():
-                prev_button.click()
+                #prev_button.click()
+                self.driver.execute_script("arguments[0].click();", prev_button)
                 time.sleep(2)
                 outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
             else:
