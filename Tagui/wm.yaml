@@ -1,3 +1,6 @@
+wm:
+  storage: db
+
 bocwm:
   catalog: '中银理财'
   products:
