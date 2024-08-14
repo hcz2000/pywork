@@ -44,7 +44,8 @@ class WmValue():
             self.config=yaml.safe_load(file)
         self.driver=driver
         self.basePath = os.path.dirname(__file__)
-        self.persistentStorage='file'
+        #self.persistentStorage='file'
+        self.persistentStorage = self.config['wm']['storage']
         if not os.path.exists('data'):
             os.makedirs('data')
         dbfile='data%swm.db'%os.path.sep
@@ -580,21 +581,20 @@ class Pinganwmvalue(WmValue):
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
-        with webdriver.Firefox() as driver:
-            cgb = CgbwmValue(driver)
-            cgb.refresh()
-            boc = BocwmValue(driver)
-            boc.refresh()
-            cmb = CmbwmValue(driver)
-            cmb.refresh()
-            # cib = Cibwmvalue(driver)
-            # cib.refresh()
-            pingan = Pinganwmvalue(driver)
-            pingan.refresh()
-        opts = Options()
-        opts.set_capability('pageLoadStrategy', 'none')
-        with webdriver.Firefox(options=opts) as driver:
-            amdboc = Amdbocwmvalue(driver)
-            amdboc.refresh()
+        cgb = CgbwmValue(driver)
+        cgb.refresh()
+        boc = BocwmValue(driver)
+        boc.refresh()
+        cmb = CmbwmValue(driver)
+        cmb.refresh()
+        # cib = Cibwmvalue(driver)
+        # cib.refresh()
+        pingan = Pinganwmvalue(driver)
+        pingan.refresh()
+    opts = Options()
+    opts.set_capability('pageLoadStrategy', 'none')
+    with webdriver.Firefox(options=opts) as driver:
+        amdboc = Amdbocwmvalue(driver)
+        amdboc.refresh()
 
 
