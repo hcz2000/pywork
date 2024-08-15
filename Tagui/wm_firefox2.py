@@ -55,6 +55,8 @@ class WmValue():
         else:
             self.dbtool = SQLLiteTool(dbfile)
 
+    def __del__(self):
+        del self.dbtool
 
     def getLastRecordFromDB(self, code):
         rows=self.dbtool.queryDB("select rpt_date,value from netvalue where code='%s' order by rpt_date desc" % code)
@@ -583,18 +585,23 @@ if __name__ == '__main__':
     with webdriver.Firefox() as driver:
         cgb = CgbwmValue(driver)
         cgb.refresh()
+        del cgb
         boc = BocwmValue(driver)
         boc.refresh()
+        del boc
         cmb = CmbwmValue(driver)
         cmb.refresh()
+        del cmb
         # cib = Cibwmvalue(driver)
         # cib.refresh()
         pingan = Pinganwmvalue(driver)
         pingan.refresh()
+        del pingan
     opts = Options()
     opts.set_capability('pageLoadStrategy', 'none')
     with webdriver.Firefox(options=opts) as driver:
         amdboc = Amdbocwmvalue(driver)
         amdboc.refresh()
+        del amdboc
 
 
