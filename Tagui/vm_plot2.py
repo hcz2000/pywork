@@ -51,6 +51,7 @@ class QtDemo(QWidget):
     resolution=QApplication.primaryScreen().geometry()
     self.resolution=resolution
     #print(resolution.width(),resolution.height())
+
     #设置导航窗垂直布局
     leftLayout = QVBoxLayout()
     self.checkboxes = {}
