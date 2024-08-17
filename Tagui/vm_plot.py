@@ -9,11 +9,45 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FC
 import numpy as np
 from datetime import datetime, timedelta
 import subprocess
+import sqlite3
+import os
+
+class SQLLiteTool:
+    def __init__(self,dbfile):
+        self.conn=sqlite3.connect(dbfile)
+
+    def __del__(self):
+        self.conn.close()
+
+    def queryDB(self,sql):
+        try:
+            cur=self.conn.cursor()
+            cur.execute(sql)
+            result=cur.fetchall()
+            cur.close()
+            return result
+        except Exception as e:
+            print(e)
+
+    def updateDB(self,sql):
+        try:
+            cur=self.conn.cursor()
+            cur.execute(sql)
+            self.conn.commit()
+            return
+        except Exception as e:
+            print(e)
 
 class QtDemo(QWidget):
 
   def __init__(self, products,parent=None):
     super(QtDemo, self).__init__(parent)
+    with open('wm.yaml', 'r', encoding='utf-8') as file:
+      config = yaml.safe_load(file)
+      self.persistentStorage = config['wm']['storage']
+      if self.persistentStorage=='db':
+        dbfile = 'data%swm.db' % os.path.sep
+        self.dbtool = SQLLiteTool(dbfile)
     resolution=QApplication.primaryScreen().geometry()
     #print(resolution.width(),resolution.height())
     #设置导航窗垂直布局
@@ -46,7 +80,6 @@ class QtDemo(QWidget):
       self.checkboxes[k]=checkboxes
       groupBox.setLayout(grid_layout)
       leftUpperLayout.addWidget(groupBox)
-
 
     leftLowerLayout = QVBoxLayout()
     button1 = QPushButton('绘图')
@@ -82,10 +115,26 @@ class QtDemo(QWidget):
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
     leftFrame.setMaximumWidth(resolution.width()//5)
 
-    self.fig=plt.Figure()
-    self.canvas=FC(self.fig)
+    rightUpperLayout=QVBoxLayout()
+    rightLowerLayout=QVBoxLayout()
+    rightUpperFrame = QFrame()
+    rightLowerFrame = QFrame()
+    rightUpperFrame.setLayout(rightUpperLayout)
+    rightLowerFrame.setLayout(rightLowerLayout)
+    rightLowerFrame.setMaximumHeight(resolution.height() // 2)
+    right_splitter = QSplitter(Qt.Orientation.Vertical)
+    right_splitter.addWidget(rightUpperFrame)
+    right_splitter.addWidget(rightLowerFrame)
+
+    self.upperFig=plt.Figure()
+    self.upperCanvas=FC(self.upperFig)
+    self.lowerFig=plt.Figure()
+    self.lowerCanvas=FC(self.lowerFig)
+    rightUpperLayout.addWidget(self.upperCanvas)
+    rightLowerLayout.addWidget(self.lowerCanvas)
     rightLayout = QVBoxLayout()
-    rightLayout.addWidget(self.canvas)
+    #rightLayout.addWidget(self.canvas)
+    rightLayout.addWidget(right_splitter)
 
     rightFrame = QFrame()
     rightFrame.setLayout(rightLayout)
@@ -104,6 +153,10 @@ class QtDemo(QWidget):
     self.products=products
     self.display_products=[]
     self.net_value_data = {}
+
+  def __del__(self):
+    if self.persistentStorage == 'db':
+      del self.dbtool
 
   def all_selected(self):
     for k,con_checkbox in self.con_checkbox.items():
@@ -144,17 +197,22 @@ class QtDemo(QWidget):
     QMessageBox.information(self, '处理结果', '返回码:%d'%result.returncode, QMessageBox.Ok)
 
 
-
   def rewrite(self):
     for product in self.display_products:
       code = product['code']
       desc = product['desc']
       #print(code, desc)
-      fname = './data/%s.csv' % code
-      dt = [('date', 'U16'), ('netvalue', 'f4')]
-      net_values = np.loadtxt(fname, dt, delimiter=',')
-      xdata = [datetime.strptime(date, '%Y-%m-%d').date() for date in net_values['date']]
-      ydata = net_values['netvalue']
+      if self.persistentStorage == 'file':
+        fname = './data/%s.csv' % code
+        dt = [('date', 'U16'), ('netvalue', 'f4')]
+        net_values = np.loadtxt(fname, dt, delimiter=',')
+        xdata = [datetime.strptime(date, '%Y-%m-%d').date() for date in net_values['date']]
+        ydata = net_values['netvalue']
+      else:
+        rows = self.dbtool.queryDB("select rpt_date,value from netvalue where code='%s' order by rpt_date asc" % code)
+        xdata = [datetime.strptime(onerow[0], '%Y-%m-%d').date() for onerow in rows]
+        ydata = [onerow[1] for onerow in rows]
+
       rewritten_xdata = []
       rewritten_ydata = []
       if len(xdata) == 0:
@@ -178,19 +236,20 @@ class QtDemo(QWidget):
       self.net_value_data[code] = (np.array(rewritten_xdata), np.array(rewritten_ydata))
 
   def draw(self):
-    fig = self.fig
-    fig.clear()
-    ax1 = fig.add_subplot(211)
+    self.upperFig.clear()
+    ax1 = self.upperFig.add_subplot(111)
     self.draw_subplot(ax1, (datetime.now() - timedelta(days=365 + 1)).date())
-    ax2 = fig.add_subplot(212)
+    self.upperCanvas.draw()
+
+    self.lowerFig.clear()
+    ax2 = self.lowerFig.add_subplot(111)
     self.draw_subplot(ax2, (datetime.now() - timedelta(days=30 + 1)).date())
-    #plt.show()
-    self.canvas.draw()
+    self.lowerCanvas.draw()
 
   def draw_subplot(self, ax, start_date):
     if (datetime.now() - timedelta(days=60)).date() <= start_date:
-      ax.xaxis.set_major_locator(dates.DayLocator(interval=1))
-      ax.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m-%d'))
+      ax.xaxis.set_major_locator(dates.DayLocator(interval=5))
+      ax.xaxis.set_major_formatter(dates.DateFormatter('%m-%d'))
     else:
       ax.xaxis.set_major_locator(dates.MonthLocator())
       ax.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m'))
@@ -233,13 +292,16 @@ if __name__ == '__main__':
 
   products={}
   for key, _ in config.items():
-    catalog=config[key]['catalog']
-    products[catalog]=[]
+    if key!='wm':
+      catalog=config[key]['catalog']
+      products[catalog]=[]
 
   for key, _ in config.items():
-    catalog=config[key]['catalog']
-    products[catalog].extend(config[key]['products'])
+    if key != 'wm':
+      catalog=config[key]['catalog']
+      products[catalog].extend(config[key]['products'])
 
   demo = QtDemo(products)
   demo.show()
+  del demo
   sys.exit(app.exec())

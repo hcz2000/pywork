@@ -9,20 +9,69 @@ import os
 import yaml
 from datetime import datetime,timedelta
 import time
+import sqlite3
 import csv
 
-class WmValue():
+class SQLLiteTool:
+    def __init__(self,dbfile):
+        self.conn=sqlite3.connect(dbfile)
 
+    def __del__(self):
+        self.conn.close()
+
+    def queryDB(self,sql):
+        try:
+            cur=self.conn.cursor()
+            cur.execute(sql)
+            result=cur.fetchall()
+            cur.close()
+            return result
+        except Exception as e:
+            print(e)
+
+    def updateDB(self,sql):
+        try:
+            cur=self.conn.cursor()
+            cur.execute(sql)
+            self.conn.commit()
+            return
+        except Exception as e:
+            print(e)
+
+class WmValue():
     def __init__(self,driver):
         with open('wm.yaml', 'r', encoding='utf-8') as file:
             self.config=yaml.safe_load(file)
         self.driver=driver
         self.basePath = os.path.dirname(__file__)
+        #self.persistentStorage='file'
+        self.persistentStorage = self.config['wm']['storage']
         if not os.path.exists('data'):
             os.makedirs('data')
+        dbfile='data%swm.db'%os.path.sep
+        if not os.path.exists(dbfile):
+            self.dbtool = SQLLiteTool(dbfile)
+            self.dbtool.updateDB("create table netvalue(code varchar(16), rpt_date varchar(10), value float , PRIMARY KEY(code,rpt_date))")
+        else:
+            self.dbtool = SQLLiteTool(dbfile)
 
+    def __del__(self):
+        del self.dbtool
 
-    def getLastRecord(self, code):
+    def getLastRecordFromDB(self, code):
+        rows=self.dbtool.queryDB("select rpt_date,value from netvalue where code='%s' order by rpt_date desc" % code)
+        if rows and rows[0]:
+            last_sync_date = rows[0][0]
+            last_value=rows[0][1]
+            print(code,'LAST_SYNC_DATE:',last_sync_date)
+        else:
+            last_sync_date=datetime.now() - timedelta(days=365*2)
+            last_sync_date=last_sync_date.replace(month=12,day=31).strftime('%Y-%m-%d')
+            last_value= str(1.0000)
+            #print(last_sync_date)
+        return (last_sync_date,last_value)
+
+    def getLastRecordFromCsvFile(self, code):
         filename='./data/%s.csv' % code
         if os.path.exists(filename):
             with open(filename, 'r', encoding='utf-8') as datafile:
@@ -47,11 +96,27 @@ class WmValue():
             #print(last_sync_date)
         return (last_sync_date,last_value)
 
+    def getLastRecord(self, code):
+        if self.persistentStorage=='file':
+            return self.getLastRecordFromCsvFile(code)
+        else:
+            return self.getLastRecordFromDB(code)
+
+    def write2DB(self, code, net_values):
+        for row in net_values:
+            self.dbtool.updateDB("insert into netvalue values('%s','%s', %s)" % (code, row[0], row[1]))
+
     def write2CsvFile(self,code,net_values):
         with open('./data/%s.csv' % code, 'a', encoding='utf-8', newline='') as datafile:
             writer = csv.writer(datafile)
             for row in net_values:
                 writer.writerow(row)
+
+    def writeRecords(self,code,net_values):
+        if self.persistentStorage=='file':
+            self.write2CsvFile(code,net_values)
+        else:
+            self.write2DB(code,net_values)
 
     def refresh(self):
         for product in self.products:
@@ -111,7 +176,7 @@ class CgbwmValue(WmValue):
                 next_button=self.driver.find_element(By.XPATH,"//button[@class='btn-next']")
                 if next_button.is_enabled():
                     #next_button.click()
-                    self.driver.execute_script("arguments[0].click();", next_button)
+                    self.driver.execute_script("arguments[0].click()",next_button)
                     time.sleep(2)
                     outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
                     continue
@@ -128,7 +193,7 @@ class CgbwmValue(WmValue):
                 if release_date>last_sync_date:
                     #last_sync_date=release_date
                     #row.click()
-                    self.driver.execute_script("arguments[0].click();", row)
+                    self.driver.execute_script("arguments[0].click()", row)
                     time.sleep(1)
                     (rpt_date,net_value)=self.parseNetValue()
                     if rpt_date>last_sync_date:
@@ -139,13 +204,14 @@ class CgbwmValue(WmValue):
             prev_button=self.driver.find_element(By.XPATH,"//button[@class='btn-prev']")
             if prev_button.is_enabled():
                 #prev_button.click()
-                self.driver.execute_script("arguments[0].click();", prev_button)
+                self.driver.execute_script("arguments[0].click()", prev_button)
                 time.sleep(2)
                 outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
             else:
                 break
 
-        self.write2CsvFile(code,net_values)
+        self.writeRecords(code, net_values)
+
     def parseNetValue(self):
         cols=self.driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
         code=cols[0].text
@@ -201,7 +267,7 @@ class BocwmValue(WmValue):
 
             #print(cols[0].text,cols[1].text,cols[2].text,cols[4].text,cols[6].text)
 
-        self.write2CsvFile(code,net_values)
+        self.writeRecords(code, net_values)
 
 class CmbwmValue(WmValue):
     def __init__(self,driver):
@@ -242,7 +308,7 @@ class CmbwmValue(WmValue):
             else:
                 break
 
-        self.write2CsvFile(code,net_values[::-1])
+        self.writeRecords(code, net_values[::-1])
 
 class Cibwmvalue(WmValue):
     def __init__(self,driver):
@@ -316,7 +382,7 @@ class Cibwmvalue(WmValue):
             else:
                 break
 
-        self.write2CsvFile(code, net_values)
+        self.writeRecords(code, net_values)
 
 
 class Amdbocwmvalue(WmValue):
@@ -342,7 +408,9 @@ class Amdbocwmvalue(WmValue):
         search_input.send_keys(code)
         search_button = self.driver.find_element(By.XPATH, "//div[@class='zzpl_search']/div[last()]/a[1]")
         search_button.click()
-        wait.until(EC.text_to_be_present_in_element((By.XPATH, "//div[@id='pro_list']/table/tbody[last()]/tr[last()]/td[2]"),code))
+        wait.until(
+            EC.text_to_be_present_in_element((By.XPATH, "//div[@id='pro_list']/table/tbody[last()]/tr[last()]/td[2]"),
+                                             code))
 
         tbody = self.driver.find_element(By.XPATH, "//div[@id='pro_list']/table/tbody[last()]")
         outputList = tbody.find_elements(By.TAG_NAME, 'tr')
@@ -425,7 +493,7 @@ class Amdbocwmvalue(WmValue):
             else:
                 break
 
-        self.write2CsvFile(code, net_values)
+        self.writeRecords(code, net_values)
 
 class Pinganwmvalue(WmValue):
     def __init__(self, driver):
@@ -511,24 +579,29 @@ class Pinganwmvalue(WmValue):
                     outputList = tbody.find_elements(By.TAG_NAME, 'tr')
                 else:
                     break
-
-        self.write2CsvFile(code, net_values)
+        self.writeRecords(code, net_values)
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
         cgb = CgbwmValue(driver)
         cgb.refresh()
+        del cgb
         boc = BocwmValue(driver)
         boc.refresh()
+        del boc
         cmb = CmbwmValue(driver)
         cmb.refresh()
-        #cib = Cibwmvalue(driver)
-        #cib.refresh()
+        del cmb
+        # cib = Cibwmvalue(driver)
+        # cib.refresh()
         pingan = Pinganwmvalue(driver)
         pingan.refresh()
+        del pingan
     opts = Options()
     opts.set_capability('pageLoadStrategy', 'none')
     with webdriver.Firefox(options=opts) as driver:
         amdboc = Amdbocwmvalue(driver)
         amdboc.refresh()
+        del amdboc
+
 
