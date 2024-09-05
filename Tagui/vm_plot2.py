@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 import subprocess
 import sqlite3
 import os
+import math
 
 class SQLLiteTool:
     def __init__(self,dbfile):
@@ -109,7 +110,7 @@ class QtDemo(QWidget):
     rightUpperLayout.addWidget(groupBox)
 
     rightUpperFrame = QFrame()
-    rightUpperFrame.setMaximumHeight(resolution.height() * 0.08)
+    rightUpperFrame.setMaximumHeight(math.floor(resolution.height() * 0.08))
     rightUpperFrame.setLayout(rightUpperLayout)
 
     rightMiddleLayout=QVBoxLayout()
@@ -117,9 +118,9 @@ class QtDemo(QWidget):
     rightMiddleFrame = QFrame()
     rightLowerFrame = QFrame()
     rightMiddleFrame.setLayout(rightMiddleLayout)
-    rightMiddleFrame.setMaximumHeight(resolution.height() * 0.45)
+    rightMiddleFrame.setMaximumHeight(math.floor(resolution.height() * 0.45))
     rightLowerFrame.setLayout(rightLowerLayout)
-    rightLowerFrame.setMaximumHeight(resolution.height() * 0.45)
+    rightLowerFrame.setMaximumHeight(math.floor(resolution.height() * 0.45))
     right_splitter = QSplitter(Qt.Orientation.Vertical)
     right_splitter.addWidget(rightUpperFrame)
     right_splitter.addWidget(rightMiddleFrame)
