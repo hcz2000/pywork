@@ -271,6 +271,8 @@ class QtDemo(QWidget):
       xdata = self.net_value_data[code][0]
       ydata = self.net_value_data[code][1]
       disp_xdata = xdata[xdata >= start_date]
+      if len(disp_xdata)==0:
+        continue
       disp_ydata = ydata[xdata >= start_date]
       disp_ydata = disp_ydata / disp_ydata[0]
       if desc.startswith('中银'):
