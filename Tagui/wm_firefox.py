@@ -397,7 +397,7 @@ class Amdbocwmvalue(WmValue):
         last_sync_date = self.getLastRecord(code)[0]
         self.driver.implicitly_wait(10)
         self.driver.get(url)
-        wait = WebDriverWait(driver, 30)
+        wait = WebDriverWait(driver, 60)
         wait.until(EC.visibility_of_element_located((By.ID, "bglxspan_box")))
         report_type = self.driver.find_element(By.XPATH, "//dl[@id='bglxspan_box']/dd")
         report_type.find_element(By.LINK_TEXT, '净值报告').click()
