@@ -1,0 +1,18 @@
+stocks:
+  - code: 000089
+    desc: 深圳机场
+    share: 32000
+  - code: 001872
+    desc: 招商港口
+    share: 1000
+  - code: 601988
+    desc: 中国银行
+    share: 8000
+  - code: 601398
+    desc: 工商银行
+    share: 3000
+  - code: 600050
+    desc: 中国联通
+    share: 10000
+
+
