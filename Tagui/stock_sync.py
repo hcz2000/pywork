@@ -1,4 +1,3 @@
-import urllib.request
 from urllib.error import HTTPError
 from datetime import datetime,timedelta
 import os

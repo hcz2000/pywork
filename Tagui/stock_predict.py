@@ -48,9 +48,11 @@ def main():
     mse=mean_squared_error(y_test,predictions)
     print(f"均方误差：{mse}")
 
-    hist_df['收盘'].plot(title='收盘价走势',xlabel='Date',ylabel='Price')
-    font = {'family': 'SimHei', 'weight': 'normal', 'size': 8}
-    plt.legend(prop=font)
+    ax=hist_df['收盘'].plot(kind='line', xlabel='Date', ylabel='Price', fontsize=10)
+    font1 = {'family': 'SimHei', 'weight': 'bold', 'size': 12}
+    ax.set_title('收盘价走势',font1)
+    font2 = {'family': 'SimHei', 'weight': 'normal', 'size': 8}
+    plt.legend(prop=font2)
     plt.show()
 
 
