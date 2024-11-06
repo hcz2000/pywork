@@ -260,9 +260,9 @@ class BocwmValue(WmValue):
 
             last_net_value=float(last_record[1])
             accumulated_revenue=last_net_value-1.00
-            for row in revenues[::-1]:
-                accumulated_revenue=accumulated_revenue+(1.0+accumulated_revenue)*row[1]
-                (rpt_date,net_value)=(row[0],1.0+accumulated_revenue)
+            for item in revenues[::-1]:
+                accumulated_revenue=accumulated_revenue+(1.0+accumulated_revenue)*item[1]
+                (rpt_date,net_value)=(item[0],1.0+accumulated_revenue)
                 net_values.append((rpt_date, net_value))
 
             #print(cols[0].text,cols[1].text,cols[2].text,cols[4].text,cols[6].text)
