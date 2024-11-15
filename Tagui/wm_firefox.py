@@ -594,6 +594,7 @@ if __name__ == '__main__':
         del cmb
         # cib = Cibwmvalue(driver)
         # cib.refresh()
+        # del cib
         pingan = Pinganwmvalue(driver)
         pingan.refresh()
         del pingan
