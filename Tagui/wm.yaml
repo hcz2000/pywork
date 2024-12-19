@@ -102,7 +102,7 @@ pinganwm:
   catalog: '其他'
   products:
     - code: PA030115
-      desc: 平安-日添利5号B
+      desc: 平安-日添利5号B_无
       share: 0
       url: https://wm.pingan.com/#/product/productDetail?productCode=RT5X00101B&raiseType=0
       value_type: revenue
