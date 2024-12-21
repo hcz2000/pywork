@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 import subprocess
 import sqlite3
 import os
+import math
 
 class SQLLiteTool:
     def __init__(self,dbfile):
@@ -49,9 +50,11 @@ class QtDemo(QWidget):
         dbfile = 'data%swm.db' % os.path.sep
         self.dbtool = SQLLiteTool(dbfile)
     resolution=QApplication.primaryScreen().geometry()
+    self.resolution=resolution
     #print(resolution.width(),resolution.height())
+
     #设置导航窗垂直布局
-    leftUpperLayout = QVBoxLayout()
+    leftLayout = QVBoxLayout()
     self.checkboxes = {}
     self.con_checkbox= {}
     self.group_selected={}
@@ -76,61 +79,58 @@ class QtDemo(QWidget):
         #checkbox.stateChanged.connect(lambda: print(self.get_selected()))
         checkboxes.append(checkbox)
         grid_layout.addWidget(checkbox,cnt//2,cnt%2)
-
       self.checkboxes[k]=checkboxes
       groupBox.setLayout(grid_layout)
-      leftUpperLayout.addWidget(groupBox)
-
-    leftLowerLayout = QVBoxLayout()
-    button1 = QPushButton('绘图')
-    button1.setFixedSize(60,25)
-    button1.clicked.connect(self.on_click1)
-    button2 = QPushButton('更新')
-    button2.setFixedSize(60,25)
-    button2.clicked.connect(self.on_click2)
-
-    command_layout = QHBoxLayout()
-    command_layout.addWidget(button1)
-    command_layout.addWidget(button2)
-
-    groupBox = QGroupBox('操作')
-    groupBox.setFlat(False)
-    groupBox.setLayout(command_layout)
-    leftLowerLayout.addWidget(groupBox)
-
-    leftUpperFrame=QFrame()
-    leftLowerFrame=QFrame()
-    leftUpperFrame.setLayout(leftUpperLayout)
-    leftLowerFrame.setLayout(leftLowerLayout)
-    leftLowerFrame.setMaximumHeight(resolution.height()//10)
-    left_splitter = QSplitter(Qt.Orientation.Vertical)
-    left_splitter.addWidget(leftUpperFrame)
-    left_splitter.addWidget(leftLowerFrame)
-
-    leftLayout = QVBoxLayout()
-    leftLayout.addWidget(left_splitter)
-
+      leftLayout.addWidget(groupBox)
     leftFrame = QFrame()
     leftFrame.setLayout(leftLayout)
     leftFrame.setFrameShape(QFrame.Shape.StyledPanel)
     leftFrame.setMaximumWidth(resolution.width()//5)
+    self.leftFrame=leftFrame
+    self.leftFrameHide=False
 
-    rightUpperLayout=QVBoxLayout()
-    rightLowerLayout=QVBoxLayout()
+    button1 = QPushButton('绘图')
+    button1.setFixedSize(80,25)
+    button1.clicked.connect(self.on_click1)
+    button2 = QPushButton('更新')
+    button2.setFixedSize(80,25)
+    button2.clicked.connect(self.on_click2)
+    button3 = QPushButton('隐藏边框')
+    button3.setFixedSize(80,25)
+    button3.clicked.connect(self.on_click3)
+
+    command_layout = QHBoxLayout()
+    command_layout.addWidget(button1)
+    command_layout.addWidget(button2)
+    command_layout.addWidget(button3)
+    groupBox = QGroupBox('')
+    groupBox.setFlat(False)
+    groupBox.setLayout(command_layout)
+    rightUpperLayout = QVBoxLayout()
+    rightUpperLayout.addWidget(groupBox)
+
     rightUpperFrame = QFrame()
-    rightLowerFrame = QFrame()
+    rightUpperFrame.setMaximumHeight(math.floor(resolution.height() * 0.08))
     rightUpperFrame.setLayout(rightUpperLayout)
+
+    rightMiddleLayout=QVBoxLayout()
+    rightLowerLayout=QVBoxLayout()
+    rightMiddleFrame = QFrame()
+    rightLowerFrame = QFrame()
+    rightMiddleFrame.setLayout(rightMiddleLayout)
+    rightMiddleFrame.setMaximumHeight(math.floor(resolution.height() * 0.45))
     rightLowerFrame.setLayout(rightLowerLayout)
-    rightLowerFrame.setMaximumHeight(resolution.height() // 2)
+    rightLowerFrame.setMaximumHeight(math.floor(resolution.height() * 0.45))
     right_splitter = QSplitter(Qt.Orientation.Vertical)
     right_splitter.addWidget(rightUpperFrame)
+    right_splitter.addWidget(rightMiddleFrame)
     right_splitter.addWidget(rightLowerFrame)
 
     self.upperFig=plt.Figure()
     self.upperCanvas=FC(self.upperFig)
     self.lowerFig=plt.Figure()
     self.lowerCanvas=FC(self.lowerFig)
-    rightUpperLayout.addWidget(self.upperCanvas)
+    rightMiddleLayout.addWidget(self.upperCanvas)
     rightLowerLayout.addWidget(self.lowerCanvas)
     rightLayout = QVBoxLayout()
     #rightLayout.addWidget(self.canvas)
@@ -196,6 +196,13 @@ class QtDemo(QWidget):
     print(result.stdout,result.returncode)
     QMessageBox.information(self, '处理结果', '返回码:%d'%result.returncode, QMessageBox.Ok)
 
+  def on_click3(self):
+    if self.leftFrameHide:
+      self.leftFrame.setMaximumWidth(self.resolution.width()//5)
+      self.leftFrameHide = False
+    else:
+      self.leftFrame.setMaximumWidth(0)
+      self.leftFrameHide=True
 
   def rewrite(self):
     for product in self.display_products:

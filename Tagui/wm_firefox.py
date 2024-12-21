@@ -583,26 +583,21 @@ class Pinganwmvalue(WmValue):
 
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
-        cgb = CgbwmValue(driver)
-        cgb.refresh()
-        del cgb
-        boc = BocwmValue(driver)
-        boc.refresh()
-        del boc
-        cmb = CmbwmValue(driver)
-        cmb.refresh()
-        del cmb
-        # cib = Cibwmvalue(driver)
-        # cib.refresh()
-        # del cib
-        pingan = Pinganwmvalue(driver)
-        pingan.refresh()
-        del pingan
-    opts = Options()
-    opts.set_capability('pageLoadStrategy', 'none')
-    with webdriver.Firefox(options=opts) as driver:
-        amdboc = Amdbocwmvalue(driver)
-        amdboc.refresh()
-        del amdboc
+        #cgb = CgbwmValue(driver)
+        #cgb.refresh()
+        #del cgb
+        #boc = BocwmValue(driver)
+        #boc.refresh()
+        #del boc
+        #cmb = CmbwmValue(driver)
+        #cmb.refresh()
+        #del cmb
+        cib = Cibwmvalue(driver)
+        cib.refresh()
+        del cib
+        #pingan = Pinganwmvalue(driver)
+        #pingan.refresh()
+        #del pingan
+
 
 
