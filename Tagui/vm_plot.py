@@ -219,7 +219,6 @@ class QtDemo(QWidget):
         rows = self.dbtool.queryDB("select rpt_date,value from netvalue where code='%s' order by rpt_date asc" % code)
         xdata = [datetime.strptime(onerow[0], '%Y-%m-%d').date() for onerow in rows]
         ydata = [onerow[1] for onerow in rows]
-
       rewritten_xdata = []
       rewritten_ydata = []
       if len(xdata) == 0:
