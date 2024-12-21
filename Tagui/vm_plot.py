@@ -297,18 +297,15 @@ if __name__ == '__main__':
   app = QApplication(sys.argv)
   with open('wm.yaml', 'r', encoding='utf-8') as file:
     config = yaml.safe_load(file)
-
   products={}
   for key, _ in config.items():
     if key!='wm':
       catalog=config[key]['catalog']
       products[catalog]=[]
-
   for key, _ in config.items():
     if key != 'wm':
       catalog=config[key]['catalog']
       products[catalog].extend(config[key]['products'])
-
   demo = QtDemo(products)
   demo.show()
   del demo
