@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cacc5cd2-bedd-4c5c-9222-b1ad2dc42a36" name="Default" comment="update">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Tagui/sqlite.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/pywork.iml" afterPath="$PROJECT_DIR$/.idea/pywork.iml" />
+    <list default="true" id="cacc5cd2-bedd-4c5c-9222-b1ad2dc42a36" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Stock/venv/Lib/site-packages/plotly/basedatatypes.py" afterPath="$PROJECT_DIR$/Stock/venv/Lib/site-packages/plotly/basedatatypes.py" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/17367F.csv" afterPath="$PROJECT_DIR$/Tagui/data/17367F.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/17561D.csv" afterPath="$PROJECT_DIR$/Tagui/data/17561D.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/9k40033G.csv" afterPath="$PROJECT_DIR$/Tagui/data/9k40033G.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/CYQZQ2MA.csv" afterPath="$PROJECT_DIR$/Tagui/data/CYQZQ2MA.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/CYQZQ3MA.csv" afterPath="$PROJECT_DIR$/Tagui/data/CYQZQ3MA.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/FCYQZQ1YL.csv" afterPath="$PROJECT_DIR$/Tagui/data/FCYQZQ1YL.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/FCYQZQ3YL.csv" afterPath="$PROJECT_DIR$/Tagui/data/FCYQZQ3YL.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/HXTT01.csv" afterPath="$PROJECT_DIR$/Tagui/data/HXTT01.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/PA030115.csv" afterPath="$PROJECT_DIR$/Tagui/data/PA030115.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/WFZZKGR01A.csv" afterPath="$PROJECT_DIR$/Tagui/data/WFZZKGR01A.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/XFLCXFTL0003.csv" afterPath="$PROJECT_DIR$/Tagui/data/XFLCXFTL0003.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/XFTLCY0601A.csv" afterPath="$PROJECT_DIR$/Tagui/data/XFTLCY0601A.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/XFTLCY1201A.csv" afterPath="$PROJECT_DIR$/Tagui/data/XFTLCY1201A.csv" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/Z7003721000112.csv" afterPath="$PROJECT_DIR$/Tagui/data/Z7003721000112.csv" />
+      <change beforePath="$PROJECT_DIR$/Tagui/data/wm.db" afterPath="$PROJECT_DIR$/Tagui/data/wm.db" />
+      <change beforePath="$PROJECT_DIR$/Tagui/vm_plot.py" afterPath="$PROJECT_DIR$/Tagui/vm_plot.py" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,21 +16,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="sqlite.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tagui/sqlite.py">
+      <file leaf-file-name="wm_firefox.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+            <state relative-caret-position="14715">
+              <caret line="557" column="81" lean-forward="false" selection-start-line="557" selection-start-column="76" selection-end-line="557" selection-end-column="84" />
+              <folding>
+                <marker date="1734748205297" expanded="true" signature="24525:24945" ph="..." />
+                <marker date="1734748205297" expanded="true" signature="24565:24574" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wm.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Oracle2Gauss.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tagui/Oracle2Gauss.py">
+      <file leaf-file-name="vm_plot.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tagui/vm_plot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5143">
-              <caret line="341" column="59" lean-forward="false" selection-start-line="341" selection-start-column="4" selection-end-line="341" selection-end-column="59" />
+            <state relative-caret-position="315">
+              <caret line="299" column="0" lean-forward="false" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,18 +60,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>leftLo</find>
+      <find>del</find>
+      <find>SQLLiteTool</find>
+      <find>CgbwmValue</find>
+      <find>select</find>
+      <find>catalog</find>
+      <find>net_values</find>
+      <find>self.config</find>
+      <find>config</find>
+      <find>parent</find>
+      <find>persistentStorate</find>
+      <find>dbtool</find>
+      <find>self.dbtool</find>
+      <find>persistentStorage</find>
+      <find>persistentStora</find>
+      <find>datetime</find>
+      <find>rightUpperLayout</find>
       <find>leftUpperLayout</find>
-      <find>QHBoxLayout</find>
+      <find>clien</find>
       <find>leftFrame</find>
-      <find>left_box</find>
-      <find>switch_to</find>
-      <find>inner</find>
-      <find>innerHTML</find>
-      <find>ar</find>
-      <find>sleep</find>
-      <find>break</find>
-      <find>on_click</find>
+      <find>resolution</find>
+      <find>//5</find>
+      <find>click1</find>
+      <find>Window</find>
+      <find>QtDemo</find>
+      <find>setLayou</find>
+      <find>wait.until</find>
+      <find>cibvalue</find>
+      <find>net</find>
+      <find>impli</find>
+      <find>net_value</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -84,20 +99,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Tagui/vm_plot.py" />
-        <option value="$PROJECT_DIR$/Tagui/wm.yaml" />
         <option value="$PROJECT_DIR$/Tagui/wm_firfox.py" />
-        <option value="$PROJECT_DIR$/Tagui/amdbocwm.py" />
-        <option value="$PROJECT_DIR$/Tagui/data/Z7003721000112.csv" />
-        <option value="$PROJECT_DIR$/Tagui/vm_plot2.py" />
         <option value="$PROJECT_DIR$/Tagui/sqlite3.py" />
         <option value="$PROJECT_DIR$/Tagui/sqlite.py" />
+        <option value="$PROJECT_DIR$/Tagui/test.py" />
+        <option value="$PROJECT_DIR$/Tagui/data/Z7003721000112.csv" />
+        <option value="$PROJECT_DIR$/Tagui/amdbocwm.py" />
+        <option value="$PROJECT_DIR$/Tagui/wm.yaml" />
+        <option value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
+        <option value="$PROJECT_DIR$/Tagui/vm_plot2.py" />
+        <option value="$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+        <option value="$PROJECT_DIR$/Tagui/vm_plot.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="562" />
-    <option name="y" value="126" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
     <option name="width" value="1088" />
     <option name="height" value="1017" />
   </component>
@@ -120,6 +138,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -131,19 +150,17 @@
             <path>
               <item name="pywork" type="b2602c69:ProjectViewProjectNode" />
               <item name="pywork" type="462c0819:PsiDirectoryNode" />
-              <item name="Tagui" type="462c0819:PsiDirectoryNode" />
+              <item name="Stats" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pywork" type="b2602c69:ProjectViewProjectNode" />
               <item name="pywork" type="462c0819:PsiDirectoryNode" />
               <item name="Tagui" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -152,6 +169,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\pywork\Tagui" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -165,7 +189,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.sqlite">
+  <component name="RunManager" selected="Python.wm_firefox">
     <configuration name="amdbocwm" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -184,7 +208,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="sqlite" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -196,7 +220,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pywork" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/sqlite.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -220,7 +244,7 @@
       <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="wm_firfox" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="wm_firefox" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -232,24 +256,44 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pywork" />
-      <option name="SCRIPT_NAME" value="D:\work\pywork\Tagui\wm_firefox.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Python.wm_firfox" />
-      <item index="1" class="java.lang.String" itemvalue="Python.vm_plot2" />
-      <item index="2" class="java.lang.String" itemvalue="Python.amdbocwm" />
-      <item index="3" class="java.lang.String" itemvalue="Python.sqlite" />
+    <configuration name="wm_firefox2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tagui" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pywork" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.vm_plot2" />
+      <item index="1" class="java.lang.String" itemvalue="Python.amdbocwm" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test" />
+      <item index="3" class="java.lang.String" itemvalue="Python.wm_firefox" />
+      <item index="4" class="java.lang.String" itemvalue="Python.wm_firefox2" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.sqlite" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.wm_firefox" />
         <item index="1" class="java.lang.String" itemvalue="Python.vm_plot2" />
-        <item index="2" class="java.lang.String" itemvalue="Python.wm_firfox" />
+        <item index="2" class="java.lang.String" itemvalue="Python.wm_firefox2" />
         <item index="3" class="java.lang.String" itemvalue="Python.amdbocwm" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -258,7 +302,7 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\huang\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -313,29 +357,198 @@
       <option name="project" value="LOCAL" />
       <updated>1720278398896</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update">
+      <created>1720344464704</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1720344464704</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update">
+      <created>1722146571041</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722146571041</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update">
+      <created>1722157291215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722157291215</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update">
+      <created>1722166047016</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1722166047016</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update">
+      <created>1722170035362</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722170035362</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update">
+      <created>1722171704942</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722171704942</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update">
+      <created>1722661536850</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722661536850</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update">
+      <created>1722663256980</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1722663256980</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update">
+      <created>1722668337200</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1722668337200</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update">
+      <created>1723552432540</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1723552432540</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update">
+      <created>1723553881444</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1723553881444</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update">
+      <created>1723554068234</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1723554068234</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update">
+      <created>1723557155700</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723557155700</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update">
+      <created>1723560833570</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1723560833570</updated>
+    </task>
+    <task id="LOCAL-00021" summary="update">
+      <created>1723651650707</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1723651650707</updated>
+    </task>
+    <task id="LOCAL-00022" summary="update">
+      <created>1723652061775</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1723652061775</updated>
+    </task>
+    <task id="LOCAL-00023" summary="update">
+      <created>1723733184848</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1723733184848</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update">
+      <created>1723733193871</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1723733193871</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update">
+      <created>1723890554272</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723890554272</updated>
+    </task>
+    <task id="LOCAL-00026" summary="update">
+      <created>1723897002917</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1723897002917</updated>
+    </task>
+    <task id="LOCAL-00027" summary="update">
+      <created>1723903675279</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723903675279</updated>
+    </task>
+    <task id="LOCAL-00028" summary="update">
+      <created>1723992205803</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723992205803</updated>
+    </task>
+    <task id="LOCAL-00029" summary="update">
+      <created>1731727160932</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1731727160933</updated>
+    </task>
+    <task id="LOCAL-00030" summary="update">
+      <created>1734793864062</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1734793864062</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1030" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3046875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.284375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19585253" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2327189" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4919355" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37442395" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -351,37 +564,74 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tagui/wm_firefox.py</url>
-          <line>58</line>
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py">
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firfox.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py">
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firfox.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3105">
+          <caret line="115" column="11" lean-forward="false" selection-start-line="115" selection-start-column="11" selection-end-line="115" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3105">
+          <caret line="115" column="11" lean-forward="false" selection-start-line="115" selection-start-column="11" selection-end-line="115" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/selenium/webdriver/remote/webelement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3267">
+          <caret line="121" column="91" lean-forward="false" selection-start-line="121" selection-start-column="11" selection-end-line="121" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/sqlite.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py" />
     <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2916">
@@ -396,27 +646,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
     <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -445,54 +677,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="108" column="26" lean-forward="false" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/data/Z7003721000112.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="117" column="25" lean-forward="false" selection-start-line="117" selection-start-column="25" selection-end-line="117" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="242" column="22" lean-forward="false" selection-start-line="242" selection-start-column="22" selection-end-line="242" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tagui/table_config.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="142" column="23" lean-forward="false" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -500,40 +688,90 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="48" column="22" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="53" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox.py">
+    <entry file="file://$PROJECT_DIR$/Tagui/data/XFLCXFTF0006.csv" />
+    <entry file="file://$PROJECT_DIR$/Tagui/sqlite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="511" column="14" lean-forward="false" selection-start-line="511" selection-start-column="0" selection-end-line="511" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/data/XFLCXFTF0006.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="560">
+          <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tagui/Oracle2Gauss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5143">
+        <state relative-caret-position="9018">
           <caret line="341" column="59" lean-forward="false" selection-start-line="341" selection-start-column="4" selection-end-line="341" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/test_chrome.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-832">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/data/Z7003721000112.csv" />
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/selenium/webdriver/remote/webelement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/data/XFTLCY1201C.csv" />
+    <entry file="file://$PROJECT_DIR$/Tagui/data/XFTLCY1201A.csv" />
+    <entry file="file://$PROJECT_DIR$/Tagui/data/XFLCXFTF0008.csv" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot3.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot2.py" />
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="341" column="0" lean-forward="true" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/selenium/webdriver/remote/errorhandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="229" column="0" lean-forward="true" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/amdbocwm.py" />
+    <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14715">
+          <caret line="557" column="81" lean-forward="false" selection-start-line="557" selection-start-column="76" selection-end-line="557" selection-end-column="84" />
+          <folding>
+            <marker date="1734748205297" expanded="true" signature="24525:24945" ph="..." />
+            <marker date="1734748205297" expanded="true" signature="24565:24574" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tagui/wm.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tagui/sqlite.py">
+    <entry file="file://$PROJECT_DIR$/Tagui/vm_plot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+        <state relative-caret-position="315">
+          <caret line="299" column="0" lean-forward="false" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
           <folding />
         </state>
       </provider>

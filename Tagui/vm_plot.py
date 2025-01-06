@@ -219,7 +219,6 @@ class QtDemo(QWidget):
         rows = self.dbtool.queryDB("select rpt_date,value from netvalue where code='%s' order by rpt_date asc" % code)
         xdata = [datetime.strptime(onerow[0], '%Y-%m-%d').date() for onerow in rows]
         ydata = [onerow[1] for onerow in rows]
-
       rewritten_xdata = []
       rewritten_ydata = []
       if len(xdata) == 0:
@@ -304,18 +303,15 @@ if __name__ == '__main__':
   app = QApplication(sys.argv)
   with open('wm.yaml', 'r', encoding='utf-8') as file:
     config = yaml.safe_load(file)
-
   products={}
   for key, _ in config.items():
     if key!='wm':
       catalog=config[key]['catalog']
       products[catalog]=[]
-
   for key, _ in config.items():
     if key != 'wm':
       catalog=config[key]['catalog']
       products[catalog].extend(config[key]['products'])
-
   demo = QtDemo(products)
   demo.show()
   del demo
