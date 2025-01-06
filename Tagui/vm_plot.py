@@ -261,7 +261,7 @@ class QtDemo(QWidget):
       ax.xaxis.set_major_locator(dates.MonthLocator())
       ax.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m'))
       ax.xaxis.set_minor_locator(dates.DayLocator(interval=1))
-    font = {'family': 'SimHei', 'weight': 'normal', 'size': 16}
+    font = {'family': 'SimHei', 'weight': 'normal', 'size': 8}
     ax.set_ylabel('净值', font)
     ax.set_xlabel('时间', font)
     ax.set_title('理财产品净值', font)
@@ -276,21 +276,27 @@ class QtDemo(QWidget):
       disp_ydata = ydata[xdata >= start_date]
       disp_ydata = disp_ydata / disp_ydata[0]
       if desc.startswith('中银'):
-        line, = ax.plot(disp_xdata, disp_ydata, lw=3, label=desc, linestyle='-')
+        line, = ax.plot(disp_xdata, disp_ydata, lw=2, label=desc, linestyle='-')
       else:
-        line, = ax.plot(disp_xdata, disp_ydata, lw=3, label=desc, linestyle='--')
-      for label in ax.get_xticklabels():
-        label.set_rotation(30)
+        line, = ax.plot(disp_xdata, disp_ydata, lw=2, label=desc, linestyle='--')
+      #for label in ax.get_xticklabels():
+      #  label.set_rotation(10)
+      plt.setp(ax.get_xticklabels(), fontsize=8)
+      plt.setp(ax.get_yticklabels(), fontsize=8)
+      plt.subplots_adjust(left=0.0,right=1.0)
       end_date = (datetime.now() - timedelta(days=1)).date()
-      base_rate0 = (end_date - start_date) / timedelta(days=360) * 0.02
-      base_rate1 = (end_date - start_date) / timedelta(days=360) * 0.03
-      base_rate2 = (end_date - start_date) / timedelta(days=360) * 0.04
-      base_rate3 = (end_date - start_date) / timedelta(days=360) * 0.05
+      base_rate0 = 0
+      base_rate1 = (end_date - start_date) / timedelta(days=360) * 0.01
+      base_rate2 = (end_date - start_date) / timedelta(days=360) * 0.02
+      base_rate3 = (end_date - start_date) / timedelta(days=360) * 0.03
+      base_rate4 = (end_date - start_date) / timedelta(days=360) * 0.04
+      base_rate5 = (end_date - start_date) / timedelta(days=360) * 0.05
       ax.plot([start_date, end_date], [1, 1 + base_rate0], lw=1, linestyle='dotted', color='grey')
       ax.plot([start_date, end_date], [1, 1 + base_rate1], lw=1, linestyle='dotted', color='grey')
       ax.plot([start_date, end_date], [1, 1 + base_rate2], lw=1, linestyle='dotted', color='grey')
       ax.plot([start_date, end_date], [1, 1 + base_rate3], lw=1, linestyle='dotted', color='grey')
-      # ax.plot([end_date, end_date], [0, 1 + base_rate3], lw=1, linestyle='-.', color='grey')
+      ax.plot([start_date, end_date], [1, 1 + base_rate4], lw=1, linestyle='dotted', color='grey')
+      ax.plot([start_date, end_date], [1, 1 + base_rate5], lw=1, linestyle='dotted', color='grey')
     ax.legend(prop={'family': 'SimHei', 'size': 10})
 
 
