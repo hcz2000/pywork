@@ -4,16 +4,6 @@ wm:
 bocwm:
   catalog: '中银理财'
   products:
-    -  code: YLFFB2201
-       desc: 中银-养老封闭
-       share: 200000
-       url: https://www.bocwm.cn/html/1/netWorth/5173.html
-       value_type: net_value
-    -  code: CYQHH6MB
-       desc: 中银-半年持有
-       share: 500000
-       url: https://www.bocwm.cn/html/1/netWorth/4689.html
-       value_type: net_value
     -  code: HXTT01
        desc: 中银-慧享天天
        share: 0
@@ -21,23 +11,38 @@ bocwm:
        value_type: revenue
     -  code: WFZZKGR01A
        desc: 中银-稳富周周开
-       share: 196700
+       share: 21
        url: https://www.bocwm.cn/html/1/netWorth/3567.html
        value_type: net_value
+    -  code: CYQESGGS30D2A
+       desc: 中银-ESG30天持有
+       share: 10
+       url: https://www.bocwm.cn/html/1//netWorth/6994.html
+       value_type: net_value
     -  code: CYQZQ2MA
-       desc: 中银-2月持有
-       share: 587791
+       desc: 中银-2个月持有
+       share: 83
        url: https://www.bocwm.cn/html/1/netWorth/3743.html
        value_type: net_value
     -  code: CYQZQ3MA
-       desc: 中银-3月持有
-       share: 576348
+       desc: 中银-3个月持有
+       share: 93
        url: https://www.bocwm.cn/html/1/netWorth/4149.html
+       value_type: net_value
+    -  code: CYQHH6MB
+       desc: 中银-半年持有
+       share: 59
+       url: https://www.bocwm.cn/html/1/netWorth/4689.html
        value_type: net_value
     -  code: ZFNNK0915
        desc: 中银-智富年年开
-       share: 200000
+       share: 20
        url: https://www.bocwm.cn/html/1/netWorth/4632.html
+       value_type: net_value
+    -  code: YLFFB2201
+       desc: 中银-养老封闭
+       share: 21
+       url: https://www.bocwm.cn/html/1/netWorth/5173.html
        value_type: net_value
 
 cgbwm:
@@ -69,28 +74,34 @@ cmbwm:
   products:
     - code: 17367F
       desc: 招银-季添利90天1号
-      share: 300000
+      share: 50
       url: https://www.cmbchinawm.com/proDetail
       agent: boc
     - code: 17561D
       desc: 招银-丰和信用60天2号
-      share: 93308
+      share: 0
       url: https://www.cmbchinawm.com/proDetail
       agent: boc
     - code: 10193D
       desc: 招银-丰润9月定开3号D
-      share: 100000
+      share: 10
       url: https://www.cmbchinawm.com/proDetail
       agent: boc
     - code: 17546K
       desc: 招银-丰和信用90天
-      share: 000000
+      share: 0
       url: https://www.cmbchinawm.com/proDetail
-      agent: gfb
+      agent: 广发
+    - code: 17595D
+      desc: 招银-丰和信用90天2号
+      share: 0
+      url: https://www.cmbchinawm.com/proDetail
+      agent: 中银
     - code: 17516D
       desc: 招银-丰和信用180天1号
-      share: 100000
+      share: 10
       url: https://www.cmbchinawm.com/proDetail
+      agent: 广发
 
 
 
