@@ -231,7 +231,6 @@ class BocwmValue(WmValue):
         code = product['code']
         url = product['url']
         value_type=product['value_type']
-        net_values=[]
         last_record=self.getLastRecord(code)
         last_sync_date = last_record[0]
         self.driver.implicitly_wait(30)
@@ -239,25 +238,41 @@ class BocwmValue(WmValue):
         contentDiv=self.driver.find_element(By.ID,'content')
         rows = contentDiv.find_elements(By.XPATH,"//table[@class='layui-table']/tbody/tr")
 
-        if value_type=='net_value':
-            for row in rows:
-                cols=row.find_elements(By.TAG_NAME,'td')
-                (rpt_date, net_value)=(cols[6].text,cols[2].text)
-                if rpt_date > last_sync_date:
-                    net_values.append((rpt_date, net_value))
-                else:
-                    break
-            net_values=net_values[::-1]
-        else:
-            revenues=[]
+        net_values = []
+        revenues = []
+        stop=False
+        while stop==False:
             for row in rows:
                 cols = row.find_elements(By.TAG_NAME, 'td')
-                (rpt_date, revenue) = (cols[6].text, float(cols[4].text) / 10000)
-                if rpt_date > last_sync_date:
-                    revenues.append((rpt_date, revenue))
+                if value_type=='net_value':
+                    (rpt_date, net_value) = (cols[6].text, cols[2].text)
+                    if rpt_date > last_sync_date:
+                        net_values.append((rpt_date, net_value))
+                    else:
+                        stop=True
+                        break
+                else:
+                    (rpt_date, revenue) = (cols[6].text, float(cols[4].text) / 10000)
+                    if rpt_date > last_sync_date:
+                        revenues.append((rpt_date, revenue))
+                    else:
+                        stop=True
+                        break
+            if not stop:
+                next_button = self.driver.find_element(By.XPATH, "//button[@class='btn-next']")
+                if next_button.is_enabled():
+                    #next_button.click()
+                    self.driver.execute_script("arguments[0].click()",next_button)
+                    time.sleep(2)
+                    rows = contentDiv.find_elements(By.XPATH, "//table[@class='layui-table']/tbody/tr")
+                    continue
                 else:
                     break
 
+
+        if value_type=='net_value':
+            net_values=net_values[::-1]
+        else:
             last_net_value=float(last_record[1])
             accumulated_revenue=last_net_value-1.00
             for item in revenues[::-1]:
