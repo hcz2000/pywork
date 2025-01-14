@@ -335,7 +335,7 @@ class Cibwmvalue(WmValue):
             sub_menu.click()
             time.sleep(2)
 
-        outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']//tr")[1:]
+        outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']/tr[position()>1]")
         newest_report = outputList[0]
         #print(newest_report.get_attribute('innerHTML'))
         newest_release_date = newest_report.find_elements(By.TAG_NAME, 'td')[0].text
@@ -343,50 +343,28 @@ class Cibwmvalue(WmValue):
             print('No new release:', last_sync_date)
             return
 
-        while True:
-            oldest_report = outputList[-1]
-            oldest_release_date = oldest_report.find_elements(By.TAG_NAME, 'td')[0].text
-            if oldest_release_date >= last_sync_date:
-                pagediv=self.driver.find_element(By.XPATH,"//div[@class='fy-cont']")
-                current_page=pagediv.get_attribute('current-page')
-                page_size=pagediv.get_attribute('page-size')
-                total=pagediv.get_attribute('total')
-                if int(current_page)*int(page_size)<int(total):
-                    next_link= self.driver.find_element(By.LINK_TEXT,'下一页')
-                    if next_link:
-                        next_link.click()
-                        time.sleep(2)
-                        outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']//tr")[1:]
-                    else:
-                        break
-                else:
-                    break
-            else:
-                break
-
-        while True:
-            reversed_list = outputList[::-1]
-            for row in reversed_list:
-                cols=row.find_elements(By.TAG_NAME, 'td')
+        stop = False
+        while stop == False:
+            for row in outputList:
+                cols = row.find_elements(By.TAG_NAME, 'td')
                 rpt_date = cols[0].text
-                net_value= cols[1].text
+                net_value = cols[1].text
                 if rpt_date > last_sync_date:
                     net_values.append((rpt_date, net_value))
+                else:
+                    stop = True
+                    break
+            if not stop:
+                next_link = self.driver.find_element(By.LINK_TEXT, '下一页')
+                if next_link:
+                   self.driver.execute_script("arguments[0].click()", next_link)
+                   time.sleep(2)
+                   outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']/tr[position()>1]")
+                   continue
+                else:
+                    break
 
-            pagediv = self.driver.find_element(By.XPATH, "//div[@class='fy-cont']")
-            current_page = pagediv.get_attribute('current-page')
-            #print(current_page)
-            if current_page=='1':
-                break
-            prev_link = self.driver.find_element(By.LINK_TEXT,'上一页')
-            if prev_link:
-                prev_link.click()
-                time.sleep(2)
-                outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']//tr")[1:]
-            else:
-                break
-
-        self.writeRecords(code, net_values)
+        self.writeRecords(code, net_values[::-1])
 
 class Pinganwmvalue(WmValue):
     def __init__(self, driver):
@@ -397,7 +375,6 @@ class Pinganwmvalue(WmValue):
         code = product['code']
         url = product['url']
         value_type=product['value_type']
-        net_values = []
         last_record=self.getLastRecord(code)
         last_sync_date = last_record[0]
         last_net_value = float(last_record[1])
@@ -416,62 +393,50 @@ class Pinganwmvalue(WmValue):
             print('No new release:', last_sync_date)
             return
 
-        while True:
-            oldest_report = outputList[-1]
-            oldest_release_date = oldest_report.find_elements(By.TAG_NAME, 'td')[1].text
-            if oldest_release_date >= last_sync_date:
+        net_values = []
+        revenues = []
+        stop = False
+        while stop == False:
+            for row in outputList:
+                cols = row.find_elements(By.TAG_NAME, 'td')
+                if value_type == 'net_value':
+                    (rpt_date, net_value) = (cols[1].text, cols[2].text)
+                    if rpt_date > last_sync_date:
+                        net_values.append((rpt_date, net_value))
+                    else:
+                        stop = True
+                        break
+                else:
+                    (rpt_date, revenue) = (cols[1].text, float(cols[2].text) / 10000)
+                    if rpt_date > last_sync_date:
+                        revenues.append((rpt_date, revenue))
+                    else:
+                        stop = True
+                        break
+            if not stop:
                 pagediv = self.driver.find_element(By.XPATH, "//div[@class='ant-spin-container']")
                 next_page = pagediv.find_element(By.XPATH, "//li[@title='下一页']")
                 if next_page.get_attribute('aria-disabled') == 'true':
                     break
                 else:
                     next_link = next_page.find_element(By.TAG_NAME, "a")
-                    if next_link:
-                        next_link.click()
-                        time.sleep(2)
-                        tbody = self.driver.find_element(By.XPATH, "//div[@class='ant-table-body']/table/tbody")
-                        outputList = tbody.find_elements(By.TAG_NAME, 'tr')
-                    else:
-                        break
-            else:
-                break
-
-        accumulated_revenue = last_net_value - 1.00
-        while True:
-            revenues = []
-            for row in outputList[::-1]:
-                cols = row.find_elements(By.TAG_NAME, 'td')
-                if value_type == 'net_value':
-                    rpt_date = cols[1].text
-                    net_value = cols[2].text
-                    #print(rpt_date,net_value)
-                    if rpt_date > last_sync_date:
-                        net_values.append((rpt_date, net_value))
-                else:
-                    (rpt_date, revenue) = (cols[1].text, float(cols[2].text) / 10000)
-                    if rpt_date > last_sync_date:
-                        revenues.append((rpt_date, revenue))
-
-            if value_type == 'revenue':
-                for row in revenues:
-                    accumulated_revenue = accumulated_revenue + (1.0 + accumulated_revenue) * row[1]
-                    (rpt_date, net_value) = (row[0], 1.0 + accumulated_revenue)
-                    #print(rpt_date, net_value)
-                    net_values.append((rpt_date, net_value))
-
-            pagediv = self.driver.find_element(By.XPATH, "//div[@class='ant-spin-container']")
-            prev_page = pagediv.find_element(By.XPATH, "//li[@title='上一页']")
-            if prev_page.get_attribute('aria-disabled') == 'true':
-                break
-            else:
-                prev_link = prev_page.find_element(By.TAG_NAME, "a")
-                if prev_link:
-                    prev_link.click()
+                    self.driver.execute_script("arguments[0].click()", next_link)
                     time.sleep(2)
                     tbody = self.driver.find_element(By.XPATH, "//div[@class='ant-table-body']/table/tbody")
                     outputList = tbody.find_elements(By.TAG_NAME, 'tr')
-                else:
-                    break
+                    continue
+
+
+        if value_type == 'net_value':
+            net_values = net_values[::-1]
+        else:
+            last_net_value = float(last_record[1])
+            accumulated_revenue = last_net_value - 1.00
+            for item in revenues[::-1]:
+                accumulated_revenue = accumulated_revenue + (1.0 + accumulated_revenue) * item[1]
+                (rpt_date, net_value) = (item[0], 1.0 + accumulated_revenue)
+                net_values.append((rpt_date, net_value))
+
         self.writeRecords(code, net_values)
 
 if __name__ == '__main__':
@@ -485,12 +450,12 @@ if __name__ == '__main__':
         cmb = CmbwmValue(driver)
         cmb.refresh()
         del cmb
-        #cib = Cibwmvalue(driver)
-        #cib.refresh()
-        #del cib
-        #pingan = Pinganwmvalue(driver)
-        #pingan.refresh()
-        #del pingan
+        cib = Cibwmvalue(driver)
+        cib.refresh()
+        del cib
+        pingan = Pinganwmvalue(driver)
+        pingan.refresh()
+        del pingan
 
 
 
