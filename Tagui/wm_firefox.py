@@ -169,48 +169,38 @@ class CgbwmValue(WmValue):
             print('No new release:',last_sync_date)
             return
 
-        while True:
-            oldest_report = outputList[-1]
-            oldest_release_date = oldest_report.find_element(By.CLASS_NAME, 'myDate').get_attribute('innerHTML')
-            if oldest_release_date >= last_sync_date:
-                next_button=self.driver.find_element(By.XPATH,"//button[@class='btn-next']")
-                if next_button.is_enabled():
-                    #next_button.click()
-                    self.driver.execute_script("arguments[0].click()",next_button)
-                    time.sleep(2)
-                    outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
-                    continue
-            break
-
-        while True:
-            reversed_list=outputList[::-1]
-            for row in reversed_list:
+        stop=False
+        while stop==False:
+            for row in outputList:
                 title=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[1]").get_attribute('innerHTML')
                 catalog=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[2]").get_attribute('innerHTML')
                 if not catalog.startswith('净值公告'):
                     continue
                 release_date=row.find_element(By.CLASS_NAME,'myDate').get_attribute('innerHTML')
-                if release_date>last_sync_date:
-                    #last_sync_date=release_date
-                    #row.click()
+                if release_date > last_sync_date:
                     self.driver.execute_script("arguments[0].click()", row)
                     time.sleep(1)
-                    (rpt_date,net_value)=self.parseNetValue()
-                    if rpt_date>last_sync_date:
-                        net_values.append((rpt_date,net_value))
+                    (rpt_date, net_value) = self.parseNetValue()
+                    if rpt_date > last_sync_date:
+                        net_values.append((rpt_date, net_value))
                     self.driver.back()
                     time.sleep(1)
+                else:
+                    stop=True
+                    break
+            if not stop:
+                next_button = self.driver.find_element(By.XPATH, "//button[@class='btn-next']")
+                if next_button.is_enabled():
+                    next_button = self.driver.find_element(By.XPATH, "//button[@class='btn-next']")
+                    if next_button.is_enabled():
+                        self.driver.execute_script("arguments[0].click()", next_button)
+                        time.sleep(2)
+                        outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
+                        continue
+                else:
+                    break
 
-            prev_button=self.driver.find_element(By.XPATH,"//button[@class='btn-prev']")
-            if prev_button.is_enabled():
-                #prev_button.click()
-                self.driver.execute_script("arguments[0].click()", prev_button)
-                time.sleep(2)
-                outputList = self.driver.find_elements(By.XPATH, "//div[@class='outList']")
-            else:
-                break
-
-        self.writeRecords(code, net_values)
+        self.writeRecords(code, net_values[::-1])
 
     def parseNetValue(self):
         cols=self.driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
@@ -261,7 +251,6 @@ class BocwmValue(WmValue):
             if not stop:
                 next_button = self.driver.find_element(By.XPATH, "//button[@class='btn-next']")
                 if next_button.is_enabled():
-                    #next_button.click()
                     self.driver.execute_script("arguments[0].click()",next_button)
                     time.sleep(2)
                     rows = contentDiv.find_elements(By.XPATH, "//table[@class='layui-table']/tbody/tr")
