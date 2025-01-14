@@ -48,12 +48,20 @@ class BocwmValue():
 
     def getUrl(self, code):
         self.driver.implicitly_wait(30)
-        self.driver.get('https://www.bocwm.cn/')
-        contentDiv=self.driver.find_element(By.ID,'textgj')
-        control = contentDiv.find_element(By.XPATH,"//div[@class='new-scope']/div[2]")
-        control.click()
-
-
+        url="https://www.bocwm.cn/html/1//189/index.html?data="+code+"&type=all"
+        self.driver.get(url)
+        #self.driver.get('https://www.bocwm.cn/')
+        #inputElement=self.driver.find_element(By.ID,'textgj')
+        #inputElement.clear()
+        #inputElement.send_keys(code)
+        #serarchElement = self.driver.find_element(By.XPATH,"//div[@class='new-scope']/div[2]")
+        #driver.execute_script("arguments[0].click();", serarchElement)
+        #time.sleep(2)
+        noticeList=self.driver.find_elements(By.XPATH,"//ul[@class='notice']/li/a")
+        for noticeElement in noticeList:
+            displayText=noticeElement.text
+            if code in displayText  and '产品说明书' not in displayText:
+                print(noticeElement.get_attribute("href"),displayText)
 
 
 if __name__ == '__main__':
