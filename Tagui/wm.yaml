@@ -72,24 +72,14 @@ cgbwm:
 cmbwm:
   catalog: '招银理财'
   products:
-    - code: 17367F
-      desc: 招银-季添利90天1号
-      share: 50
-      url: https://www.cmbchinawm.com/proDetail
-      agent: boc
     - code: 17561D
       desc: 招银-丰和信用60天2号
       share: 0
       url: https://www.cmbchinawm.com/proDetail
-      agent: boc
-    - code: 10193D
-      desc: 招银-丰润9月定开3号D
-      share: 10
-      url: https://www.cmbchinawm.com/proDetail
-      agent: boc
-    - code: 17546K
-      desc: 招银-丰和信用90天
-      share: 0
+      agent: 中银
+    - code: 17367F
+      desc: 招银-季添利90天1号
+      share: 50
       url: https://www.cmbchinawm.com/proDetail
       agent: 广发
     - code: 17595D
@@ -97,11 +87,24 @@ cmbwm:
       share: 0
       url: https://www.cmbchinawm.com/proDetail
       agent: 中银
+    - code: 17546K
+      desc: 招银-丰和信用精选90天
+      share: 0
+      url: https://www.cmbchinawm.com/proDetail
+      agent: 广发
     - code: 17516D
       desc: 招银-丰和信用180天1号
       share: 10
       url: https://www.cmbchinawm.com/proDetail
       agent: 广发
+    - code: 10193D
+      desc: 招银-丰润9月定开3号D
+      share: 10
+      url: https://www.cmbchinawm.com/proDetail
+      agent: 中银
+
+
+
 
 
 pinganwm:
