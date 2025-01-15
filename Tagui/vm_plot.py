@@ -91,13 +91,14 @@ class QtDemo(QWidget):
 
     button1 = QPushButton('绘图')
     button1.setFixedSize(80,25)
-    button1.clicked.connect(self.on_click1)
+    button1.clicked.connect(self.plot)
     button2 = QPushButton('更新')
     button2.setFixedSize(80,25)
-    button2.clicked.connect(self.on_click2)
+    button2.clicked.connect(self.run_command)
     button3 = QPushButton('隐藏边框')
     button3.setFixedSize(80,25)
-    button3.clicked.connect(self.on_click3)
+    button3.clicked.connect(self.switch)
+    self.switchButton=button3
 
     command_layout = QHBoxLayout()
     command_layout.addWidget(button1)
@@ -181,7 +182,7 @@ class QtDemo(QWidget):
           checked.append(checkbox.text())
     return checked
 
-  def on_click1(self):
+  def plot(self):
     self.display_products=[]
     select_products=self.get_selected()
     for k,products in self.products.items():
@@ -191,18 +192,20 @@ class QtDemo(QWidget):
     self.rewrite()
     self.draw()
 
-  def on_click2(self):
+  def run_command(self):
     result=subprocess.run(["python","wm_firefox.py"],capture_output=True)
     print(result.stdout,result.returncode)
     QMessageBox.information(self, '处理结果', '返回码:%d'%result.returncode, QMessageBox.Ok)
 
-  def on_click3(self):
+  def switch(self):
     if self.leftFrameHide:
       self.leftFrame.setMaximumWidth(self.resolution.width()//5)
       self.leftFrameHide = False
+      self.switchButton.setText('隐藏边框')
     else:
       self.leftFrame.setMaximumWidth(0)
       self.leftFrameHide=True
+      self.switchButton.setText('显示边框')
 
   def rewrite(self):
     for product in self.display_products:
