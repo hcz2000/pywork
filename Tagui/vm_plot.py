@@ -246,13 +246,17 @@ class QtDemo(QWidget):
 
   def draw(self):
     self.upperFig.clear()
-    ax1 = self.upperFig.add_subplot(111)
-    self.draw_subplot(ax1, (datetime.now() - timedelta(days=365 + 1)).date())
+    ax1a = self.upperFig.add_subplot(121)
+    self.draw_subplot(ax1a, (datetime.now() - timedelta(days=365 + 1)).date())
+    ax1b = self.upperFig.add_subplot(122)
+    self.draw_subplot(ax1b, (datetime.now() - timedelta(days=180 + 1)).date())
     self.upperCanvas.draw()
 
     self.lowerFig.clear()
-    ax2 = self.lowerFig.add_subplot(111)
-    self.draw_subplot(ax2, (datetime.now() - timedelta(days=30 + 1)).date())
+    ax2a = self.lowerFig.add_subplot(121)
+    self.draw_subplot(ax2a, (datetime.now() - timedelta(days=60 + 1)).date())
+    ax2b = self.lowerFig.add_subplot(122)
+    self.draw_subplot(ax2b, (datetime.now() - timedelta(days=30 + 1)).date())
     self.lowerCanvas.draw()
 
   def draw_subplot(self, ax, start_date):
