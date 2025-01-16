@@ -48,28 +48,22 @@ bocwm:
 cgbwm:
   catalog: '广银理财'
   products:
-    - code: XFTLCY1201A
-      desc: 广银-添利1Y1号A
-      share: 300000
-      url: https://www.cgbwmc.com.cn/#/runningNotice
-    - code: XFTLCY0601A
-      desc: 广银-添利6M1期A
-      share: 400000
-      url: https://www.cgbwmc.com.cn/#/runningNotice
-    - code: XFLCXFTF0008
-      desc: 广银-幸福添福8期
-      share: 196367
-      url: https://www.cgbwmc.com.cn/#/runningNotice
     - code: XFLCXFTF0006
       desc: 广银-幸福添福6期
-      share: 400000
+      share: 45
       url: https://www.cgbwmc.com.cn/#/runningNotice
     - code: XFLCXFTL0003
-      desc: 广银-幸福添利3月
-      share: 2959529
+      desc: 广银-幸福添利3M
+      share: 278
       url: https://www.cgbwmc.com.cn/#/runningNotice
-
-cmbwm:
+    - code: XFTLFT0601A
+      desc: 广银-幸福添利6M
+      share: 60
+      url: https://www.cgbwmc.com.cn/#/
+    - code: XFTLFT1201C
+      desc: 广银-幸福添利1Y
+      share: 30
+      url: https://www.cgbwmc.com.cn/#/runningNotice
   catalog: '招银理财'
   products:
     - code: 17561D
