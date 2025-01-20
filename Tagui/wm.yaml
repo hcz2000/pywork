@@ -108,7 +108,7 @@ pinganwm:
   catalog: '其他'
   products:
     - code: PA030115
-      desc: 平安-日添利5号B_无
+      desc: 平安-日添利5号B
       share: 0
       url: https://wm.pingan.com/#/product/productDetail?productCode=RT5X00101B&raiseType=0
       value_type: revenue
@@ -120,4 +120,9 @@ cibwm:
       desc: 兴银-季盈13号
       share: 297900
       url: https://www.cibwm.com.cn/personal-products/detail/25aed6fec1f8217c65245a7e51b58d3c
+      agent: gfb
+    - code: 9T33001B
+      desc: 兴银-悦动3月持有1号
+      share: 297900
+      url: https://www.cibwm.com.cn/personal-products/detail/4eadbf982d63719a561edd9a223f2c94
       agent: gfb
