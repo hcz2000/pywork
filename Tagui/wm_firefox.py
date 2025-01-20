@@ -354,6 +354,12 @@ class Cibwmvalue(WmValue):
                 else:
                     stop = True
                     break
+            pageElement=self.driver.find_element(By.CLASS_NAME,'fy-cont')
+            currentPage=int(pageElement.get_attribute('current-page'))
+            pageSize=int(pageElement.get_attribute('page-size'))
+            totalRows=int(pageElement.get_attribute('total'))
+            if currentPage*pageSize>= totalRows:
+                stop = True
             if not stop:
                 next_link = self.driver.find_element(By.LINK_TEXT, '下一页')
                 if next_link:
@@ -450,12 +456,13 @@ if __name__ == '__main__':
         cmb = CmbwmValue(driver)
         cmb.refresh()
         del cmb
-        cib = Cibwmvalue(driver)
-        cib.refresh()
-        del cib
         pingan = Pinganwmvalue(driver)
         pingan.refresh()
         del pingan
+        cib = Cibwmvalue(driver)
+        cib.refresh()
+        del cib
+
 
 
 
