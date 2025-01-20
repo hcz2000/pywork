@@ -78,6 +78,10 @@ class QtDemo(QWidget):
         checkbox.setFont(font)
         #checkbox.stateChanged.connect(lambda: print(self.get_selected()))
         checkboxes.append(checkbox)
+        if int(product['share'])<30:
+          checkbox.setChecked(False)
+        else:
+          checkbox.setChecked(True)
         grid_layout.addWidget(checkbox,cnt//2,cnt%2)
       self.checkboxes[k]=checkboxes
       groupBox.setLayout(grid_layout)
