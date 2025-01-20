@@ -67,7 +67,7 @@ class BocwmValue():
 if __name__ == '__main__':
     with webdriver.Firefox() as driver:
         boc = BocwmValue(driver)
-        boc.getUrl('CYQESGGS30D2A')
+        boc.getUrl('CYQ368DCZA')
         del boc
 
 

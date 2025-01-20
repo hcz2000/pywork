@@ -34,6 +34,11 @@ bocwm:
        share: 59
        url: https://www.bocwm.cn/html/1/netWorth/4689.html
        value_type: net_value
+    -  code: CYQ368DCZA
+       desc: 中银-368天持有
+       share: 25
+       url: https://www.bocwm.cn/html/1/netWorth/6931.html
+       value_type: net_value
     -  code: ZFNNK0915
        desc: 中银-智富年年开
        share: 20
