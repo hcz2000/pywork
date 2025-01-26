@@ -172,8 +172,11 @@ class CgbwmValue(WmValue):
         stop=False
         while stop==False:
             for row in outputList:
-                title=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[1]").get_attribute('innerHTML')
-                catalog=row.find_element(By.XPATH,"./div[@class='myTitleTwo']/span[2]").get_attribute('innerHTML')
+                spanElements=row.find_elements(By.XPATH,"./div[@class='myTitleTwo']/span")
+                if len(spanElements)<2:
+                    continue
+                title=spanElements[0].get_attribute('innerHTML')
+                catalog=spanElements[1].get_attribute('innerHTML')
                 if not catalog.startswith('净值公告'):
                     continue
                 release_date=row.find_element(By.CLASS_NAME,'myDate').get_attribute('innerHTML')
