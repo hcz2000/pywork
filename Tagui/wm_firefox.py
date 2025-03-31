@@ -204,6 +204,7 @@ class CgbwmValue(WmValue):
                     break
 
         self.writeRecords(code, net_values[::-1])
+        time.sleep(2)
 
     def parseNetValue(self):
         cols=self.driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
@@ -275,6 +276,7 @@ class BocwmValue(WmValue):
             #print(cols[0].text,cols[1].text,cols[2].text,cols[4].text,cols[6].text)
 
         self.writeRecords(code, net_values)
+
 
 class CmbwmValue(WmValue):
     def __init__(self,driver):
