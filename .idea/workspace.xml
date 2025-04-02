@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cacc5cd2-bedd-4c5c-9222-b1ad2dc42a36" name="Default" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Tagui/data/wm.db" afterPath="$PROJECT_DIR$/Tagui/data/wm.db" />
-      <change beforePath="$PROJECT_DIR$/Tagui/wm.yaml" afterPath="$PROJECT_DIR$/Tagui/wm.yaml" />
-      <change beforePath="$PROJECT_DIR$/Tagui/wm_firefox.py" afterPath="$PROJECT_DIR$/Tagui/wm_firefox.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pywork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pywork.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scraping/.idea/Scraping.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scraping/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scraping/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scraping/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scraping/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stock/.idea/Stock.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stock/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stock/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stock/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stock/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tagui/.idea/TAGUI.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tagui/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tagui/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tagui/.idea/other.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tagui/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tagui/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gp/.idea/gp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gp/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gp/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gp/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gp/.idea/workspace.xml" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/venv/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +83,18 @@
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;hcz2000&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;http://github.com/hcz2000/pywork&quot;,
+    &quot;accountId&quot;: &quot;37c4cf11-9901-4c9b-becc-2f3e01093675&quot;
+  }
+}</component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -81,6 +113,9 @@
       </list>
     </option>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -136,11 +171,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.vm_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wm_firefox.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wm_plot2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\work\pywork\Tagui" />
@@ -263,20 +303,10 @@
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.vm_plot">
+  <component name="RunManager" selected="Python.wm_firefox">
     <configuration name="vm_plot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pywork" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -287,14 +317,18 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pywork" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/vm_plot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="vm_plot2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pywork" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -305,14 +339,18 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pywork" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/vm_plot2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="wm_firefox" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pywork" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -323,14 +361,18 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pywork" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/wm_firefox.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="wm_firefox2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pywork" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -341,14 +383,18 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pywork" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/wm_firefox2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="wm_plot2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pywork" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -359,32 +405,38 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="pywork" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tagui/wm_plot2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.vm_plot2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.wm_firefox" />
-      <item index="2" class="java.lang.String" itemvalue="Python.wm_firefox2" />
-      <item index="3" class="java.lang.String" itemvalue="Python.wm_plot2" />
-      <item index="4" class="java.lang.String" itemvalue="Python.vm_plot" />
+    <list>
+      <item itemvalue="Python.vm_plot2" />
+      <item itemvalue="Python.wm_firefox" />
+      <item itemvalue="Python.wm_firefox2" />
+      <item itemvalue="Python.wm_plot2" />
+      <item itemvalue="Python.vm_plot" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.vm_plot" />
-        <item index="1" class="java.lang.String" itemvalue="Python.wm_firefox" />
-        <item index="2" class="java.lang.String" itemvalue="Python.wm_plot2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.vm_plot2" />
-        <item index="4" class="java.lang.String" itemvalue="Python.wm_firefox2" />
+      <list>
+        <item itemvalue="Python.wm_firefox" />
+        <item itemvalue="Python.vm_plot" />
+        <item itemvalue="Python.wm_plot2" />
+        <item itemvalue="Python.vm_plot2" />
+        <item itemvalue="Python.wm_firefox2" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-a5bc9544c897-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.23654.177" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -632,7 +684,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736781665908</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="update">
+      <option name="closed" value="true" />
+      <created>1743413736182</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1743413736182</updated>
+    </task>
+    <task id="LOCAL-00035" summary="update">
+      <option name="closed" value="true" />
+      <created>1743584453269</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1743584453269</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -667,12 +735,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
     <option name="LAST_COMMIT_MESSAGE" value="update" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Tagui/wm_firefox2.py" />
