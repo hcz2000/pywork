@@ -121,6 +121,7 @@ class WmValue():
     def refresh(self):
         for product in self.products:
             self.getNetValue(product)
+            time.sleep(2)
 
 class CgbwmValue(WmValue):
     def __init__(self,driver):
@@ -204,7 +205,6 @@ class CgbwmValue(WmValue):
                     break
 
         self.writeRecords(code, net_values[::-1])
-        time.sleep(2)
 
     def parseNetValue(self):
         cols=self.driver.find_elements(By.XPATH,"//div[@id='news_content_id']/table/tbody/tr[2]/td/span")
@@ -331,51 +331,20 @@ class Cibwmvalue(WmValue):
         last_sync_date = self.getLastRecord(code)[0]
         self.driver.implicitly_wait(30)
         self.driver.get(url)
-        value_link=self.driver.find_element(By.LINK_TEXT,'产品净值')
+        value_link=self.driver.find_element(By.XPATH,"//div[@id='louti-yj-area']/div[@class='guide-box']/ul/li[2]")
         if value_link:
             value_link.click()
             time.sleep(2)
-            sub_menuList = self.driver.find_elements(By.XPATH, "//label[@role='radio']")
-            sub_menu=sub_menuList[-1].find_element(By.TAG_NAME,'span')
-            sub_menu.click()
-            time.sleep(2)
 
-        outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']/tr[position()>1]")
-        newest_report = outputList[0]
-        #print(newest_report.get_attribute('innerHTML'))
-        newest_release_date = newest_report.find_elements(By.TAG_NAME, 'td')[0].text
-        if newest_release_date <= last_sync_date:
+        outputList = self.driver.find_elements(By.XPATH, "//div[@class='yj-info-box']/ul[@class='info']/li")
+        rpt_date = outputList[0].find_element(By.XPATH, "//span[@class='value']").text
+        if rpt_date <= last_sync_date:
             print('No new release:', last_sync_date)
             return
-
-        stop = False
-        while stop == False:
-            for row in outputList:
-                cols = row.find_elements(By.TAG_NAME, 'td')
-                rpt_date = cols[0].text
-                net_value = cols[1].text
-                if rpt_date > last_sync_date:
-                    net_values.append((rpt_date, net_value))
-                else:
-                    stop = True
-                    break
-            pageElement=self.driver.find_element(By.CLASS_NAME,'fy-cont')
-            currentPage=int(pageElement.get_attribute('current-page'))
-            pageSize=int(pageElement.get_attribute('page-size'))
-            totalRows=int(pageElement.get_attribute('total'))
-            if currentPage*pageSize>= totalRows:
-                stop = True
-            if not stop:
-                next_link = self.driver.find_element(By.LINK_TEXT, '下一页')
-                if next_link:
-                   self.driver.execute_script("arguments[0].click()", next_link)
-                   time.sleep(2)
-                   outputList = self.driver.find_elements(By.XPATH, "//table[@class='table2']/tr[position()>1]")
-                   continue
-                else:
-                    break
-
-        self.writeRecords(code, net_values[::-1])
+        else:
+            net_value=outputList[1].find_element(By.XPATH, "//span[@class='value']").text
+            net_values.append((rpt_date, net_value))
+            self.writeRecords(code, net_values)
 
 class Pinganwmvalue(WmValue):
     def __init__(self, driver):
